@@ -1,9 +1,5 @@
 # Papers
 
-This page is about me ??
-
-# Thoughts that I've Written Down
-
 ## Cisco ACI
 * [Segmenting Complex Environments Using Cisco ACI](https://www.wwt.com/article/segmenting-complex-environments-using-cisco-aci)
 * [Demystifying ACI Application Centric "Mode" Through the Lens of an Engineer](https://www.wwt.com/article/demystifying-aci-application-centric-mode-through-the-lens-of-an-engineer)
