@@ -5,4 +5,4 @@
 3. Add your own domain name in Github Setting: [Add custom domain to Github page](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 4. Update the CNAME record (your current CNAME record probably points to a placeholder page from the domain vendor). [How to update CNAME for different domain vendor](https://knowledge.hubspot.com/domains-and-urls/update-your-dns-records#instructions-by-dns-provider)
 5. Picking a theme from Github templates: [Github Supported Themes](https://pages.github.com/themes/)
-6. Add DNS Record as shown below ![DNS instruction](../images/dns_setup.png)
+6. Add DNS Record as shown below ![DNS instruction](../../../images/dns_setup.png)

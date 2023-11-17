@@ -36,7 +36,7 @@ Networking is a very unique domain with lots of proprietary information (closed 
 
 Not only there are technology differences (Firewall vs. Router vs. Load Balancers), there are different hardware with different capabilities, different firmware with different features, makes it extremely complex for any LLM to be able to handle.
 
-Hence for any LLMs to become useful, we need to empower it with knowledge so that it can empower us.
+Hence for any LLMs to become useful, we need to infuse it with knowledge so that it can empower us.
 
 > ***Q: How will LLM impact network engineers ?***
 
@@ -57,7 +57,7 @@ A: There are several areas an AI agent can outperform traditional automation too
 AI/LLM agent can consult real-time knowledge base when making decisions and provide necessary recommendations.
 AI/LLM agent can engage in conversations, allowing the user to better understand how/why a task will be implemented.
 Most importantly, AI/LLM agent can reason and observe the environment when encountering an error. For example: if you made a typo in a CLI command, an AI agent can help correct it where as Ansible / Terraform will simply error out.
-AI/LLM agent can also look up networking topologies to better understand its options when making configuration changes.
+AI/LLM agent can also look up networking topologies to better understdand its options when making configuration changes.
 
 > ***Q: Does network engineers need to pick up AI skills?***
 
