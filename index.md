@@ -4,7 +4,7 @@ I have over a decade of experience in networking. For the past few years I start
 
 I enjoy reading, learning and applying AI/ML, especially LLM in the filed of networking. Mostly using language models to drive the adoption of AI/ML in the data center and connect highly abstracted business requirements directly to networking intent. True intent based networking is about the business and applications, beyond the network itself.
 
-![My Resume](./files/Peter_Zhang_Resume.pdf)
+[My Resume](files/Peter_Zhang_Resume.pdf)
 
 # Thoughts that I've Written Down
 
