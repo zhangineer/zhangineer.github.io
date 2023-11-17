@@ -27,10 +27,6 @@ The general idea is that the user would provide an abstract request which is tra
 
 ![high_level_flow](../../../images/high_level_flow.png)
 
-<!-- <img src="../images/high_level_flow.png"
-     alt="High Level Flow"
-     style="float: left; margin-right: 10px;" /> -->
-
 ## Questions that you might have
 > ***Q: Will network engineers become obsolete because of LLMs ?***
 
