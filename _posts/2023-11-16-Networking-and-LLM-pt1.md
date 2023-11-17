@@ -25,7 +25,9 @@ The general idea is that the user would provide an abstract request which is tra
 ## High Level Flow
 The general idea is that the user would provide an abstract request which is translated by chatGPT. If the request requires multiple steps, then a list of tasks is fed back to chatGPT for further processing which eventually generates a single function call with arguments properly populated. 
 
-![high_level_flow](../images/high_level_flow.png)
+<img src="../images/high_level_flow.png"
+     alt="High Level Flow"
+     style="float: left; margin-right: 10px;" />
 
 ## Questions that you might have
 > ***Q: Will network engineers become obsolete because of LLMs ?***
