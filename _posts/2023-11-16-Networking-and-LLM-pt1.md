@@ -15,15 +15,13 @@ Since my background is NX-OS/ACI, I will demonstrate with those tech. We’ll le
 The mission of this exploration is to understand efficacy of LLM to manage networks without hallucinations. We’ll start with simple use case and slowly ramp up complexity. We will use LLMs to drive all networking configurations change while we provide prompts in plain English. There will not be any pretty graphical UI, but only conversations
 
 ## Topics To Be Covered
-The basics of instructions, function calling, context and prompts
-Leverage chatGPT’s function calling feature to perform API requests against an ACI environment
-Explore examples and chatGPT responses and learn to improve it.
-Using semantic search to retrieve best practice knowledge in real-time and explore if chatGPT can follow
-High Level Flow
-The general idea is that the user would provide an abstract request which is translated by chatGPT. If the request requires multiple steps, then a list of tasks is fed back to chatGPT for further processing which eventually generates a single function call with arguments properly populated.
+* Explore the basics of instructions, function calling, context and prompts in chatGPT
+* Explore chatGPT’s function calling feature to perform API requests against an ACI environment
+* Review chatGPT's responses to different questions, and explore how we can improve them
+* Explore Using RAG ( Retrieval Augmented Generation ) to retrieve knowledge in real-time for a smoother experience
 
 ## High Level Flow
-The general idea is that the user would provide an abstract request which is translated by chatGPT. If the request requires multiple steps, then a list of tasks is fed back to chatGPT for further processing which eventually generates a single function call with arguments properly populated. 
+The general idea is that the user would request for either information or for change to a network in human language. This request will be translated via chatGPT, matching a function call that gets executed. Then we return the final results back to the user
 
 ![high_level_flow](../../../images/high_level_flow.png)
 
