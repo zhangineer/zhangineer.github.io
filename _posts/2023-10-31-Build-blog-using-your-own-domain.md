@@ -1,4 +1,4 @@
-# Build blog using your own domain name
+# Build blog using your own domain
 
 1. Obtain a domain from any of the domain hosting services such as GoDaddy and Namecheap ( I used NameCheap )
 2. Build a github page - which you can follow the instructions here: [Building a Free Blog with GitHub Pages in Minutes](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) and if you prefer to start from the ground up [Build a Github Page](https://github.com/skills/github-pages)
