@@ -9,10 +9,10 @@ In this series, we’ll take a deep-dive into chatGPT APIs to explore the potent
 ## Introduction
 In this first chapter, we’ll briefly discuss the mission, topics to be covered, a high-level application flow and finally answer some common questions.
 
-Since my background is NX-OS/ACI, I will demonstrate with those tech. We’ll leverage chatGPT model “gpt-4” for all demonstrations.
+Since my background is IOS/NX-OS/ACI, I will demonstrate with those tech. We’ll leverage chatGPT model “gpt-4” for all demonstrations.
 
 ## Mission
-The mission of this exploration is to understand efficacy of LLM to manage networks without hallucinations. We’ll start with simple use case and slowly ramp up complexity. We will use LLMs to drive all networking configurations change while we provide prompts in plain English. There will not be any pretty graphical UI, but only conversations
+The mission of this exploration is to understand efficacy of LLM to manage networks without hallucinations. We’ll start with simple use case and slowly ramp up complexity. We will use LLMs to drive all networking configurations change while we provide prompts in plain English. There will not be any pretty graphical UI, but only great conversations
 
 ## Topics To Be Covered
 * Explore the basics of instructions, function calling, context and prompts in chatGPT
