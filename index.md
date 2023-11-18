@@ -1,1 +1,3 @@
 # Blogs
+
+This is where all the fun begins ...
