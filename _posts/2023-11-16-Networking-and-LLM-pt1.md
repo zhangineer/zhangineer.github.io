@@ -21,7 +21,7 @@ Our approach will begin with basic use cases, gradually increasing in complexity
 
 ## Topics To Be Covered
 * Explore the fundamentals of instruction formulation, function invocation, context understanding, and prompt crafting in ChatGPT.
-Investigating ChatGPT's ability to execute function calls for API interactions within an ACI environment.
+* Investigating ChatGPT's ability to execute function calls for API interactions within an ACI environment.
 * Analyzing ChatGPT's responses to diverse queries and examining ways to refine them.
 * Exploring using RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to enhance the user experience.
 
