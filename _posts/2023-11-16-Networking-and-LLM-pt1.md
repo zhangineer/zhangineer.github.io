@@ -1,72 +1,76 @@
 # Networking and LLM in the Age of AI — Pt. I: The Exploration Begins
 > *A series to explore how to leverage LLM for networking tasks*
 
-The rise of chatGPT and large language models ( LLM ) has provided us much glimpse into the future of possibilities in transforming various domains — however, so far networking has not been explored as much.
+The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
 
-In this series, we’ll take a deep-dive into chatGPT APIs to explore the potentials of LLMs to empower networking management, or IT Operations in general. No AI/ML knowledge is required to follow this series
+In this series, we'll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
+
+![exploration](https://cdn-images-1.medium.com/max/800/0*k3reo7tIKEfKD_FN)  
+*Photo by [Kalen Emsley](https://unsplash.com/@kalenemsley?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)*
 
 
 ## Introduction
-In this first chapter, we’ll briefly discuss the mission, topics to be covered, a high-level application flow and finally answer some common questions.
+In this opening chapter, we'll outline our mission the topics we intend to cover, and provide a high-level overview. Additionally, we'll address some frequently asked questions.
 
-Since my background is IOS/NX-OS/ACI, I will demonstrate with those tech. We’ll leverage chatGPT model “gpt-4” for all demonstrations.
+Given my background in Cisco NX-OS/IOS/ACI, these technologies will be the focus of our demonstrations. We will utilize the ChatGPT model, specifically "GPT-4", for all demonstrations.
 
 ## Mission
-The mission of this exploration is to understand efficacy of LLM to manage networks without hallucinations. We’ll start with simple use case and slowly ramp up complexity. We will use LLMs to drive all networking configurations change while we provide prompts in plain English. There will not be any pretty graphical UI, but only great conversations
+The primary objective of this exploration is to assess the effectiveness of LLMs in managing networks without generating inaccurate or misleading information (commonly referred to as 'hallucinations')
+
+Our approach will begin with basic use cases, gradually increasing in complexity. The application of LLMs will guide all networking configuration changes, with inputs provided in plain English. Instead of relying on graphical user interfaces, our interaction will be purely conversational
 
 ## Topics To Be Covered
-* Explore the basics of instructions, function calling, context and prompts in chatGPT
-* Explore chatGPT’s function calling feature to perform API requests against an ACI environment
-* Review chatGPT's responses to different questions, and explore how we can improve them
-* Explore Using RAG ( Retrieval Augmented Generation ) to retrieve knowledge in real-time for a smoother experience
+* Explore the fundamentals of instruction formulation, function invocation, context understanding, and prompt crafting in ChatGPT.
+Investigating ChatGPT's ability to execute function calls for API interactions within an ACI environment.
+* Analyzing ChatGPT's responses to diverse queries and examining ways to refine them.
+* Exploring using RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to enhance the user experience.
+
+In future blogs, we will further look into more advanced LLM topics, such as fine-tuning LLMs and pre-training a model from scratch.
 
 ## High Level Flow
-The general idea is that the user would request for either information or for change to a network in human language. This request will be translated via chatGPT, matching a function call that gets executed. Then we return the final results back to the user
+The fundamental concept involves the user submitting an abstract request, which ChatGPT interprets. In scenarios where the request necessitates a series of actions, ChatGPT is fed a sequence of tasks for additional analysis. This process is cumulative and iterative until we fulfill the user request.
 
 ![high_level_flow](../../../images/high_level_flow.png)
 
-## Questions that you might have
-> ***Q: Will network engineers become obsolete because of LLMs ?***
+## Frequently Asked Questions
+> ***Will network engineers become obsolete due to the evolution of LLMs?***
 
-A: No. On the contrary, expert level knowledge will become even more critical. However we will need strong communication skills to train, instruct and educate LLM models using precise languages.
+*No, network engineers will not become obsolete with the advent of LLMs. Our expert-level knowledge will become increasingly vital. The critical shift will be robust communication and expression skills, essential for effectively training, guiding, and educating LLMs using precise language.*
 
-Networking is a very unique domain with lots of proprietary information (closed language syntax compared to general programming language, hence you typically contact tech support or specialist for assistance).
+*Networking is a unique domain populated with proprietary information. This contrasts with the more open nature of general programming languages (Python, C, JS…etc).*
 
-Not only there are technology differences (Firewall vs. Router vs. Load Balancers), there are different hardware with different capabilities, different firmware with different features, makes it extremely complex for any LLM to be able to handle.
+*Additionally, networking alone encompasses a variety of technologies (such as Firewalls, Routers, and Load Balancers), each with its specific hardware, capabilities, and firmware features. This complexity presents a significant challenge for any LLM to navigate successfully.*
 
-Hence for any LLMs to become useful, we need to infuse it with knowledge so that it can empower us.
+*Therefore, for LLMs to be truly effective and beneficial in networking, they require substantial knowledge input from human experts. By infusing LLMs with this expertise, they, in turn, can become powerful tools that augment and enhance our capabilities in network management.*
 
-> ***Q: How will LLM impact network engineers ?***
+> ***How will LLMs impact network engineers ?***
 
-A: LLM will become a powerful assistance to network engineers. This is similar to other domains impacted by LLMs. Networking designs and intention will remain to be the most complex component that no LLM can replace.
+*LLMs will be a powerful aid to network engineers, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language driven. This advancement will likely enhance today's Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.*
 
-However, tasks such as routine networking configuration changes will become easier, safer, more transparent and eventually fully autonomous with minimal instructions from a user ( which will likely enhance today’s typical IaC )
+*Additionally, network operations, troubleshooting, information gathering, and real-time action-taking will become more efficient as LLMs are user-friendly and can process complex requests. Over time, the role of the network engineer will gradually evolve from being technically oriented to being more aligned with business objectives, allowing for a greater focus on designing robust, resilient, extensible, and flexible networks.*
 
-Additionally, networking operations, troubleshooting, information gathering, and taking actions in real-time will become easier because LLM is much more user friendly and can understand complex requests.
-
-Overtime, the role of networking engineer will slowly shift from technical oriented to business aligned allowing us to focus more on designing robust, resilient, extensible and flexible networks.
-
-The better a network follows a design pattern, the easier it will be for AI/LLM to manage and maintain. The current state of LLMs cannot replace human, but it can reduce the burden from network engineers of daily mundane tasks.
+*Design to automate - The more a network adheres to a design pattern, the easier it will be for AI and LLMs to manage and maintain.*
 
 > ***Q: How is this different from network automations?***
 
-A: There are several areas an AI agent can outperform traditional automation tools such as Ansible, Terraform or even Python based scripts.
+*AI/LLM offers several advantages over conventional automation tools like Ansible, Terraform, or Python-based scripts:*
 
-AI/LLM agent can consult real-time knowledge base when making decisions and provide necessary recommendations.
-AI/LLM agent can engage in conversations, allowing the user to better understand how/why a task will be implemented.
-Most importantly, AI/LLM agent can reason and observe the environment when encountering an error. For example: if you made a typo in a CLI command, an AI agent can help correct it where as Ansible / Terraform will simply error out.
-AI/LLM agent can also look up networking topologies to better understdand its options when making configuration changes.
+* *A human-friendly natural language interface requires no automation skills to perform automated tasks.*
 
-> ***Q: Does network engineers need to pick up AI skills?***
+* *LLM can access a real-time knowledge base for informed decision-making and provide relevant recommendations as necessary.*
 
-A: Not exactly AI/ML skills, but I encourage any network engineers to pick up skills that can leverage the AI technology. This includes LLM prompt engineering, basic Python knowledge and APIs. We should treat software like chatGPT as a dev tool, rather than a product.
+* *LLM can also engage in interactive dialogues, offering users insights into the implementation process of a task.*
 
-Work on prompting, instruction and context building skills. If a network engineer can provide well structured intention, instructions, guidance, prompts and context for an LLM model, it will become an extremely powerful assistant. Throughout the series, you’ll see how I use my own knowledge in ACI/NX-OS to drive better performance of the model.
+* *LLM can reason and adapt to their environment when errors occur. For instance, they can correct typos in user input, unlike tools like Ansible or Terraform, which would report an error.*
+  
+* *LLM can analyze network topologies, providing an extra safety net for assessing the impact of a configuration change.*
 
-However, if I were to try building a model for deploying cloud infrastructure, I would not be as efficient becuase I lack such expertise. 
+> ***Do network engineers need to pick up AI skills?***
 
-Most importantly, you need to understand the nuances in networking. Common and generic knowledge will be easy for an LLM to pick up, but nuances come from experience in real world implementations. This is similiar to how we can easily learn generic networking concepts and knowledge, but takes time for us to learn how these knowledge is applied to a specific networking environment
+*Network engineers don't necessarily need to master AI/ML skills, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than products is crucial. Otherwise, you'll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT's performance.*
+
+*Most importantly, understanding the nuances of networking is crucial. While LLMs can readily acquire common and generic knowledge, the subtleties that stem from real-world experience are more complex to grasp. This is similar to how we can quickly learn generic networking concepts, but it takes time to grasp how such knowledge applies to specific networking environments.*
 
 ## One Last Thought
 
-With the revolution of LLM, your imagination is the limit, it’s only a matter of whether you can ask the right question and provide the right guidance to an LLM model
+As we witness the ongoing evolution of Large Language Models, the boundaries of their capabilities are largely defined by the extent of our imagination. The key lies in our ability to offer precise guidance. The potential of LLMs is vast, but it hinges on our skillful interaction and thoughtful input.
