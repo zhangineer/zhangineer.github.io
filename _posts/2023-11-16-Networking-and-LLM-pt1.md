@@ -1,5 +1,5 @@
 # Networking and LLM in the Age of AI — Pt. I: The Exploration Begins
-> *A series to explore how to leverage LLM for networking tasks*
+*A series to explore how to leverage LLM for networking tasks*
 
 The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
 
@@ -8,11 +8,19 @@ In this series, we'll explore the potential of LLMs to empower Networking Operat
 ![exploration](https://cdn-images-1.medium.com/max/800/0*k3reo7tIKEfKD_FN)  
 *Photo by [Kalen Emsley](https://unsplash.com/@kalenemsley?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)*
 
+## For the Busy People - TL;DR For the Series
+* LLM demonstrated significant promise in assisting with IT and networking configuration management troubleshooting tasks.
+* Human engineers are irreplaceable in the AI-driven landscape, as their technical expertise is essential for accurately conveying intentions to and guiding ChatGPT.
+* A conversational approach to configuration management offers a more intuitive and user-friendly alternative than traditional automation tools.
+* The integration of Function Calls and RAG plays a crucial role in minimizing hallucinations and enhancing the accuracy of configurations.
+* Developing a robust validation pipeline for models is essential, given the potential for hallucinations and the inherent inconsistencies in LLMs.
+* Treating LLMs as software development tools rather than chatbots is crucial. Understanding how to integrate them with external software will enhance the user experience and unlock a broader range of use cases.
+* The rise of domain-specific LLMs, such as Large Vision Models, is anticipated to be a significant trend. While not everyone will be involved in their development, their application will become widespread across various fields.
 
 ## Introduction
 In this opening chapter, we'll outline our mission the topics we intend to cover, and provide a high-level overview. Additionally, we'll address some frequently asked questions.
 
-Given my background in Cisco NX-OS/IOS/ACI, these technologies will be the focus of our demonstrations. We will utilize the ChatGPT model, specifically "GPT-4", for all demonstrations.
+Given my background in Cisco ACI, it will be the focus of our demonstrations. We will utilize the ChatGPT model, specifically "GPT-4", for all demonstrations.
 
 ## Mission
 The primary objective of this exploration is to assess the effectiveness of LLMs in managing networks without generating inaccurate or misleading information (commonly referred to as 'hallucinations')
@@ -23,12 +31,12 @@ Our approach will begin with basic use cases, gradually increasing in complexity
 * Explore the fundamentals of instruction formulation, function invocation, context understanding, and prompt crafting in ChatGPT.
 * Investigating ChatGPT's ability to execute function calls for API interactions within an ACI environment.
 * Analyzing ChatGPT's responses to diverse queries and examining ways to refine them.
-* Exploring using RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to enhance the user experience.
+* Explore RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to assist with network configurations.
 
 In future blogs, we will further look into more advanced LLM topics, such as fine-tuning LLMs and pre-training a model from scratch.
 
-## High Level Flow
-The fundamental concept involves the user submitting an abstract request, which ChatGPT interprets. In scenarios where the request necessitates a series of actions, ChatGPT is fed a sequence of tasks for additional analysis. This process is cumulative and iterative until we fulfill the user request.
+## Environment Setup and High-Level Flow
+We'll have an ACI Simulator in the environment to interact with. We'll create a small agent as the middleware that handles user input, communicates with ChatGPT, and makes API calls to the APIC simulator.
 
 ![high_level_flow](../../../images/high_level_flow.png)
 
@@ -45,7 +53,7 @@ The fundamental concept involves the user submitting an abstract request, which 
 
 > ***How will LLMs impact network engineers ?***
 
-*LLMs will be a powerful aid to network engineers, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language driven. This advancement will likely enhance today's Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.*
+*LLMs will be a powerful aid to network engineers, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language-driven. This advancement will likely enhance today's Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.*
 
 *Additionally, network operations, troubleshooting, information gathering, and real-time action-taking will become more efficient as LLMs are user-friendly and can process complex requests. Over time, the role of the network engineer will gradually evolve from being technically oriented to being more aligned with business objectives, allowing for a greater focus on designing robust, resilient, extensible, and flexible networks.*
 
@@ -74,3 +82,5 @@ The fundamental concept involves the user submitting an abstract request, which 
 ## One Last Thought
 
 As we witness the ongoing evolution of Large Language Models, the boundaries of their capabilities are largely defined by the extent of our imagination. The key lies in our ability to offer precise guidance. The potential of LLMs is vast, but it hinges on our skillful interaction and thoughtful input.
+
+Here is the next article: [Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions](2023-11-22-Networking-and-LLM-pt2)
