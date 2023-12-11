@@ -51,15 +51,15 @@ We'll have an ACI Simulator in the environment to interact with. We'll create a 
 
 *Therefore, for LLMs to be truly effective and beneficial in networking, they require substantial knowledge input from human experts. By infusing LLMs with this expertise, they, in turn, can become powerful tools that augment and enhance our capabilities in network management.*
 
-> ***How will LLMs impact network engineers ?***
+> *How will LLMs impact network engineers ?*
 
-*LLMs will be a powerful aid to network engineers, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language-driven. This advancement will likely enhance today's Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.*
+*LLMs will become a powerful aid to us, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language-driven. This advancement will likely enhance today's Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.*
 
 *Additionally, network operations, troubleshooting, information gathering, and real-time action-taking will become more efficient as LLMs are user-friendly and can process complex requests. Over time, the role of the network engineer will gradually evolve from being technically oriented to being more aligned with business objectives, allowing for a greater focus on designing robust, resilient, extensible, and flexible networks.*
 
 *Design to automate - The more a network adheres to a design pattern, the easier it will be for AI and LLMs to manage and maintain.*
 
-> ***Q: How is this different from network automations?***
+> *Q: How is this different from network automations?*
 
 *AI/LLM offers several advantages over conventional automation tools like Ansible, Terraform, or Python-based scripts:*
 
@@ -73,9 +73,9 @@ We'll have an ACI Simulator in the environment to interact with. We'll create a 
   
 * *LLM can analyze network topologies, providing an extra safety net for assessing the impact of a configuration change.*
 
-> ***Do network engineers need to pick up AI skills?***
+> *Do network engineers need to pick up AI skills?*
 
-*Network engineers don't necessarily need to master AI/ML skills, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than products is crucial. Otherwise, you'll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT's performance.*
+*Network engineers don't necessarily need to master AI/ML algorithms, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than a product is crucial. Otherwise, you'll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT's performance.*
 
 *Most importantly, understanding the nuances of networking is crucial. While LLMs can readily acquire common and generic knowledge, the subtleties that stem from real-world experience are more complex to grasp. This is similar to how we can quickly learn generic networking concepts, but it takes time to grasp how such knowledge applies to specific networking environments.*
 
@@ -83,4 +83,4 @@ We'll have an ACI Simulator in the environment to interact with. We'll create a 
 
 As we witness the ongoing evolution of Large Language Models, the boundaries of their capabilities are largely defined by the extent of our imagination. The key lies in our ability to offer precise guidance. The potential of LLMs is vast, but it hinges on our skillful interaction and thoughtful input.
 
-Here is the next article: [Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions](2023-11-22-Networking-and-LLM-pt2)
+See you in the next article: [Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions](http://zhangineer.net/2023/11/22/Networking-and-LLM-pt2.html)
