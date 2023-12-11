@@ -2,25 +2,12 @@
 
 [My Resume](files/Peter_Zhang_Resume.pdf)
 
-I have over a decade of experience in networking. For the past few years I started picking up AI/ML and has been working on a project to apply AI/ML to Networking for the past 2 years.
-
-I am passionate about exploring and utilizing AI/ML technologies, with a particular focus on Large Language Models (LLMs) and its applications in the realm of networking. 
-
-My primary goal is to harness these language models to facilitate the integration of AI/ML into data center operations, effectively bridging the gap between high-level business requirements and network functionalities. This approach is rooted in the philosophy of true intent-based networking, which prioritizes understanding and fulfilling business and application needs, rather than focusing solely on the network infrastructure.
-
-
-I firmly believe AI is here to augment, not to replace, network engineers. It’s akin to the calculator's role in mathematics: a powerful tool that expands capabilities without diminishing the importance of human expertise. The calculator didn’t replace mathematicians; instead, it made math more accessible and accelerated our learning.
-
-Similarly, while the core principles of networking remain crucial, our approach evolves. Engineers need a solid grasp of these fundamentals to discern when an LLM might 'hallucinate'. The shift we’re witnessing moves us away from rote memorization of CLI commands towards a focus on design and business alignment. Our goal is to provide nuanced, business-specific directives to LLMs, enhancing efficiency and customization.
-
-Envision a future where networking operations are driven more by human language interfaces than traditional CLI/GUI. This paradigm shift promises a more intuitive, human-centric approach to networking technology
-
--- written by me, revised by chatGPT ( of course )
+15 years of experience in the networking field, specializing in Software-Defined Networking (SDN), I have recently delved into the world of AI/ML. My focus has been on researching the applications of Large Language Models (LLMs) in networking, exploring how these advanced technologies can supercharge networking and user experiences. 
 
 
 ## Experience Summary
 Most recent first
-* 2 years working in a startup setting building a Networking AI/ML product
+* 2 years working in a startup building a Networking AI/ML product
 * 4 years as solutions architect / consultant in networking, specifically Cisco ACI and DataCenter
 * 5 years as a network engineer in an Enterprise setting covering a wide range of technologies - DC/Campus Networking, CDN, Automation
 * 5 years as a tier-1 tech support engineer in an ISP setting
@@ -44,3 +31,15 @@ Most recent first
 * Coursera - [Generative AI for everyone](https://www.coursera.org/account/accomplishments/certificate/TE35RS4A3HT2)
 * Coursera - [Machine Learning](https://www.coursera.org/account/accomplishments/verify/VBPNU6BPFM2D)
 * Coursera - [AI For Everyone](https://www.coursera.org/account/accomplishments/certificate/X76MXDRGJ569)
+
+## My Thoughs On AI
+
+My primary goal is to harness the power of LLMs to facilitate the integration of AI/ML into data center designs, effectively bridging the gap between high-level business requirements and network functionalities. This approach is rooted in the philosophy of true intent-based networking, which prioritizes understanding and fulfilling business and application needs, rather than focusing solely on the network infrastructure.
+
+I believe AI is here to augment, not to replace network engineers. It’s akin to the calculator's role in mathematics: a powerful tool that expands capabilities without diminishing the importance of human expertise. The calculator didn’t replace mathematicians; instead, it made math more accessible and accelerated our learning.
+
+Similarly, while the core principles of networking remain crucial, our approach evolves. Engineers need a solid grasp of these fundamentals to discern when an LLM might 'hallucinate'. The shift we’re witnessing moves us away from rote memorization of CLI commands towards a focus on design and business alignment. Our goal is to provide nuanced, business-specific directives to LLMs, enhancing efficiency and customization.
+
+Envision a future where networking operations are driven more by human language interfaces than traditional CLI/GUI. This paradigm shift promises a more intuitive, human-centric approach to networking technology
+
+-- written by me, revised by chatGPT ( of course )
