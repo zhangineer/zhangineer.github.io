@@ -30,7 +30,7 @@ Most recent first
 * Coursera - [Machine Learning](https://www.coursera.org/account/accomplishments/verify/VBPNU6BPFM2D)
 * Coursera - [AI For Everyone](https://www.coursera.org/account/accomplishments/certificate/X76MXDRGJ569)
 
-## My Thoughs On AI
+## My Thoughts On AI
 
 My primary goal is to harness the power of LLMs to facilitate the integration of AI/ML into data center designs, effectively bridging the gap between high-level business requirements and network functionalities. This approach is rooted in the philosophy of true intent-based networking, which prioritizes understanding and fulfilling business and application needs, rather than focusing solely on the network infrastructure.
 
