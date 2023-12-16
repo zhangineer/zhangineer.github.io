@@ -1,8 +1,8 @@
-# Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions
+# Networking and LLM in the Age of AI — Pt. I: Exploring Basic Interactions
 *Instructions, Context, Function Calling and Prompts*
 > **The most crucial information we must provide to any LLM chat model are the context, detailed instructions, and precise prompts.**
 
-This article is part of a series — You can find Part I [here](http://zhangineer.net/2023/11/16/Networking-and-LLM-pt1.html)
+This article is part of a series — You can find Part I [here](http://zhangineer.net/2023/10/07/Networking-and-LLM-pt1.html)
 
 ![llm2](../../../images/llm2.png)
 
