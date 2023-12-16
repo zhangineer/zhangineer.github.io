@@ -6,8 +6,8 @@
 ## Experience Summary
 Most recent first
 * 2 years working in a startup building a Networking AI/ML product
-* 4 years as solutions architect / consultant in networking, specifically Cisco ACI and DataCenter
-* 5 years as a network engineer in an Enterprise setting covering a wide range of technologies - DC/Campus Networking, CDN, Automation
+* 4 years as solutions architect / consultant / pre-sale in networking, specifically Cisco ACI and DataCenter
+* 5 years as a network engineer in Enterprise covering a wide range of technologies - DC/Campus Networking, CDN, Automation
 * 5 years as a tier-1 tech support engineer in an ISP setting
 
 ## White Papers Published
