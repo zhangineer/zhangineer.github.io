@@ -1,7 +1,5 @@
 # About Me
 
-[My Resume](files/Peter_Zhang_Resume.pdf)
-
 15 years of experience in the networking field, specializing in Software-Defined Networking (SDN), I have recently delved into the world of AI/ML. My focus has been on researching the applications of Large Language Models (LLMs) in networking, exploring how these advanced technologies can supercharge networking and user experiences. 
 
 
