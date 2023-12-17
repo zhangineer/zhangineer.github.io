@@ -241,4 +241,4 @@ However, achieving output consistency comparable to tools like Ansible requires 
 
 In the following article, we'll analyze ChatGPT's responses to the remaining questions in depth, examining its capability to handle more complex scenarios.
 
-See you in the next one! [Networking and LLM in the Age of AI - Pt III: In-Depth Analysis of ChatGPT's Responses](http://zhangineer.net/2023/11/22/Networking-and-LLM-pt2.html)
+See you in the next one! [Networking and LLM in the Age of AI - Pt III: In-Depth Analysis of ChatGPT's Responses](http://zhangineer.net/2023/11/22/Networking-and-LLM-pt3.html)
