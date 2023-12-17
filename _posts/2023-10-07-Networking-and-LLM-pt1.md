@@ -40,7 +40,7 @@ We'll have an ACI Simulator in the environment to interact with. We'll create a 
 ![high_level_flow](../../../images/high_level_flow.png)
 
 ## Frequently Asked Questions
-> ***Will network engineers become obsolete due to the evolution of LLMs?***
+> *Will network engineers become obsolete due to the evolution of LLMs?*
 
 *No, network engineers will not become obsolete with the advent of LLMs. Our expert-level knowledge will become increasingly vital. The critical shift will be robust communication and expression skills, essential for effectively training, guiding, and educating LLMs using precise language.*
 
@@ -77,6 +77,8 @@ We'll have an ACI Simulator in the environment to interact with. We'll create a 
 *Network engineers don't necessarily need to master AI/ML algorithms, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than a product is crucial. Otherwise, you'll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT's performance.*
 
 *Most importantly, understanding the nuances of networking is crucial. While LLMs can readily acquire common and generic knowledge, the subtleties that stem from real-world experience are more complex to grasp. This is similar to how we can quickly learn generic networking concepts, but it takes time to grasp how such knowledge applies to specific networking environments.*
+
+> *Some of the answers above might not be obvious, but hopefully, they’ll become clearer at the end of this series.*
 
 ## One Last Thought
 
