@@ -5,7 +5,7 @@
 
 This article is a continuation of a series following parts [I](http://zhangineer.net/2023/10/07/Networking-and-LLM-pt1.html) and [II](http://zhangineer.net/2023/10/07/Networking-and-LLM-pt1.html). We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.
 
-![llm-3](../../../images/llm-3.png)
+![llm-3](../../../images/llm3.png)
 
 ## Recap
 The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.
