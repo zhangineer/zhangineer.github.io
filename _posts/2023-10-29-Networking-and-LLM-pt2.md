@@ -20,7 +20,7 @@ When it comes to network management, we should establish some fundamental expect
 
 Here's an illustrative example of global instructions:
 
-```
+```text
 """
 You are a co-pilot to the network engineers.
 All tasks are executed via function calls
@@ -51,7 +51,7 @@ While our usual interactions with ChatGPT are conversational, yielding responses
 
 For instance, 
 
-```python
+```text
 get_fabric_health_function = create_function_config(
     name="get_fabric_health",
     description="Get the latest fabric health, provide user min, max and average for the past 5 minutes",
@@ -72,7 +72,7 @@ get_fabric_health_function = create_function_config(
 
 ### Include defined functions in the API call
 
-```python
+```text
 res = openai.ChatCompletion.create(
     model=self.model,
     messages=self.messages,
@@ -104,7 +104,7 @@ Consequently, a basic understanding of networking is necessary to provide ChatGP
 
 Below are some example prompts. Note that here, we used ACI-specific terminology such as "fabric," "UR (unicast routing)," and "BD (Bridge Domain)" to assess ChatGPT's awareness of context.
 
-```bash
+```text
 # This question intends to get the fabric health score
 - How is my fabric doing?
 
@@ -151,7 +151,7 @@ Now that we understand the entire process flow let's walk through the first quer
 
 Recall that the intention is to simply get the health score (as defined in the function definition).
 
-```Makefile
+```text
 How can I assist you today? => how's my fabric doing
 
 Making function call....  {
@@ -166,7 +166,7 @@ Making function call....  {
 
 We received the below output after sending the above API call to ACI.
 
-```json
+```text
 {
     "fabricOverallHealthHist5min": {
         "attributes": {
@@ -191,7 +191,7 @@ We received the below output after sending the above API call to ACI.
 
 The JSON output is subsequently sent to ChatGPT for additional data extraction. Following this, ChatGPT provided a response that precisely captured the requested average, minimum, and maximum values despite them being identical
 
-```
+```text
 The fabric health for the past 5 minutes has been consistent with an average, 
 minimum, and maximum health score of 81.
 ```
@@ -202,7 +202,7 @@ Let's examine how ChatGPT responds to slight variations in phrasing the exact pr
 
 Example Prompt: `what's my health score?` and `give me the hs`
 
-```
+```text
 How can I assist you today? => what's my health score ?
 
 ==Response==

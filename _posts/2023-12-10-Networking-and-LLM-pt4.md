@@ -50,7 +50,7 @@ The documentation below details our ACI naming convention and configuration guid
 
 We will specifically showcase configuring a new Bridge Domain and assess how effectively ChatGPT can recommend the correct course of action to a user based on these guidelines.
 
-```markdown
+```text
 # Cisco ACI Configuration Guidelines for LLM
 
 This guideline is to help facilitate autonomous agents of LLM  
@@ -93,7 +93,7 @@ Before querying the document, a couple of preparatory steps are necessary:
 
 ### Function Call Definition
 
-```python
+```text
 get_configuration_guideline_function = create_function_config(
     name="get_configuration_guideline",
     description="Get guidelines for ACI policy standards,",
@@ -109,7 +109,7 @@ get_configuration_guideline_function = create_function_config(
 
 ### The actual function to be called
 
-```python
+```text
 def get_configuration_guideline(query):
     # create an index for query, from the database named "aci-kb"
     index = create_pinecone_index("aci-kb")
@@ -242,7 +242,7 @@ Please confirm if you would like to proceed with these configurations.
 
 **Result**: The configuration was successfully applied.
 
-```
+```text
 How can I assist you today? => yes
 
 ==Response==
@@ -359,7 +359,7 @@ Interestingly and frustratingly, we can guide and reason with ChatGPT to correct
 
 **ChatGPT**: You're correct, my apologies for the confusion. The configuration guidelines apply to new objects being created. If the Tenant and VRF are existing objects, we should use their existing names. Let's correct the configuration:
 
-```
+```text
 * Tenant Name: demo
 * Bridge Domain Name: BD_VLAN0005
 * VRF Name: vrf_demo
@@ -386,7 +386,7 @@ This highlights the critical importance of understanding how Generative AI model
 
 * **Inconsistencies in Adhering Global Instructions**: ChatGPT didn't always follow global instructions as expected when provided with configuration guidelines. It required more explicit steps:
 
-```
+```text
 Step 1. Follow system instruction
 Step 2. Follow additional instruction:
 ```

@@ -37,13 +37,13 @@ when you encounter an error during a function call, pass back the exact error me
 
 > *Q: Can you get me a list of BDs with UR enabled?*
 
-```
+```text
 How can I assist you today? => Can you get me a list of BDs with UR enabled?
 ```
 
 ### Function Call Definition
 
-```Python
+```text
 get_bd_function = create_function_config(
     name="get_bd",
     description="Get information about bridge domains (BD)",
@@ -72,7 +72,7 @@ get_bd_function = create_function_config(
 
 Below is a debug message showing ChatGPT correctly interpreted the user intention by returning the correct function name with the expected arguments.
 
-```Python
+```text
 Making function call....  {
   "name": "get_bd", # correct function name returned by ChatGPT
   "arguments": "{\n  \"unicastRoute\": \"yes\"\n}" # correct argument interpreted by ChatGPT
@@ -83,7 +83,7 @@ Making function call....  {
 * ChatGPT was able to understand `UR` as abbreviated in the argument definition `"description": "unicast routing (UR) settings`.
 * After making the API call to ACI, we receive the following JSON dictionaries, which we'll pass back to ChatGPT for data extraction: 
 
-```json
+```text
 {
         "fvBD": {
             "attributes": {
@@ -187,7 +187,7 @@ Making function call....  {
 
 Below is the final response from ChatGPT (displayed to the user)
 
-```
+```text
 Here is a list of Bridge Domains (BDs) with Unicast Routing (UR) enabled:
 1. BD Name: inb, Tenant: mgmt
 2. BD Name: default, Tenant: common
@@ -217,7 +217,7 @@ Now, let's try asking ChatGPT to make a configuration update
 
 > *Q: can you add a new BD named VLAN_NEW to tenant customera*
 
-```
+```text
 How can I assist you today? => can you add a new BD named VLAN_NEW to tenant customera
 ```
 
@@ -227,7 +227,7 @@ I intentionally included two mistakes in the prompt:
 
 ### Function Call Definition
 
-```python
+```text
 build_bd_function = create_function_config(
     name="create_bd",
     description="Create a bridge domain using inputs from user, "
@@ -254,7 +254,7 @@ build_bd_function = create_function_config(
 
 ### First Response
 
-```
+```text
 ==Response==
 Sure, I can help with that. However, I need the name of the VRF to proceed. 
 Could you please provide the VRF name?
@@ -271,7 +271,7 @@ ChatGPT detected mistake#1 - the absence of a VRF name, which will lead ACI 
 
 We provided ChatGPT `prod` VRF name, and it successfully executed the function call but encountered an error. The error is then relayed back to the user as instructed.
 
-```
+```text
 How can I assist you today? => use prod # This is a reply to the question from ChatGPT
 ==Response==
 Making function call....  {
@@ -298,7 +298,7 @@ Would you like to check the existing tenants and VRFs?
 
 We prompted ChatGPT to identify the available Tenants to reassure the Tenant names, and it executed the correct function call, subsequently returning the results.
 
-```
+```text
 How can I assist you today? => what are available tenants ?
 ==Response==
 Making function call....  {
@@ -324,7 +324,7 @@ The correct tenant name should be "CustomerA" instead of "customera".
 
 With all the necessary information, we can let ChatGPT resolve the problem automatically by simply instructing it to act on our behalf. We also requested the updated BD list after receiving a success message.
 
-```
+```text
 How can I assist you today? => okay, fix it for me         
 ==Response==
 Making function call....  {
@@ -361,7 +361,7 @@ The new BD "VLAN_NEW" has been successfully added to the tenant "CustomerA".
 
 > *Q: How many BDs are there?*
 
-```
+```text
 How can I assist you today? => how many BDs are there ?
 ==Response==
 There are 11 Bridge Domains (BDs) in total.
@@ -372,7 +372,7 @@ There are 11 Bridge Domains (BDs) in total.
 
 If I exit the program and begin a new conversation, it's apparent that ChatGPT needs to query for all Bridge Domains (BDs) again to retrieve the answer
 
-```
+```text
 chattynetworks git:(main) ✗ python chattynetworks/aci/chat.py
 
 Hi, I'm an ACI GPT agent, I can provide information for your ACI fabric
@@ -416,7 +416,7 @@ Q: can you raise the threshold to 90 to be considered good ?
 ### Second Example
 Background: I had just set up a fresh ACI simulator instance with no devices registered, so no healthscore was available.
 
-```
+```text
 How can I assist you today? => how's my fabric
 
 ==Response==
@@ -437,7 +437,7 @@ I managed to rectify the hallucination issue by introducing a new directive:
 
 **Addition to the global instruction**: `If no results are returned after a function call, let the user know;` with this additional instruction in place, ChatGPT provided the anticipated response:
 
-```
+```text
 How can I assist you today? => How's my fabric
 
 ==Response==
