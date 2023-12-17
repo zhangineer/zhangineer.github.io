@@ -144,7 +144,7 @@ def get_configuration_guideline(query):
 
 ### User Request
 
-```
+```text
 How can I assist you today? => add vlan5 to tenant demo use vrf vrf_demo, subnet 192.168.1.1/24, subnet should be shared across vrf
 ```
 
@@ -168,7 +168,7 @@ No additional details were provided. However, based on our configuration guideli
 
 The below response is output from `get_configuration_guideline` function call and sent to ChatGPT as additional context.
 
-```make
+```text
 ==Response==
 
 Making function call....  {
@@ -214,7 +214,7 @@ With these guidelines retrieved, let’s examine ChatGPT’s response.
 
 ### ChatGPT's Recommendation
 
-```makefile
+```text
 Based on the configuration guidelines, here are the configurations to be made:
 
 * Tenant Name: demo
@@ -260,7 +260,7 @@ The configuration has been successfully applied. The new bridge domain BD_VLAN00
 ## Information Queries and RAG
 Lastly, for information queries, no configuration guidelines should be  retrieved as illustrated below:
 
-```makefile
+```text
 How can I assist you today? => what's my fabric health score
 
 ==Response==
@@ -304,7 +304,7 @@ Despite the smooth appearance of the demonstrated process, one of the most time-
 
 Consider the following statements from our configuration guidelines:
 
-```
+```text
 * All new objects that the user wants to create shall be in all caps, 
 no CamelCase or lowercase allowed.
 
@@ -314,7 +314,7 @@ no CamelCase or lowercase allowed. e.g. VRF_PROD
 
 The only difference between these statements is the addition of `e.g. VRF_PROD` in the second guideline. This seemingly minor variation led ChatGPT to capitalize both Tenant and VRF names even though they are existing objects, as shown in the following interaction:
 
-```Makefile
+```text
 How can I assist you today? => add vlan5 to tenant demo use vrf vrf_demo, subnet 192.168.1.1/24, subnet should be shared across vrf
 
 ==Response==
@@ -359,7 +359,7 @@ Interestingly and frustratingly, we can guide and reason with ChatGPT to correct
 
 **ChatGPT**: You're correct, my apologies for the confusion. The configuration guidelines apply to new objects being created. If the Tenant and VRF are existing objects, we should use their existing names. Let's correct the configuration:
 
-```makefile
+```
 * Tenant Name: demo
 * Bridge Domain Name: BD_VLAN0005
 * VRF Name: vrf_demo
