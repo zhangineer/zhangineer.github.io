@@ -162,7 +162,7 @@ Making function call....  {
 
 * In this instance, specifying the entire "Cisco ACI Fabric" context wasn't necessary.
 
-* The function `nameget_fabric_health` is correctly returned from ChatGPT with no arguments.
+* The function `get_fabric_health` is correctly returned from ChatGPT with no arguments.
 
 We received the below output after sending the above API call to ACI.
 
