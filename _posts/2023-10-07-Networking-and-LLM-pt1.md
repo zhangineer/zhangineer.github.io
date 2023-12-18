@@ -8,7 +8,7 @@ In this series, we'll explore the potential of LLMs to empower Networking Operat
 ![llm1](../../../images/llm1.png)
 
 ## For the Busy People - TL;DR For the Series
-* LLM demonstrated significant promise in assisting with IT and networking configuration management troubleshooting tasks.
+* LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.
 * Human engineers are irreplaceable in the AI-driven landscape, as their technical expertise is essential for accurately conveying intentions to and guiding ChatGPT.
 * A conversational approach to configuration management offers a more intuitive and user-friendly alternative than traditional automation tools.
 * The integration of Function Calls and RAG plays a crucial role in minimizing hallucinations and enhancing the accuracy of configurations.
