@@ -185,7 +185,7 @@ The chart below shows that:
 * Few-shot learning shows a tremendous jump from 0% to 43.7% score compared to zero-shot learning.
 * The few-shot learning score drops sharply from medium to high difficulty.
 
-![score_breakdown_by_difficulty](../../../images/supercharge_llm_with_domain_expert_knowledge/score_breakdown_by_difficulty.jpg)
+![score_breakdown_by_difficulty](../../../images/supercharge_llm_with_domain_expert_knowledge/score_breakdown_by_difficulty.png)
 
 Now that we've reviewed the results, we'll examine the process of building the validation pipeline, the pain points, and what can be improved.
 
