@@ -4,7 +4,7 @@
 
 I have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.
 
-In this series, we’ll cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.
+In this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.
 
 >Note that this article uses Cisco ACI as an example. The code used in this article can be found here — https://github.com/zhangineer/networking_llm_instruction
 
