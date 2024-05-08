@@ -24,6 +24,8 @@ Instruction-tuning greatly enhanced ChatGPT’s domain knowledge. On average, in
 As usual, here is a high-level summary for the busy folks:
 
 * This research experiment explored instruction-based tuning to enhance ChatGPT’s ability to answer domain-specific questions, specifically Cisco ACI query commands.
+  
+* The goal was to test ChatGPT’s ability to provide accurate ACI CLI commands after being tuned with detailed instructions.
 
 * The Q&A tests contain 72 questions with three levels of difficulty.
 Q1–Q10 are low, Q11 — Q52 are medium, and Q53 — Q72 are high.
@@ -39,7 +41,7 @@ Q1–Q10 are low, Q11 — Q52 are medium, and Q53 — Q72 are high.
 
 * Few-shot learning results dropped sharply for questions answered correctly 100% of the time.
 
-* The latest Claude Opus 3 model seems to outperform ChatGPT4 with instruction tuning. However, more research and investigation are needed.
+* I also noticed the latest Claude Opus 3 model outperforms ChatGPT4 at following instructions. However, more research and investigation are needed.
 
 ## Lessons Learned
 * Build a validation pipeline as early as possible before diving into data gathering and refining.
