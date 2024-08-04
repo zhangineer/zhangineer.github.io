@@ -50,6 +50,15 @@ This article is part of a series — You can find Part I here
 Instructions Instructions play a crucial role in shaping an LLM into a valuable assistant. Their purpose is to set clear expectations and guide narratives and context, thereby reducing inaccuracies and ensuring more precise responses.</description>
     </item>
     <item>
+      <title>About Me</title>
+      <link>http://zhangineer.net/aboutme/</link>
+      <pubDate>Thu, 05 Oct 2023 20:16:15 -0400</pubDate>
+      <guid>http://zhangineer.net/aboutme/</guid>
+      <description>15 years of experience in the networking field, specializing in Software-Defined Networking (SDN), I have recently delved into the world of AI/ML. My focus has been on researching the applications of Large Language Models (LLMs) in networking, exploring how these advanced technologies can supercharge networking and user experiences.
+Experiences Most recent first
+2 years working in a startup building a Networking AI/ML product 4 years as solutions architect / consultant / pre-sale in networking, specifically Cisco ACI and DataCenter 5 years as a network engineer in Enterprise covering a wide range of technologies - DC/Campus Networking, CDN, Automation 5 years as a tier-1 tech support engineer in an ISP setting White Papers Published Segmenting Complex Environments Using Cisco ACI Demystifying ACI Application Centric &amp;ldquo;Mode&amp;rdquo; Through the Lens of an Engineer Cisco ACI: Design to Automate Career Certifications and Awards Patent: US11606265B2 - Network control in artificial intelligence-defined networking Awarded by WWT as Engineer of the Month/Quarter/Year in 2021 Cisco Certified Network Associate Cisco Certified DevNet Associate Cisco Certified DevNet Professional Cisco Certified DevNet Specialist - Core Cisco Certified DevNet Specialist - Data Center Automation and Programmability Coursera - Generative AI with LLM Coursera - Generative AI for everyone Coursera - Machine Learning Coursera - AI For Everyone My Thoughts On AI My primary goal is to harness the power of LLMs to facilitate the integration of AI/ML into data center designs, effectively bridging the gap between high-level business requirements and network functionalities.</description>
+    </item>
+    <item>
       <title>Networking and LLM in the Age of AI — Pt. I: The Exploration Begins</title>
       <link>http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/</link>
       <pubDate>Thu, 05 Oct 2023 20:16:15 -0400</pubDate>
@@ -58,15 +67,6 @@ Instructions Instructions play a crucial role in shaping an LLM into a valuable 
 The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
 In this series, we&amp;rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
 For the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://zhangineer.net/aboutme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://zhangineer.net/aboutme/</guid>
-      <description>About Me 15 years of experience in the networking field, specializing in Software-Defined Networking (SDN), I have recently delved into the world of AI/ML. My focus has been on researching the applications of Large Language Models (LLMs) in networking, exploring how these advanced technologies can supercharge networking and user experiences.
-Experience Summary Most recent first
-2 years working in a startup building a Networking AI/ML product 4 years as solutions architect / consultant / pre-sale in networking, specifically Cisco ACI and DataCenter 5 years as a network engineer in Enterprise covering a wide range of technologies - DC/Campus Networking, CDN, Automation 5 years as a tier-1 tech support engineer in an ISP setting White Papers Published Segmenting Complex Environments Using Cisco ACI Demystifying ACI Application Centric &amp;ldquo;Mode&amp;rdquo; Through the Lens of an Engineer Cisco ACI: Design to Automate Career Certifications and Awards Patent: US11606265B2 - Network control in artificial intelligence-defined networking Awarded by WWT as Engineer of the Month/Quarter/Year in 2021 Cisco Certified Network Associate Cisco Certified DevNet Associate Cisco Certified DevNet Professional Cisco Certified DevNet Specialist - Core Cisco Certified DevNet Specialist - Data Center Automation and Programmability Coursera - Generative AI with LLM Coursera - Generative AI for everyone Coursera - Machine Learning Coursera - AI For Everyone My Thoughts On AI My primary goal is to harness the power of LLMs to facilitate the integration of AI/ML into data center designs, effectively bridging the gap between high-level business requirements and network functionalities.</description>
     </item>
   </channel>
 </rss>
