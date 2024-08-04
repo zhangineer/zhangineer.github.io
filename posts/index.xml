@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Welcome to my blog</title>
-    <link>http://zhangineer.net/posts/</link>
+    <link>http://zhangineer.github.io/posts/</link>
     <description>Recent content in Posts on Welcome to my blog</description>
     <generator>Hugo -- 0.128.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Dec 2023 20:16:15 -0400</lastBuildDate>
-    <atom:link href="http://zhangineer.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://zhangineer.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Networking and LLM in the Age of AI — Pt. IV: Knowledge Retrieval using RAG</title>
-      <link>http://zhangineer.net/posts/2023-12-10-networking-and-llm-pt4/</link>
+      <link>http://zhangineer.github.io/posts/2023-12-10-networking-and-llm-pt4/</link>
       <pubDate>Sun, 10 Dec 2023 20:16:15 -0400</pubDate>
-      <guid>http://zhangineer.net/posts/2023-12-10-networking-and-llm-pt4/</guid>
+      <guid>http://zhangineer.github.io/posts/2023-12-10-networking-and-llm-pt4/</guid>
       <description>Using RAG to Enforce ACI Policy Standards
 Networking management can be complex and depends on accurate information to take necessary actions. Taking the wrong action can be costly.
 Photo by Susan Q Yin on Unsplash
@@ -21,9 +21,9 @@ Part I — Introduction Part II — Exploring Basic Interactions Part III — In
     </item>
     <item>
       <title>Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses</title>
-      <link>http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/</link>
+      <link>http://zhangineer.github.io/posts/2023-11-22-networking-and-llm-pt3/</link>
       <pubDate>Wed, 22 Nov 2023 20:16:15 -0400</pubDate>
-      <guid>http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/</guid>
+      <guid>http://zhangineer.github.io/posts/2023-11-22-networking-and-llm-pt3/</guid>
       <description>Analyze LLM responses and understand hallucinations.
 Efficient Network Operation is about getting precise information without additional &amp;ldquo;digging in.&amp;rdquo;
 This article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.
@@ -32,9 +32,9 @@ We also reviewed the responses to a fabric health query.</description>
     </item>
     <item>
       <title>Networking and LLM in the Age of AI — Pt. II: Exploring Basic Interactions</title>
-      <link>http://zhangineer.net/posts/2023-10-29-networking-and-llm-pt2/</link>
+      <link>http://zhangineer.github.io/posts/2023-10-29-networking-and-llm-pt2/</link>
       <pubDate>Sun, 29 Oct 2023 20:16:15 -0400</pubDate>
-      <guid>http://zhangineer.net/posts/2023-10-29-networking-and-llm-pt2/</guid>
+      <guid>http://zhangineer.github.io/posts/2023-10-29-networking-and-llm-pt2/</guid>
       <description>Instructions, Context, Function Calling and Prompts
 The most crucial information we must provide to any LLM chat model are the context, detailed instructions, and precise prompts.
 This article is part of a series — You can find Part I here
@@ -42,9 +42,9 @@ Instructions Instructions play a crucial role in shaping an LLM into a valuable 
     </item>
     <item>
       <title>Networking and LLM in the Age of AI — Pt. I: The Exploration Begins</title>
-      <link>http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/</link>
+      <link>http://zhangineer.github.io/posts/2023-10-07-networking-and-llm-pt1/</link>
       <pubDate>Thu, 05 Oct 2023 20:16:15 -0400</pubDate>
-      <guid>http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/</guid>
+      <guid>http://zhangineer.github.io/posts/2023-10-07-networking-and-llm-pt1/</guid>
       <description>A series to explore how to leverage LLM for networking tasks
 The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
 In this series, we&amp;rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
