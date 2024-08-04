@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses | Welcome to my blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Analyze LLM responses and understand hallucinations.
+Efficient Network Operation is about getting precise information without additional &ldquo;digging in.&rdquo;
+This article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.
+Recap The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.
+We also reviewed the responses to a fabric health query.">
+<meta name="author" content="">
+<link rel="canonical" href="http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://zhangineer.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://zhangineer.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://zhangineer.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://zhangineer.net/apple-touch-icon.png">
+<link rel="mask-icon" href="http://zhangineer.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses" />
+<meta property="og:description" content="Analyze LLM responses and understand hallucinations.
+Efficient Network Operation is about getting precise information without additional &ldquo;digging in.&rdquo;
+This article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.
+Recap The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.
+We also reviewed the responses to a fabric health query." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-22T20:16:15-04:00" />
+<meta property="article:modified_time" content="2023-11-22T20:16:15-04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses"/>
+<meta name="twitter:description" content="Analyze LLM responses and understand hallucinations.
+Efficient Network Operation is about getting precise information without additional &ldquo;digging in.&rdquo;
+This article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.
+Recap The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.
+We also reviewed the responses to a fabric health query."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://zhangineer.net/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses",
+      "item": "http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses",
+  "name": "Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses",
+  "description": "Analyze LLM responses and understand hallucinations.\nEfficient Network Operation is about getting precise information without additional \u0026ldquo;digging in.\u0026rdquo;\nThis article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.\nRecap The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.\nWe also reviewed the responses to a fabric health query.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Analyze LLM responses and understand hallucinations.\nEfficient Network Operation is about getting precise information without additional “digging in.”\nThis article is a continuation of a series following parts I and II. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.\nRecap The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.\nWe also reviewed the responses to a fabric health query. In this article, we will delve deeper into more complex scenarios, thoroughly examining the answers provided by ChatGPT, including:\nRequesting ChatGPT to retrieve information via API calls. Instructing ChatGPT to execute changes through API calls. Analyzing and understanding hallucinations. As outlined in the previous article, here is the global instruction:\n\"\"\" You are a co-pilot to the network engineers. All tasks are executed via function calls Only use the functions you have been provided with. Don't make assumptions about what values to plug into functions. Always ask for clarification if a user request is ambiguous when you encounter an error during a function call, pass back the exact error message, and do not interpret it \"\"\" We instruct ChatGPT to utilize function calls exclusively using provided functions. Refrain from assuming input or function argument values. Errors should be relayed directly to the user without interpretation, as interpreting errors could lead to inaccurate assumptions or hallucinations by ChatGPT. Asking chatGPT to retrieve information Q: Can you get me a list of BDs with UR enabled?\nHow can I assist you today? =\u003e Can you get me a list of BDs with UR enabled? Function Call Definition get_bd_function = create_function_config( name=\"get_bd\", description=\"Get information about bridge domains (BD)\", properties={ \"unicastRoute\": { \"type\": \"string\", \"description\": \"unicast routing(UR) settings\", \"enum\": [\"yes\", \"no\"] }, \"unkMacUcastAct\": { \"type\": \"string\", \"description\": \"L2 Unknown unicast setting\", \"enum\": [\"flood\", \"proxy\"] }, \"operator\": { \"type\": \"string\", \"description\": \"operators are used to filter and concatenate different properties\", \"enum\": [\"wcard\", \"and\", \"or\", \"bw\", \"lt\", \"gt\"] } }, required=[] ) Response from chatGPT Below is a debug message showing ChatGPT correctly interpreted the user intention by returning the correct function name with the expected arguments.\nMaking function call.... { \"name\": \"get_bd\", # correct function name returned by ChatGPT \"arguments\": \"{\\n \\\"unicastRoute\\\": \\\"yes\\\"\\n}\" # correct argument interpreted by ChatGPT } unicastRoute is a specific ACI class, and it was provided as part of the function definition. ACI API will only accept yes/no as valid values. ChatGPT was able to understand UR as abbreviated in the argument definition \"description\": \"unicast routing (UR) settings. After making the API call to ACI, we receive the following JSON dictionaries, which we’ll pass back to ChatGPT for data extraction: { \"fvBD\": { \"attributes\": { \"OptimizeWanBandwidth\": \"no\", \"annotation\": \"\", \"arpFlood\": \"no\", \"bcastP\": \"225.1.17.144\", \"childAction\": \"\", \"configIssues\": \"\", \"descr\": \"\", \"dn\": \"uni/tn-mgmt/BD-inb\", \"enableRogueExceptMac\": \"no\", \"epClear\": \"no\", \"epMoveDetectMode\": \"\", \"extMngdBy\": \"\", \"hostBasedRouting\": \"no\", \"intersiteBumTrafficAllow\": \"no\", \"intersiteL2Stretch\": \"no\", \"ipLearning\": \"yes\", \"ipv6McastAllow\": \"no\", \"lcOwn\": \"local\", \"limitIpLearnToSubnets\": \"yes\", \"llAddr\": \"::\", \"mac\": \"00:22:BD:F8:19:FF\", \"mcastARPDrop\": \"yes\", \"mcastAllow\": \"no\", \"modTs\": \"2023-09-09T02:09:23.883+00:00\", \"monPolDn\": \"uni/tn-common/monepg-default\", \"mtu\": \"inherit\", \"multiDstPktAct\": \"bd-flood\", \"name\": \"inb\", \"nameAlias\": \"\", \"ownerKey\": \"\", \"ownerTag\": \"\", \"pcTag\": \"16386\", \"scope\": \"2621440\", \"seg\": \"16383902\", \"status\": \"\", \"type\": \"regular\", \"uid\": \"0\", \"unicastRoute\": \"yes\", \"unkMacUcastAct\": \"proxy\", \"unkMcastAct\": \"flood\", \"userdom\": \"all\", \"v6unkMcastAct\": \"flood\", \"vmac\": \"not-applicable\" } } }, { \"fvBD\": { \"attributes\": { \"OptimizeWanBandwidth\": \"no\", \"annotation\": \"\", \"arpFlood\": \"no\", \"bcastP\": \"225.0.7.80\", \"childAction\": \"\", \"configIssues\": \"\", \"descr\": \"\", \"dn\": \"uni/tn-common/BD-default\", \"enableRogueExceptMac\": \"no\", \"epClear\": \"no\", \"epMoveDetectMode\": \"\", \"extMngdBy\": \"\", \"hostBasedRouting\": \"no\", \"intersiteBumTrafficAllow\": \"no\", \"intersiteL2Stretch\": \"no\", \"ipLearning\": \"yes\", \"ipv6McastAllow\": \"no\", \"lcOwn\": \"local\", \"limitIpLearnToSubnets\": \"yes\", \"llAddr\": \"::\", \"mac\": \"00:22:BD:F8:19:FF\", \"mcastARPDrop\": \"yes\", \"mcastAllow\": \"no\", \"modTs\": \"2023-09-09T02:09:24.610+00:00\", \"monPolDn\": \"uni/tn-common/monepg-default\", \"mtu\": \"inherit\", \"multiDstPktAct\": \"bd-flood\", \"name\": \"default\", \"nameAlias\": \"\", \"ownerKey\": \"\", \"ownerTag\": \"\", \"pcTag\": \"49154\", \"scope\": \"3014657\", \"seg\": \"16318374\", \"status\": \"\", \"type\": \"regular\", \"uid\": \"0\", \"unicastRoute\": \"yes\", \"unkMacUcastAct\": \"proxy\", \"unkMcastAct\": \"flood\", \"userdom\": \"all\", \"v6unkMcastAct\": \"flood\", \"vmac\": \"not-applicable\" } } }, Below is the final response from ChatGPT (displayed to the user)\nHere is a list of Bridge Domains (BDs) with Unicast Routing (UR) enabled: 1. BD Name: inb, Tenant: mgmt 2. BD Name: default, Tenant: common 3. BD Name: ave-ctrl, Tenant: infra 4. BD Name: default, Tenant: infra 5. BD Name: VLAN5_BD, Tenant: CustomerA 6. BD Name: VLAN500_BD, Tenant: CustomerA 7. BD Name: VLAN100_BD, Tenant: CustomerA 8. BD Name: VLAN5_BD, Tenant: common 9. BD Name: vlan5, Tenant: common 10. BD Name: VLAN101_BD, Tenant: CustomerA Please note that the tenant name indicates the specific network segment where the BD is located. ==End of response== A few interesting observations:\nWe did not specify an expected output format, resulting in ChatGPT “selecting” one based on its training data. ChatGPT accurately extracted Tenant names from the Distinguished Name (DN), as seen in examples like “dn”: “uni/tn-mgmt/BD-inb”. However, ChatGPT inaccurately claimed that “the tenant name indicates the specific network segment,” revealing a gap in its domain knowledge.\" Now, let’s try asking ChatGPT to make a configuration update\nAsking ChatGPT to make a change Q: can you add a new BD named VLAN_NEW to tenant customera\nHow can I assist you today? =\u003e can you add a new BD named VLAN_NEW to tenant customera I intentionally included two mistakes in the prompt:\nNo VRF name was provided Typo in the Tenant name customera Function Call Definition build_bd_function = create_function_config( name=\"create_bd\", description=\"Create a bridge domain using inputs from user, \" \"make sure to validate that the given Tenant and VRF exist first\", properties={ \"tenantName\": { \"type\": \"string\", \"description\": \"name of the Tenant to deploy to\" }, \"bdName\": { \"type\": \"string\", \"description\": \"name of the bridge domain\" }, \"vrfName\": { \"type\": \"string\", \"description\": \"name of the VRF, required from user\", }, }, required=[\"tenantName\", \"bdName\", \"vrfName\"] ) Since there were two mistakes, it took a bit of back and forth between ChatGPT and me.\nFirst Response ==Response== Sure, I can help with that. However, I need the name of the VRF to proceed. Could you please provide the VRF name? ==End of response== ChatGPT detected mistake#1 - the absence of a VRF name, which will lead ACI to fall back to default, which is often undesired. ChatGPT understood this requirement because of several instructions were put in place to ensure the expected behavior:\nIn the global instruction In the function description In the argument description In the required enumeration (Ideally, this should have sufficed, but it didn’t during my initial tests, hence the additional instructions ) Second Response We provided ChatGPT prod VRF name, and it successfully executed the function call but encountered an error. The error is then relayed back to the user as instructed.\nHow can I assist you today? =\u003e use prod # This is a reply to the question from ChatGPT ==Response== Making function call.... { \"name\": \"create_bd\", \"arguments\": \"{\\n \\\"tenantName\\\": \\\"customera\\\",\\n \\\"bdName\\\": \\\"VLAN_NEW\\\",\\n \\\"vrfName\\\": \\\"prod\\\"\\n}\" } FUNCTION CALL RESULT: {'totalCount': '1', 'imdata': [{'error': {'attributes': {'code': '102', 'text': 'configured object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW, '}}}]} I'm sorry, but there was an error while creating the bridge domain. The error message is: \"configured object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW\". It seems like the tenant or the VRF might not exist. Would you like to check the existing tenants and VRFs? ==End of response== ChatGPT accurately identified the function name and all required arguments. Since ACI utilizes DNs for each object, the existence of a parent object is a prerequisite in this case. This is why we received the error: object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW implying that the Tenant customera does not exist We intentionally directed ChatGPT not to interpret errors. Instead, as outlined in ructions, it is instructed to relay all errors to users for further analysis. ChatGPT offered a follow-up suggestion: Would you like to check the existing tenants and VRFs? However, that was not the root cause. So, instead, I asked what the available Tenants are (as shown below). This example underscores the importance of human intervention, as there can be various options with different implications. ChatGPT may not fully grasp the user’s intent without additional guidance. Third Response We prompted ChatGPT to identify the available Tenants to reassure the Tenant names, and it executed the correct function call, subsequently returning the results.\nHow can I assist you today? =\u003e what are available tenants ? ==Response== Making function call.... { \"name\": \"get_tenant\", \"arguments\": \"{}\" } Here are the available tenants: 1. Tenant Name: infra 2. Tenant Name: common 3. Tenant Name: mgmt 4. Tenant Name: CustomerA Please note that the tenant names are case sensitive. It seems like there was a typo in the tenant name you provided earlier. The correct tenant name should be \"CustomerA\" instead of \"customera\". ==End of response== Again, ChatGPT precisely identified the necessary function call to execute - get_tenant ChatGPT successfully read and interpreted the results from the function call (recall that ACI API will only return JSON) Notably, ChatGPT caught the typo and suggested a correction. Final Response With all the necessary information, we can let ChatGPT resolve the problem automatically by simply instructing it to act on our behalf. We also requested the updated BD list after receiving a success message.\nHow can I assist you today? =\u003e okay, fix it for me ==Response== Making function call.... { \"name\": \"create_bd\", \"arguments\": \"{\\n \\\"tenantName\\\": \\\"CustomerA\\\",\\n \\\"bdName\\\": \\\"VLAN_NEW\\\",\\n \\\"vrfName\\\": \\\"prod\\\"\\n}\" } FUNCTION CALL RESULT: {'totalCount': '0', 'imdata': []} The bridge domain \"VLAN_NEW\" has been successfully created in the tenant \"CustomerA\" with the VRF \"prod\". ==End of response== How can I assist you today? =\u003e show me the new list of BDs ==Response== Making function call.... { \"name\": \"get_bd\", \"arguments\": \"{}\" } Here is the updated list of Bridge Domains (BDs): 1. BD Name: inb, Tenant: mgmt 2. BD Name: default, Tenant: common 3. BD Name: ave-ctrl, Tenant: infra 4. BD Name: default, Tenant: infra 5. BD Name: VLAN5_BD, Tenant: CustomerA 6. BD Name: VLAN500_BD, Tenant: CustomerA 7. BD Name: VLAN100_BD, Tenant: CustomerA 8. BD Name: VLAN5_BD, Tenant: common 9. BD Name: vlan5, Tenant: common 10. BD Name: VLAN101_BD, Tenant: CustomerA 11. BD Name: VLAN_NEW, Tenant: CustomerA The new BD \"VLAN_NEW\" has been successfully added to the tenant \"CustomerA\". ==End of response== Asking chatGPT to retrieve BD count Q: How many BDs are there?\nHow can I assist you today? =\u003e how many BDs are there ? ==Response== There are 11 Bridge Domains (BDs) in total. ==End of response== ChatGPT directly retrieved the information from previous conversations (note the absence of Making function call debug message). If I exit the program and begin a new conversation, it’s apparent that ChatGPT needs to query for all Bridge Domains (BDs) again to retrieve the answer\nchattynetworks git:(main) ✗ python chattynetworks/aci/chat.py Hi, I'm an ACI GPT agent, I can provide information for your ACI fabric How can I assist you today? =\u003e how many BDs are there ? ==Response== Making function call.... { \"name\": \"get_bd\", \"arguments\": \"{}\" } There are 11 Bridge Domains (BDs). ==End of response== The main difference here is that generating a response from context is much faster but also cheaper $\nHallucinations or Imaginations? Hallucinations in LLMs occur when the model generates text that is erroneous, nonsensical, or disconnected from reality. Interestingly, hallucinations can also spur AI creativity and sometimes better grasp human intentions, a topic worthy of separate discussion.\nLet’s examine the following examples to understand how hallucinations might manifest in networking operations.\nFirst Example Here is a snippet of my interaction with ChatGPT regarding fabric health scores:\nQ: what’s my fabric healthscore ?\nA: The health score of your fabric is 81.\nQ: how is my fabric doing?\nA: The overall health of your fabric is currently at 81%.\nQ: Is my fabric good ? A: Yes, your fabric is in good condition. The health score is 81, which indicates a healthy state.\nQ: can you raise the threshold to 90 to be considered good ?\nA: I’m sorry, but as an AI, I don’t have the capability to change the threshold for what is considered a good health score. This is typically a decision made by network administrators based on their specific requirements and standards.\nWhile identical in intent, the first two questions received slightly different responses from ChatGPT (an inconsistency in format, but not inherently negative). The third question, a straightforward yes/no query, received not just an answer but an explanation from ChatGPT, demonstrating some reasoning capability. However, I had not provided ChatGPT with any criteria for ‘good’ or ‘bad.’ This is an area where custom instructions could refine the response, similar to thresholds used in other networking solutions. The fourth question tested ChatGPT’s response to on-the-fly threshold adjustments. Its response was somewhat lacking, considering I am the administrator and that it should have followed my directives. Second Example Background: I had just set up a fresh ACI simulator instance with no devices registered, so no healthscore was available.\nHow can I assist you today? =\u003e how's my fabric ==Response== Making function call.... { \"name\": \"get_fabric_health\", \"arguments\": \"{}\" } # ACI Returned empty results FUNCTION CALL RESULT: {} The fabric health is in good condition. ==End of response== This is a clear case of hallucination. Ideally, when ACI returns an empty result, ChatGPT should report it as is. Instead, it incorrectly informed me that the fabric was in good condition, which is misleading.\nI managed to rectify the hallucination issue by introducing a new directive:\nAddition to the global instruction: If no results are returned after a function call, let the user know; with this additional instruction in place, ChatGPT provided the anticipated response:\nHow can I assist you today? =\u003e How's my fabric ==Response== Making function call.... { \"name\": \"get_fabric_health\", \"arguments\": \"{}\" } FUNCTION CALL RESULT: {} I'm sorry, but there were no results returned after the function call. ==End of response== This solution, while straightforward, underscores how prone LLMs are to hallucinations, even in situations that might seem obvious to humans.\nObservations ChatGPT might assume values when not provided by the user, a side effect of training on generic internet data. Instead of grasping the fundamental concept, ChatGPT often applies these trained examples to answer user queries. Therefore, additional instructions are necessary to minimize hallucinations. With adequate context and instructions, ChatGPT can assist in correcting configuration mistakes. We’ll further explore this in the next article. When ChatGPT is used for data parsing, the output format can vary, which is often undesired for networking operations. Hallucinations present a significant challenge, but there are ways to minimize them. Conclusion In this article, we delved into ChatGPT’s responses to a variety of networking requests, assessing its reasoning capabilities and basic troubleshooting skills in the typo example.\nWe also observed an instance of hallucination and implemented a straightforward solution. In our next article, we will explore RAG (Retrieval Augmented Generation) and examine how it can be utilized to uphold configuration standards — Networking and LLM in the Age of AI - Pt IV: Knowledge Retrieval using RAG\n",
+  "wordCount" : "2461",
+  "inLanguage": "en",
+  "datePublished": "2023-11-22T20:16:15-04:00",
+  "dateModified": "2023-11-22T20:16:15-04:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Welcome to my blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://zhangineer.net/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://zhangineer.net/" accesskey="h" title="Welcome to my blog (Alt + H)">Welcome to my blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://zhangineer.net/aboutme/" title="about me">
+                    <span>about me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://example.org" title="example.org">
+                    <span>example.org</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://zhangineer.net/">Home</a>&nbsp;»&nbsp;<a href="http://zhangineer.net/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses
+    </h1>
+    <div class="post-meta"><span title='2023-11-22 20:16:15 -0400 -0400'>November 22, 2023</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><em>Analyze LLM responses and understand hallucinations.</em></p>
+<blockquote>
+<p><em>Efficient Network Operation is about getting precise information without additional &ldquo;digging in.&rdquo;</em></p>
+</blockquote>
+<p>This article is a continuation of a series following parts <a href="../2023-10-07-Networking-and-LLM-pt1/">I</a> and <a href="../2023-10-29-Networking-and-LLM-pt2/">II</a>. We will begin by analyzing several complex conversations and conclude with examples illustrating hallucinations.</p>
+<p><img loading="lazy" src="banner.png" alt="banner"  />
+</p>
+<h2 id="recap">Recap<a hidden class="anchor" aria-hidden="true" href="#recap">#</a></h2>
+<p>The previous articles covered the basics of instructions, prompts, context, function calls, and how all these components integrate.</p>
+<p>We also reviewed the responses to a fabric health query. In this article, we will delve deeper into more complex scenarios, thoroughly examining the answers provided by ChatGPT, including:</p>
+<ul>
+<li>Requesting ChatGPT to retrieve information via API calls.</li>
+<li>Instructing ChatGPT to execute changes through API calls.</li>
+<li>Analyzing and understanding hallucinations.</li>
+</ul>
+<p>As outlined in the previous article, here is the global instruction:</p>
+<pre tabindex="0"><code>&#34;&#34;&#34;
+You are a co-pilot to the network engineers.
+All tasks are executed via function calls
+Only use the functions you have been provided with.
+Don&#39;t make assumptions about what values to plug into functions. Always ask for clarification if a user request is ambiguous
+when you encounter an error during a function call, pass back the exact error message, and do not interpret it
+&#34;&#34;&#34;
+</code></pre><ul>
+<li>We instruct ChatGPT to utilize function calls exclusively using provided functions.</li>
+<li>Refrain from assuming input or function argument values.</li>
+<li>Errors should be relayed directly to the user without interpretation, as interpreting errors could lead to inaccurate assumptions or hallucinations by ChatGPT.</li>
+</ul>
+<hr>
+<h2 id="asking-chatgpt-to-retrieve-information">Asking chatGPT to retrieve information<a hidden class="anchor" aria-hidden="true" href="#asking-chatgpt-to-retrieve-information">#</a></h2>
+<blockquote>
+<p><em>Q: Can you get me a list of BDs with UR enabled?</em></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; Can you get me a list of BDs with UR enabled?
+</span></span></code></pre></div><h3 id="function-call-definition">Function Call Definition<a hidden class="anchor" aria-hidden="true" href="#function-call-definition">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>get_bd_function = create_function_config(
+</span></span><span style="display:flex;"><span>    name=&#34;get_bd&#34;,
+</span></span><span style="display:flex;"><span>    description=&#34;Get information about bridge domains (BD)&#34;,
+</span></span><span style="display:flex;"><span>    properties={
+</span></span><span style="display:flex;"><span>        &#34;unicastRoute&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;unicast routing(UR) settings&#34;,
+</span></span><span style="display:flex;"><span>            &#34;enum&#34;: [&#34;yes&#34;, &#34;no&#34;]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        &#34;unkMacUcastAct&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;L2 Unknown unicast setting&#34;,
+</span></span><span style="display:flex;"><span>            &#34;enum&#34;: [&#34;flood&#34;, &#34;proxy&#34;]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        &#34;operator&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;operators are used to filter and concatenate different properties&#34;,
+</span></span><span style="display:flex;"><span>            &#34;enum&#34;: [&#34;wcard&#34;, &#34;and&#34;, &#34;or&#34;, &#34;bw&#34;, &#34;lt&#34;, &#34;gt&#34;]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    required=[]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="response-fromchatgpt">Response from chatGPT<a hidden class="anchor" aria-hidden="true" href="#response-fromchatgpt">#</a></h3>
+<p>Below is a debug message showing ChatGPT correctly interpreted the user intention by returning the correct function name with the expected arguments.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_bd&#34;, # correct function name returned by ChatGPT
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{\n  \&#34;unicastRoute\&#34;: \&#34;yes\&#34;\n}&#34; # correct argument interpreted by ChatGPT
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>unicastRoute</code> is a specific ACI class, and it was provided as part of the function definition. ACI API will only accept <code>yes/no</code> as valid values.</li>
+<li>ChatGPT was able to understand <code>UR</code> as abbreviated in the argument definition <code>&quot;description&quot;: &quot;unicast routing (UR) settings</code>.</li>
+<li>After making the API call to ACI, we receive the following JSON dictionaries, which we&rsquo;ll pass back to ChatGPT for data extraction:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        &#34;fvBD&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;attributes&#34;: {
+</span></span><span style="display:flex;"><span>                &#34;OptimizeWanBandwidth&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;annotation&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;arpFlood&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;bcastP&#34;: &#34;225.1.17.144&#34;,
+</span></span><span style="display:flex;"><span>                &#34;childAction&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;configIssues&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;descr&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;dn&#34;: &#34;uni/tn-mgmt/BD-inb&#34;,
+</span></span><span style="display:flex;"><span>                &#34;enableRogueExceptMac&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;epClear&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;epMoveDetectMode&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;extMngdBy&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;hostBasedRouting&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;intersiteBumTrafficAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;intersiteL2Stretch&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ipLearning&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ipv6McastAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;lcOwn&#34;: &#34;local&#34;,
+</span></span><span style="display:flex;"><span>                &#34;limitIpLearnToSubnets&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;llAddr&#34;: &#34;::&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mac&#34;: &#34;00:22:BD:F8:19:FF&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mcastARPDrop&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mcastAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;modTs&#34;: &#34;2023-09-09T02:09:23.883+00:00&#34;,
+</span></span><span style="display:flex;"><span>                &#34;monPolDn&#34;: &#34;uni/tn-common/monepg-default&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mtu&#34;: &#34;inherit&#34;,
+</span></span><span style="display:flex;"><span>                &#34;multiDstPktAct&#34;: &#34;bd-flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;name&#34;: &#34;inb&#34;,
+</span></span><span style="display:flex;"><span>                &#34;nameAlias&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ownerKey&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ownerTag&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;pcTag&#34;: &#34;16386&#34;,
+</span></span><span style="display:flex;"><span>                &#34;scope&#34;: &#34;2621440&#34;,
+</span></span><span style="display:flex;"><span>                &#34;seg&#34;: &#34;16383902&#34;,
+</span></span><span style="display:flex;"><span>                &#34;status&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;type&#34;: &#34;regular&#34;,
+</span></span><span style="display:flex;"><span>                &#34;uid&#34;: &#34;0&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unicastRoute&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unkMacUcastAct&#34;: &#34;proxy&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unkMcastAct&#34;: &#34;flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;userdom&#34;: &#34;all&#34;,
+</span></span><span style="display:flex;"><span>                &#34;v6unkMcastAct&#34;: &#34;flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;vmac&#34;: &#34;not-applicable&#34;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        &#34;fvBD&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;attributes&#34;: {
+</span></span><span style="display:flex;"><span>                &#34;OptimizeWanBandwidth&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;annotation&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;arpFlood&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;bcastP&#34;: &#34;225.0.7.80&#34;,
+</span></span><span style="display:flex;"><span>                &#34;childAction&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;configIssues&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;descr&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;dn&#34;: &#34;uni/tn-common/BD-default&#34;,
+</span></span><span style="display:flex;"><span>                &#34;enableRogueExceptMac&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;epClear&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;epMoveDetectMode&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;extMngdBy&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;hostBasedRouting&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;intersiteBumTrafficAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;intersiteL2Stretch&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ipLearning&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ipv6McastAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;lcOwn&#34;: &#34;local&#34;,
+</span></span><span style="display:flex;"><span>                &#34;limitIpLearnToSubnets&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;llAddr&#34;: &#34;::&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mac&#34;: &#34;00:22:BD:F8:19:FF&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mcastARPDrop&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mcastAllow&#34;: &#34;no&#34;,
+</span></span><span style="display:flex;"><span>                &#34;modTs&#34;: &#34;2023-09-09T02:09:24.610+00:00&#34;,
+</span></span><span style="display:flex;"><span>                &#34;monPolDn&#34;: &#34;uni/tn-common/monepg-default&#34;,
+</span></span><span style="display:flex;"><span>                &#34;mtu&#34;: &#34;inherit&#34;,
+</span></span><span style="display:flex;"><span>                &#34;multiDstPktAct&#34;: &#34;bd-flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;name&#34;: &#34;default&#34;,
+</span></span><span style="display:flex;"><span>                &#34;nameAlias&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ownerKey&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;ownerTag&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;pcTag&#34;: &#34;49154&#34;,
+</span></span><span style="display:flex;"><span>                &#34;scope&#34;: &#34;3014657&#34;,
+</span></span><span style="display:flex;"><span>                &#34;seg&#34;: &#34;16318374&#34;,
+</span></span><span style="display:flex;"><span>                &#34;status&#34;: &#34;&#34;,
+</span></span><span style="display:flex;"><span>                &#34;type&#34;: &#34;regular&#34;,
+</span></span><span style="display:flex;"><span>                &#34;uid&#34;: &#34;0&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unicastRoute&#34;: &#34;yes&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unkMacUcastAct&#34;: &#34;proxy&#34;,
+</span></span><span style="display:flex;"><span>                &#34;unkMcastAct&#34;: &#34;flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;userdom&#34;: &#34;all&#34;,
+</span></span><span style="display:flex;"><span>                &#34;v6unkMcastAct&#34;: &#34;flood&#34;,
+</span></span><span style="display:flex;"><span>                &#34;vmac&#34;: &#34;not-applicable&#34;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    &lt;SNIP&gt;
+</span></span></code></pre></div><p>Below is the final response from ChatGPT (displayed to the user)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Here is a list of Bridge Domains (BDs) with Unicast Routing (UR) enabled:
+</span></span><span style="display:flex;"><span>1. BD Name: inb, Tenant: mgmt
+</span></span><span style="display:flex;"><span>2. BD Name: default, Tenant: common
+</span></span><span style="display:flex;"><span>3. BD Name: ave-ctrl, Tenant: infra
+</span></span><span style="display:flex;"><span>4. BD Name: default, Tenant: infra
+</span></span><span style="display:flex;"><span>5. BD Name: VLAN5_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>6. BD Name: VLAN500_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>7. BD Name: VLAN100_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>8. BD Name: VLAN5_BD, Tenant: common
+</span></span><span style="display:flex;"><span>9. BD Name: vlan5, Tenant: common
+</span></span><span style="display:flex;"><span>10. BD Name: VLAN101_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>Please note that the tenant name indicates the specific network segment where the BD is located.
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><p>A few interesting observations:</p>
+<ul>
+<li>We did not specify an expected output format, resulting in ChatGPT &ldquo;selecting&rdquo; one based on its training data.</li>
+<li>ChatGPT accurately extracted Tenant names from the Distinguished Name (DN), as seen in examples like &ldquo;dn&rdquo;: &ldquo;uni/tn-mgmt/BD-inb&rdquo;.</li>
+<li>However, ChatGPT inaccurately claimed that &ldquo;the tenant name indicates the specific network segment,&rdquo; revealing a gap in its domain knowledge.&quot;</li>
+</ul>
+<p>Now, let&rsquo;s try asking ChatGPT to make a configuration update</p>
+<hr>
+<h2 id="asking-chatgpt-to-make-achange">Asking ChatGPT to make a change<a hidden class="anchor" aria-hidden="true" href="#asking-chatgpt-to-make-achange">#</a></h2>
+<blockquote>
+<p><em>Q: can you add a new BD named VLAN_NEW to tenant customera</em></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; can you add a new BD named VLAN_NEW to tenant customera
+</span></span></code></pre></div><p>I intentionally included two mistakes in the prompt:</p>
+<ul>
+<li>No VRF name was provided</li>
+<li>Typo in the Tenant name <code>customera</code></li>
+</ul>
+<h3 id="function-call-definition-1">Function Call Definition<a hidden class="anchor" aria-hidden="true" href="#function-call-definition-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>build_bd_function = create_function_config(
+</span></span><span style="display:flex;"><span>    name=&#34;create_bd&#34;,
+</span></span><span style="display:flex;"><span>    description=&#34;Create a bridge domain using inputs from user, &#34;
+</span></span><span style="display:flex;"><span>                &#34;make sure to validate that the given Tenant and VRF exist first&#34;,
+</span></span><span style="display:flex;"><span>    properties={
+</span></span><span style="display:flex;"><span>        &#34;tenantName&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;name of the Tenant to deploy to&#34;
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        &#34;bdName&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;name of the bridge domain&#34;
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        &#34;vrfName&#34;: {
+</span></span><span style="display:flex;"><span>            &#34;type&#34;: &#34;string&#34;,
+</span></span><span style="display:flex;"><span>            &#34;description&#34;: &#34;name of the VRF, required from user&#34;,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    required=[&#34;tenantName&#34;, &#34;bdName&#34;, &#34;vrfName&#34;]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><blockquote>
+<p><em>Since there were two mistakes, it took a bit of back and forth between ChatGPT and me.</em></p>
+</blockquote>
+<h3 id="first-response">First Response<a hidden class="anchor" aria-hidden="true" href="#first-response">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Sure, I can help with that. However, I need the name of the VRF to proceed. 
+</span></span><span style="display:flex;"><span>Could you please provide the VRF name?
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><p>ChatGPT detected mistake#1 - the absence of a VRF name, which will lead ACI to fall back to <code>default</code>, which is often undesired. ChatGPT understood this requirement because of several instructions were put in place to ensure the expected behavior:</p>
+<ul>
+<li>In the global instruction</li>
+<li>In the function description</li>
+<li>In the argument description</li>
+<li>In the <code>required</code> enumeration (Ideally, this should have sufficed, but it didn&rsquo;t during my initial tests, hence the additional instructions )</li>
+</ul>
+<h3 id="second-response">Second Response<a hidden class="anchor" aria-hidden="true" href="#second-response">#</a></h3>
+<p>We provided ChatGPT <code>prod</code> VRF name, and it successfully executed the function call but encountered an error. The error is then relayed back to the user as instructed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; use prod # This is a reply to the question from ChatGPT
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;create_bd&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{\n  \&#34;tenantName\&#34;: \&#34;customera\&#34;,\n  \&#34;bdName\&#34;: \&#34;VLAN_NEW\&#34;,\n  \&#34;vrfName\&#34;: \&#34;prod\&#34;\n}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>FUNCTION CALL RESULT:  {&#39;totalCount&#39;: &#39;1&#39;, &#39;imdata&#39;: [{&#39;error&#39;: {&#39;attributes&#39;: {&#39;code&#39;: &#39;102&#39;, &#39;text&#39;: &#39;configured object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW, &#39;}}}]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>I&#39;m sorry, but there was an error while creating the bridge domain. 
+</span></span><span style="display:flex;"><span>The error message is: &#34;configured object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW&#34;. 
+</span></span><span style="display:flex;"><span>It seems like the tenant or the VRF might not exist. 
+</span></span><span style="display:flex;"><span>Would you like to check the existing tenants and VRFs?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><ul>
+<li>ChatGPT accurately identified the function name and all required arguments.</li>
+<li>Since ACI utilizes DNs for each object, the existence of a parent object is a prerequisite in this case. This is why we received the error: 
+<code>object ((Dn0)) not found Dn0=uni/tn-customera/BD-VLAN_NEW </code>implying that the Tenant <code>customera</code> does not exist</li>
+<li>We intentionally directed ChatGPT not to interpret errors. Instead, as outlined in ructions, it is instructed to relay all errors to users for further analysis.</li>
+<li>ChatGPT offered a follow-up suggestion: <code>Would you like to check the existing tenants and VRFs?</code> However, that was not the root cause. So, instead, I asked what the available Tenants are (as shown below). This example underscores the importance of human intervention, as there can be various options with different implications. ChatGPT may not fully grasp the user&rsquo;s intent without additional guidance.</li>
+</ul>
+<h3 id="third-response">Third Response<a hidden class="anchor" aria-hidden="true" href="#third-response">#</a></h3>
+<p>We prompted ChatGPT to identify the available Tenants to reassure the Tenant names, and it executed the correct function call, subsequently returning the results.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; what are available tenants ?
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_tenant&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Here are the available tenants:
+</span></span><span style="display:flex;"><span>1. Tenant Name: infra
+</span></span><span style="display:flex;"><span>2. Tenant Name: common
+</span></span><span style="display:flex;"><span>3. Tenant Name: mgmt
+</span></span><span style="display:flex;"><span>4. Tenant Name: CustomerA
+</span></span><span style="display:flex;"><span>Please note that the tenant names are case sensitive. 
+</span></span><span style="display:flex;"><span>It seems like there was a typo in the tenant name you provided earlier. 
+</span></span><span style="display:flex;"><span>The correct tenant name should be &#34;CustomerA&#34; instead of &#34;customera&#34;.
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><ul>
+<li>Again, ChatGPT precisely identified the necessary function call to execute -<code> get_tenant</code></li>
+<li>ChatGPT successfully read and interpreted the results from the function call (recall that ACI API will only return JSON)</li>
+<li>Notably, ChatGPT caught the typo and suggested a correction.</li>
+</ul>
+<h3 id="final-response">Final Response<a hidden class="anchor" aria-hidden="true" href="#final-response">#</a></h3>
+<p>With all the necessary information, we can let ChatGPT resolve the problem automatically by simply instructing it to act on our behalf. We also requested the updated BD list after receiving a success message.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; okay, fix it for me         
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;create_bd&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{\n  \&#34;tenantName\&#34;: \&#34;CustomerA\&#34;,\n  \&#34;bdName\&#34;: \&#34;VLAN_NEW\&#34;,\n  \&#34;vrfName\&#34;: \&#34;prod\&#34;\n}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>FUNCTION CALL RESULT:  {&#39;totalCount&#39;: &#39;0&#39;, &#39;imdata&#39;: []}
+</span></span><span style="display:flex;"><span>The bridge domain &#34;VLAN_NEW&#34; has been successfully created in the tenant &#34;CustomerA&#34; with the VRF &#34;prod&#34;.
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>How can I assist you today? =&gt; show me the new list of BDs
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_bd&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Here is the updated list of Bridge Domains (BDs):
+</span></span><span style="display:flex;"><span>1. BD Name: inb, Tenant: mgmt
+</span></span><span style="display:flex;"><span>2. BD Name: default, Tenant: common
+</span></span><span style="display:flex;"><span>3. BD Name: ave-ctrl, Tenant: infra
+</span></span><span style="display:flex;"><span>4. BD Name: default, Tenant: infra
+</span></span><span style="display:flex;"><span>5. BD Name: VLAN5_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>6. BD Name: VLAN500_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>7. BD Name: VLAN100_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>8. BD Name: VLAN5_BD, Tenant: common
+</span></span><span style="display:flex;"><span>9. BD Name: vlan5, Tenant: common
+</span></span><span style="display:flex;"><span>10. BD Name: VLAN101_BD, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>11. BD Name: VLAN_NEW, Tenant: CustomerA
+</span></span><span style="display:flex;"><span>The new BD &#34;VLAN_NEW&#34; has been successfully added to the tenant &#34;CustomerA&#34;.
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><h2 id="asking-chatgpt-to-retrieve-bdcount">Asking chatGPT to retrieve BD count<a hidden class="anchor" aria-hidden="true" href="#asking-chatgpt-to-retrieve-bdcount">#</a></h2>
+<blockquote>
+<p><em>Q: How many BDs are there?</em></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; how many BDs are there ?
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>There are 11 Bridge Domains (BDs) in total.
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><ul>
+<li>ChatGPT directly retrieved the information from previous conversations (note the absence of <code>Making function call</code> debug message).</li>
+</ul>
+<p>If I exit the program and begin a new conversation, it&rsquo;s apparent that ChatGPT needs to query for all Bridge Domains (BDs) again to retrieve the answer</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>chattynetworks git:(main) ✗ python chattynetworks/aci/chat.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hi, I&#39;m an ACI GPT agent, I can provide information for your ACI fabric
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>How can I assist you today? =&gt; how many BDs are there ?
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_bd&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>There are 11 Bridge Domains (BDs).
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><p>The main difference here is that generating a response from context is much faster but also cheaper $</p>
+<hr>
+<h2 id="hallucinations-or-imaginations">Hallucinations or Imaginations?<a hidden class="anchor" aria-hidden="true" href="#hallucinations-or-imaginations">#</a></h2>
+<p>Hallucinations in LLMs occur when the model generates text that is erroneous, nonsensical, or disconnected from reality. Interestingly, hallucinations can also spur AI creativity and sometimes better grasp human intentions, a topic worthy of separate discussion.</p>
+<p>Let&rsquo;s examine the following examples to understand how hallucinations might manifest in networking operations.</p>
+<h3 id="first-example">First Example<a hidden class="anchor" aria-hidden="true" href="#first-example">#</a></h3>
+<p>Here is a snippet of my interaction with ChatGPT regarding fabric health scores:</p>
+<p>Q: what&rsquo;s my fabric healthscore ?<br>
+<strong>A: The health score of your fabric is 81.</strong><br>
+Q: how is my fabric doing?<br>
+<strong>A: The overall health of your fabric is currently at 81%.</strong><br>
+Q: Is my fabric good ? <br>
+<strong>A: Yes, your fabric is in good condition. The health score is 81, which indicates a healthy state.</strong><br>
+Q: can you raise the threshold to 90 to be considered good ?<br>
+<strong>A: I&rsquo;m sorry, but as an AI, I don&rsquo;t have the capability to change the threshold for what is considered a good health score. This is typically a decision made by network administrators based on their specific requirements and standards.</strong></p>
+<ul>
+<li>While identical in intent, the first two questions received slightly different responses from ChatGPT (an inconsistency in format, but not inherently negative).</li>
+<li>The third question, a straightforward yes/no query, received not just an answer but an explanation from ChatGPT, demonstrating some reasoning capability. However, I had not provided ChatGPT with any criteria for &lsquo;good&rsquo; or &lsquo;bad.&rsquo; This is an area where custom instructions could refine the response, similar to thresholds used in other networking solutions.</li>
+<li>The fourth question tested ChatGPT&rsquo;s response to on-the-fly threshold adjustments. Its response was somewhat lacking, considering I am the administrator and that it should have followed my directives.</li>
+</ul>
+<h3 id="second-example">Second Example<a hidden class="anchor" aria-hidden="true" href="#second-example">#</a></h3>
+<p>Background: I had just set up a fresh ACI simulator instance with no devices registered, so no healthscore was available.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; how&#39;s my fabric
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_fabric_health&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># ACI Returned empty results
+</span></span><span style="display:flex;"><span>FUNCTION CALL RESULT:  {} 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The fabric health is in good condition.   
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><p>This is a clear case of hallucination. Ideally, when ACI returns an empty result, ChatGPT should report it as is. Instead, it incorrectly informed me that the fabric was in good condition, which is misleading.</p>
+<p>I managed to rectify the hallucination issue by introducing a new directive:</p>
+<p><strong>Addition to the global instruction</strong>: <code>If no results are returned after a function call, let the user know;</code> with this additional instruction in place, ChatGPT provided the anticipated response:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>How can I assist you today? =&gt; How&#39;s my fabric
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>==Response==
+</span></span><span style="display:flex;"><span>Making function call....  {
+</span></span><span style="display:flex;"><span>  &#34;name&#34;: &#34;get_fabric_health&#34;,
+</span></span><span style="display:flex;"><span>  &#34;arguments&#34;: &#34;{}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FUNCTION CALL RESULT:  {}     
+</span></span><span style="display:flex;"><span>I&#39;m sorry, but there were no results returned after the function call. 
+</span></span><span style="display:flex;"><span>==End of response==
+</span></span></code></pre></div><p>This solution, while straightforward, underscores how prone LLMs are to hallucinations, even in situations that might seem obvious to humans.</p>
+<h2 id="observations">Observations<a hidden class="anchor" aria-hidden="true" href="#observations">#</a></h2>
+<ul>
+<li>ChatGPT might assume values when not provided by the user, a side effect of training on generic internet data. Instead of grasping the fundamental concept, ChatGPT often applies these trained examples to answer user queries. Therefore, additional instructions are necessary to minimize hallucinations.</li>
+<li>With adequate context and instructions, ChatGPT can assist in correcting configuration mistakes. We&rsquo;ll further explore this in the next article.</li>
+<li>When ChatGPT is used for data parsing, the output format can vary, which is often undesired for networking operations.</li>
+<li>Hallucinations present a significant challenge, but there are ways to minimize them.</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>In this article, we delved into ChatGPT&rsquo;s responses to a variety of networking requests, assessing its reasoning capabilities and basic troubleshooting skills in the typo example.</p>
+<p>We also observed an instance of hallucination and implemented a straightforward solution. In our next article, we will explore RAG (Retrieval Augmented Generation) and examine how it can be utilized to uphold configuration standards — <a href="http://zhangineer.net/2023/12/10/Networking-and-LLM-pt4.html">Networking and LLM in the Age of AI - Pt IV: Knowledge Retrieval using RAG</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on x"
+            href="https://x.com/intent/tweet/?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f&amp;title=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses&amp;summary=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses&amp;source=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f&title=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on whatsapp"
+            href="https://api.whatsapp.com/send?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses%20-%20http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on telegram"
+            href="https://telegram.me/share/url?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. III: In-Depth Analysis of ChatGPT’s Responses on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20III%3a%20In-Depth%20Analysis%20of%20ChatGPT%e2%80%99s%20Responses&u=http%3a%2f%2fzhangineer.net%2fposts%2f2023-11-22-networking-and-llm-pt3%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://zhangineer.net/">Welcome to my blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Networking and LLM in the Age of AI — Pt. I: The Exploration Begins | Welcome to my blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="A series to explore how to leverage LLM for networking tasks
+The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
+In this series, we&rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
+For the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.">
+<meta name="author" content="">
+<link rel="canonical" href="http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://zhangineer.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://zhangineer.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://zhangineer.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://zhangineer.net/apple-touch-icon.png">
+<link rel="mask-icon" href="http://zhangineer.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="Networking and LLM in the Age of AI — Pt. I: The Exploration Begins" />
+<meta property="og:description" content="A series to explore how to leverage LLM for networking tasks
+The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
+In this series, we&rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
+For the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-05T20:16:15-04:00" />
+<meta property="article:modified_time" content="2023-10-05T20:16:15-04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Networking and LLM in the Age of AI — Pt. I: The Exploration Begins"/>
+<meta name="twitter:description" content="A series to explore how to leverage LLM for networking tasks
+The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
+In this series, we&rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
+For the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://zhangineer.net/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Networking and LLM in the Age of AI — Pt. I: The Exploration Begins",
+      "item": "http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Networking and LLM in the Age of AI — Pt. I: The Exploration Begins",
+  "name": "Networking and LLM in the Age of AI — Pt. I: The Exploration Begins",
+  "description": "A series to explore how to leverage LLM for networking tasks\nThe rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.\nIn this series, we\u0026rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.\nFor the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.",
+  "keywords": [
+    
+  ],
+  "articleBody": "A series to explore how to leverage LLM for networking tasks\nThe rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.\nIn this series, we’ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.\nFor the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks. Human engineers are irreplaceable in the AI-driven landscape, as their technical expertise is essential for accurately conveying intentions to and guiding ChatGPT. A conversational approach to configuration management offers a more intuitive and user-friendly alternative than traditional automation tools. The integration of Function Calls and RAG plays a crucial role in minimizing hallucinations and enhancing the accuracy of configurations. Developing a robust validation pipeline for models is essential, given the potential for hallucinations and the inherent inconsistencies in LLMs. Treating LLMs as software development tools rather than chatbots is crucial. Understanding how to integrate them with external software will enhance the user experience and unlock a broader range of use cases. The rise of domain-specific LLMs, such as Large Vision Models, is anticipated to be a significant trend. While not everyone will be involved in their development, their application will become widespread across various fields. Introduction In this opening chapter, we’ll outline our mission the topics we intend to cover, and provide a high-level overview. Additionally, we’ll address some frequently asked questions.\nGiven my background in Cisco ACI, it will be the focus of our demonstrations. We will utilize the ChatGPT model, specifically “GPT-4”, for all demonstrations.\nMission The primary objective of this exploration is to assess the effectiveness of LLMs in managing networks without generating inaccurate or misleading information (commonly referred to as ‘hallucinations’)\nOur approach will begin with basic use cases, gradually increasing in complexity. The application of LLMs will guide all networking configuration changes, with inputs provided in plain English. Instead of relying on graphical user interfaces, our interaction will be purely conversational\nTopics To Be Covered Explore the fundamentals of instruction formulation, function invocation, context understanding, and prompt crafting in ChatGPT. Investigating ChatGPT’s ability to execute function calls for API interactions within an ACI environment. Analyzing ChatGPT’s responses to diverse queries and examining ways to refine them. Explore RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to assist with network configurations. In future blogs, we will further look into more advanced LLM topics, such as fine-tuning LLMs and pre-training a model from scratch.\nEnvironment Setup and High-Level Flow We’ll have an ACI Simulator in the environment to interact with. We’ll create a small agent as the middleware that handles user input, communicates with ChatGPT, and makes API calls to the APIC simulator.\nFrequently Asked Questions Will network engineers become obsolete due to the evolution of LLMs?\nNo, network engineers will not become obsolete with the advent of LLMs. Our expert-level knowledge will become increasingly vital. The critical shift will be robust communication and expression skills, essential for effectively training, guiding, and educating LLMs using precise language.\nNetworking is a unique domain populated with proprietary information. This contrasts with the more open nature of general programming languages (Python, C, JS…etc).\nAdditionally, networking alone encompasses a variety of technologies (such as Firewalls, Routers, and Load Balancers), each with its specific hardware, capabilities, and firmware features. This complexity presents a significant challenge for any LLM to navigate successfully.\nTherefore, for LLMs to be truly effective and beneficial in networking, they require substantial knowledge input from human experts. By infusing LLMs with this expertise, they, in turn, can become powerful tools that augment and enhance our capabilities in network management.\nHow will LLMs impact network engineers ?\nLLMs will become a powerful aid to us, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language-driven. This advancement will likely enhance today’s Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.\nAdditionally, network operations, troubleshooting, information gathering, and real-time action-taking will become more efficient as LLMs are user-friendly and can process complex requests. Over time, the role of the network engineer will gradually evolve from being technically oriented to being more aligned with business objectives, allowing for a greater focus on designing robust, resilient, extensible, and flexible networks.\nDesign to automate - The more a network adheres to a design pattern, the easier it will be for AI and LLMs to manage and maintain.\nQ: How is this different from network automations?\nAI/LLM offers several advantages over conventional automation tools like Ansible, Terraform, or Python-based scripts:\nA human-friendly natural language interface requires no automation skills to perform automated tasks.\nLLM can access a real-time knowledge base for informed decision-making and provide relevant recommendations as necessary.\nLLM can also engage in interactive dialogues, offering users insights into the implementation process of a task.\nLLM can reason and adapt to their environment when errors occur. For instance, they can correct typos in user input, unlike tools like Ansible or Terraform, which would report an error.\nLLM can analyze network topologies, providing an extra safety net for assessing the impact of a configuration change.\nDo network engineers need to pick up AI skills?\nNetwork engineers don’t necessarily need to master AI/ML algorithms, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than a product is crucial. Otherwise, you’ll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT’s performance.\nMost importantly, understanding the nuances of networking is crucial. While LLMs can readily acquire common and generic knowledge, the subtleties that stem from real-world experience are more complex to grasp. This is similar to how we can quickly learn generic networking concepts, but it takes time to grasp how such knowledge applies to specific networking environments.\nSome of the answers above might not be obvious, but hopefully, they’ll become clearer at the end of this series.\nOne Last Thought As we witness the ongoing evolution of Large Language Models, the boundaries of their capabilities are largely defined by the extent of our imagination. The key lies in our ability to offer precise guidance. The potential of LLMs is vast, but it hinges on our skillful interaction and thoughtful input.\nSee you in the next article: Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions\n",
+  "wordCount" : "1123",
+  "inLanguage": "en",
+  "datePublished": "2023-10-05T20:16:15-04:00",
+  "dateModified": "2023-10-05T20:16:15-04:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Welcome to my blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://zhangineer.net/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://zhangineer.net/" accesskey="h" title="Welcome to my blog (Alt + H)">Welcome to my blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://zhangineer.net/aboutme/" title="about me">
+                    <span>about me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://example.org" title="example.org">
+                    <span>example.org</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://zhangineer.net/">Home</a>&nbsp;»&nbsp;<a href="http://zhangineer.net/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Networking and LLM in the Age of AI — Pt. I: The Exploration Begins
+    </h1>
+    <div class="post-meta"><span title='2023-10-05 20:16:15 -0400 EDT'>October 5, 2023</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><em>A series to explore how to leverage LLM for networking tasks</em></p>
+<p>The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.</p>
+<p>In this series, we&rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.</p>
+<p><img loading="lazy" src="banner.png" alt="llm1"  />
+</p>
+<h2 id="for-the-busy-people-tldr-for-theseries">For the Busy People - TL;DR For the Series<a hidden class="anchor" aria-hidden="true" href="#for-the-busy-people-tldr-for-theseries">#</a></h2>
+<ul>
+<li>LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.</li>
+<li>Human engineers are irreplaceable in the AI-driven landscape, as their technical expertise is essential for accurately conveying intentions to and guiding ChatGPT.</li>
+<li>A conversational approach to configuration management offers a more intuitive and user-friendly alternative than traditional automation tools.</li>
+<li>The integration of Function Calls and RAG plays a crucial role in minimizing hallucinations and enhancing the accuracy of configurations.</li>
+<li>Developing a robust validation pipeline for models is essential, given the potential for hallucinations and the inherent inconsistencies in LLMs.</li>
+<li>Treating LLMs as software development tools rather than chatbots is crucial. Understanding how to integrate them with external software will enhance the user experience and unlock a broader range of use cases.</li>
+<li>The rise of domain-specific LLMs, such as Large Vision Models, is anticipated to be a significant trend. While not everyone will be involved in their development, their application will become widespread across various fields.</li>
+</ul>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>In this opening chapter, we&rsquo;ll outline our mission the topics we intend to cover, and provide a high-level overview. Additionally, we&rsquo;ll address some frequently asked questions.</p>
+<p>Given my background in Cisco ACI, it will be the focus of our demonstrations. We will utilize the ChatGPT model, specifically &ldquo;GPT-4&rdquo;, for all demonstrations.</p>
+<h2 id="mission">Mission<a hidden class="anchor" aria-hidden="true" href="#mission">#</a></h2>
+<p>The primary objective of this exploration is to assess the effectiveness of LLMs in managing networks without generating inaccurate or misleading information (commonly referred to as &lsquo;hallucinations&rsquo;)</p>
+<p>Our approach will begin with basic use cases, gradually increasing in complexity. The application of LLMs will guide all networking configuration changes, with inputs provided in plain English. Instead of relying on graphical user interfaces, our interaction will be purely conversational</p>
+<h2 id="topics-to-be-covered">Topics To Be Covered<a hidden class="anchor" aria-hidden="true" href="#topics-to-be-covered">#</a></h2>
+<ul>
+<li>Explore the fundamentals of instruction formulation, function invocation, context understanding, and prompt crafting in ChatGPT.</li>
+<li>Investigating ChatGPT&rsquo;s ability to execute function calls for API interactions within an ACI environment.</li>
+<li>Analyzing ChatGPT&rsquo;s responses to diverse queries and examining ways to refine them.</li>
+<li>Explore RAG (Retrieval Augmented Generation) for real-time knowledge retrieval to assist with network configurations.</li>
+</ul>
+<p>In future blogs, we will further look into more advanced LLM topics, such as fine-tuning LLMs and pre-training a model from scratch.</p>
+<h2 id="environment-setup-and-high-level-flow">Environment Setup and High-Level Flow<a hidden class="anchor" aria-hidden="true" href="#environment-setup-and-high-level-flow">#</a></h2>
+<p>We&rsquo;ll have an ACI Simulator in the environment to interact with. We&rsquo;ll create a small agent as the middleware that handles user input, communicates with ChatGPT, and makes API calls to the APIC simulator.</p>
+<p><img loading="lazy" src="high_level_flow.png" alt="high_level_flow"  />
+</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<blockquote>
+<p><em>Will network engineers become obsolete due to the evolution of LLMs?</em></p>
+</blockquote>
+<p><em>No, network engineers will not become obsolete with the advent of LLMs. Our expert-level knowledge will become increasingly vital. The critical shift will be robust communication and expression skills, essential for effectively training, guiding, and educating LLMs using precise language.</em></p>
+<p><em>Networking is a unique domain populated with proprietary information. This contrasts with the more open nature of general programming languages (Python, C, JS…etc).</em></p>
+<p><em>Additionally, networking alone encompasses a variety of technologies (such as Firewalls, Routers, and Load Balancers), each with its specific hardware, capabilities, and firmware features. This complexity presents a significant challenge for any LLM to navigate successfully.</em></p>
+<p><em>Therefore, for LLMs to be truly effective and beneficial in networking, they require substantial knowledge input from human experts. By infusing LLMs with this expertise, they, in turn, can become powerful tools that augment and enhance our capabilities in network management.</em></p>
+<blockquote>
+<p><em>How will LLMs impact network engineers ?</em></p>
+</blockquote>
+<p><em>LLMs will become a powerful aid to us, similar to their impact in other domains. While the intricacies of network design and intention remain too complex for LLMs to replace, they will significantly streamline tasks like routine network configuration changes. These tasks will become simpler, safer, more transparent, and eventually human language-driven. This advancement will likely enhance today&rsquo;s Infrastructure as Code (IaC) practices. LLM can also act as an abstraction layer on top of IaC and interface directly with humans.</em></p>
+<p><em>Additionally, network operations, troubleshooting, information gathering, and real-time action-taking will become more efficient as LLMs are user-friendly and can process complex requests. Over time, the role of the network engineer will gradually evolve from being technically oriented to being more aligned with business objectives, allowing for a greater focus on designing robust, resilient, extensible, and flexible networks.</em></p>
+<p><em>Design to automate - The more a network adheres to a design pattern, the easier it will be for AI and LLMs to manage and maintain.</em></p>
+<blockquote>
+<p><em>Q: How is this different from network automations?</em></p>
+</blockquote>
+<p><em>AI/LLM offers several advantages over conventional automation tools like Ansible, Terraform, or Python-based scripts:</em></p>
+<ul>
+<li>
+<p><em>A human-friendly natural language interface requires no automation skills to perform automated tasks.</em></p>
+</li>
+<li>
+<p><em>LLM can access a real-time knowledge base for informed decision-making and provide relevant recommendations as necessary.</em></p>
+</li>
+<li>
+<p><em>LLM can also engage in interactive dialogues, offering users insights into the implementation process of a task.</em></p>
+</li>
+<li>
+<p><em>LLM can reason and adapt to their environment when errors occur. For instance, they can correct typos in user input, unlike tools like Ansible or Terraform, which would report an error.</em></p>
+</li>
+<li>
+<p><em>LLM can analyze network topologies, providing an extra safety net for assessing the impact of a configuration change.</em></p>
+</li>
+</ul>
+<blockquote>
+<p><em>Do network engineers need to pick up AI skills?</em></p>
+</blockquote>
+<p><em>Network engineers don&rsquo;t necessarily need to master AI/ML algorithms, but acquiring skills that leverage AI technology is beneficial. This includes learning LLM prompt engineering, acquiring basic Python knowledge, and understanding APIs. Viewing tools like ChatGPT as development tools rather than a product is crucial. Otherwise, you&rsquo;ll always be disappointed. This series will demonstrate how I apply ACI/Python knowledge to enhance ChatGPT&rsquo;s performance.</em></p>
+<p><em>Most importantly, understanding the nuances of networking is crucial. While LLMs can readily acquire common and generic knowledge, the subtleties that stem from real-world experience are more complex to grasp. This is similar to how we can quickly learn generic networking concepts, but it takes time to grasp how such knowledge applies to specific networking environments.</em></p>
+<blockquote>
+<p><em>Some of the answers above might not be obvious, but hopefully, they’ll become clearer at the end of this series.</em></p>
+</blockquote>
+<h2 id="one-last-thought">One Last Thought<a hidden class="anchor" aria-hidden="true" href="#one-last-thought">#</a></h2>
+<p>As we witness the ongoing evolution of Large Language Models, the boundaries of their capabilities are largely defined by the extent of our imagination. The key lies in our ability to offer precise guidance. The potential of LLMs is vast, but it hinges on our skillful interaction and thoughtful input.</p>
+<p>See you in the next article: <a href="http://zhangineer.net/2023/10/29/Networking-and-LLM-pt2.html">Networking and LLM in the Age of AI - Pt II: Exploring Basic Interactions</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on x"
+            href="https://x.com/intent/tweet/?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f&amp;title=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins&amp;summary=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins&amp;source=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f&title=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on whatsapp"
+            href="https://api.whatsapp.com/send?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins%20-%20http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on telegram"
+            href="https://telegram.me/share/url?text=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM in the Age of AI — Pt. I: The Exploration Begins on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Networking%20and%20LLM%20in%20the%20Age%20of%20AI%20%e2%80%94%20Pt.%20I%3a%20The%20Exploration%20Begins&u=http%3a%2f%2fzhangineer.net%2fposts%2f2023-10-07-networking-and-llm-pt1%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://zhangineer.net/">Welcome to my blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
