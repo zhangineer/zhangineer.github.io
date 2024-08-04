@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Networking and LLM — Supercharge LLM With Domain Expert Knowledge | Blogs on AI and Networking</title>
+<meta name="keywords" content="">
+<meta name="description" content="System Instructions are more potent than you might realize
+I have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.
+In this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.">
+<meta name="author" content="">
+<link rel="canonical" href="http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://zhangineer.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://zhangineer.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://zhangineer.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://zhangineer.net/apple-touch-icon.png">
+<link rel="mask-icon" href="http://zhangineer.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="Networking and LLM — Supercharge LLM With Domain Expert Knowledge" />
+<meta property="og:description" content="System Instructions are more potent than you might realize
+I have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.
+In this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-10T20:16:15-04:00" />
+<meta property="article:modified_time" content="2023-12-10T20:16:15-04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Networking and LLM — Supercharge LLM With Domain Expert Knowledge"/>
+<meta name="twitter:description" content="System Instructions are more potent than you might realize
+I have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.
+In this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://zhangineer.net/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Networking and LLM — Supercharge LLM With Domain Expert Knowledge",
+      "item": "http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Networking and LLM — Supercharge LLM With Domain Expert Knowledge",
+  "name": "Networking and LLM — Supercharge LLM With Domain Expert Knowledge",
+  "description": "System Instructions are more potent than you might realize\nI have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.\nIn this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.",
+  "keywords": [
+    
+  ],
+  "articleBody": " System Instructions are more potent than you might realize\nI have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.\nIn this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.\nNote that this article uses Cisco ACI as an example. The code used in this article can be found here — https://github.com/zhangineer/networking_llm_instruction\nThis article will guide you through the following key points:\nChatGPT’s ability to answer domain-specific questions skyrocketed when provided with quality data in small quantities.\nHuman expert knowledge in domain-specific areas is not just necessary but integral. This article will demonstrate its significance and how it can be leveraged to enhance LLM’s performance.\nMaking a helpful model requires something other than expert programming or AI/ML knowledge. The instruction-tuned approach demonstrates great potential in improving LLM’s ability to become an invaluable assistant in domain-specific technology.\nSummary Instruction-tuning greatly enhanced ChatGPT’s domain knowledge. On average, instruction-tuned ChatGPT scored 77.52%, which is 8x higher than zero-shot learning (9.53%) and ~2x higher than few-shot learning (39.72%).\nTL;DR As usual, here is a high-level summary for the busy folks:\nThis research experiment explored instruction-based tuning to enhance ChatGPT’s ability to answer domain-specific questions, specifically Cisco ACI query commands.\nThe goal was to test ChatGPT’s ability to provide accurate ACI CLI commands after being tuned with detailed instructions.\nThe Q\u0026A tests contain 72 questions with three levels of difficulty. Q1–Q10 are low, Q11 — Q52 are medium, and Q53 — Q72 are high.\nThe instructions provided are similar to how we would teach a junior engineer.\nEach test was run 100 times for all 72 questions.\nIf we only account for questions answered correctly 100% of the time, the instruction-tuned model scored 56.16%, which is ~7x higher than zero-shot learning (8.22%) and few-shot learning (8.22%).\nHere is the comparison chart\nFew-shot learning results dropped sharply for questions answered correctly 100% of the time.\nI also noticed the latest Claude Opus 3 model outperforms ChatGPT4 at following instructions. However, more research and investigation are needed.\nLessons Learned Build a validation pipeline as early as possible before diving into data gathering and refining.\nConsistency is paramount. The model can answer the same question differently, but the result should always remain the same. Even getting the answer incorrectly every time, with the same answer, is better than getting the answer correctly 80% of the time.\nUse syntax highlighting if describing a syntax. It will draw attention to the model.\nCollect the error rate on every question and visualize distribution and frequency.\nKeep instructions simple. It is tempting to add as many detailed instructions as possible, but if there are overlapping languages and contexts, you risk confusing the LLM.\nAdd logic to validate both the input data and the outcome of the CLI commands. Make sure to account for dynamic output, such as timestamps.\nAvoid unnatural and tailored question prompts. These prompts may be suitable for benchmarking, but they will fail in the real world. The hardest part is accounting for different human expression styles.\nNow, let’s dive into the details.\nProblem Statement During my years building ACI data centers for customers, the most common question I received was, “How do I get XYZ information from ACI?”\nThis is because ACI SDN differs from traditional networking, requiring an understanding of its API to retrieve information efficiently.\nExample: How do I get a list of IP addresses and MAC?\nTraditional Networking: show ip arp on core router In ACI: moquery -c fvIp from one of the APICs. Note: In ACI there are also show commands available through the CLI. However, it can only retrieve the most commonly used objects. In this article, we’ll cover only the API query command - moquery\n‘moquery’ is an ACI-style CLI command that performs API calls against the APIC Managed Object (mo) database. It is a combination of a Database query and an API call. Results are returned as a Class/Object relationship, similar to Python objects.\nMy goal is to provide users with a domain-knowledge-tuned LLM that can accurately construct API commands.\nIn this article, I performed some research and experiments to see how close we can get by tuning ChatGPT with only instructions.\nBasic Terminologies instruction — In ChatGPT, instructions guide how ChatGPT should respond to prompts.\nzero-shot learning — The model has never seen the data during training and could still infer.\nfew-shot learning — Some examples are provided to the model and usually improve the model performance compared to zero-shot learning.\ninstruction-tuned (or tuned for short) — means that the model was provided detailed instructions to respond to various prompts.\nMethodology and Requirements Build QA datasets with domain knowledge. Build instructions to answer the questions from the QA dataset. Ensure data diversity to represent different real-world situations. Data must be of high quality with no errors. Implement a rigorous validation process to ensure no mistakes in score calculation. Compare the results among zero-shot learning, few-shot learning, and instruction-tuned models across various scenarios. Model used: gpt-4–1106-preview QA Questions and Tuned Instructions QA Test Questions - Link These are carefully crafted questions to test the model’s response accuracy.\nThe QA test questions are split into easy, medium, and hard difficulties based on my personal experience. There are a total of 72 questions. Q1 - Q10 (10) are easy, Q11 - Q52 (42) are medium level, and Q53 - Q72 (20) are hard. All questions are configuration-related since I only have a digital simulation of the Cisco APIC. Tuned Instruction - Link The instructions were 100% written by a human (me; last I checked, I was still human). It has four main components: basic guidelines, syntax explanations, examples, and class descriptions.\nThe system instruction is provided to ChatGPT as the first prompt for each conversation context. (as long as the context stays the same, we do not need to provide system instruction over and over)\nBasic guidelines - To instruct chatGPT on the answer format, style, limit the scope…etc. For example, Only provide an explanation if the user requests or Do not use any classes not listed in this guide\nAPI syntax explanation - Explains how the API query syntax works. For example, we start by explaining the high-level syntax:\nIndividual Class Descriptions - Each class and associated attributes provide certain information. ChatGPT must understand them and choose the correct class to answer related questions. For example, below is the description for the Bridge Domain class. (For non-ACI users/programmers, this is essentially a Python class with attributes)\nI also referenced the Cisco DevNet API class descriptions: https://developer.cisco.com/site/apic-mim-ref-api/.\nUnfortunately, we can’t pass on the entire API reference because it’s not well-written for LLM.\nFew-shot Examples - Provide ChatGPT with direct examples. These are extremely valuable and efficient but can hit diminishing returns quickly.\nFor example, the few-shot examples are provided in a Q\u0026A format as shown below:\nAdditional Instructions You can also find a zero-shot and a few-shot version of the System Instructions. They are used to compare the difference between tuned and non-tuned instructions. In the end, the results show that:\nTuned instruction \u003e Few-Shot \u003e\u003e Zero-Shot Evaluation Process To properly evaluate the answers, we perform the following:\nCompare ChatGPT’s response to the correct answer. Send ChatGPT’s response to the APIC simulator and evaluate. I’ve configured the simulator to ensure a meaningful response is always returned for each question.\nThe flow goes as follows:\nWe pass (system instructions + all 72 questions) to ChatGPT. We ask ChatGPT to provide all answers back in a single response (cost-saving) We send each ChatGPT’s CLI answer to the APIC simulator and collect the response. We also send the correct CLI answer to the APIC simulator and collect the response. We compare the responses and score each of ChatGPT’s answers. 1 point for a correct answer 0 points for an incorrect answer, but the syntax is OK -1 point for syntax error (This does not affect the total score) Repeat the above process 100 times. Below is a diagram illustration of the process\nThe Results The chart below shows that:\nOn average (blue bar), the instruction-tuned model scored 77.52%, which is ~8x higher than zero-shot learning (9.53%) and ~2x higher than few-shot learning (39.72%).\nIf we only account for questions answered correctly 100% of the time (red bar), the instruction-tuned model scored 56.16%, which is ~7x higher than zero-shot learning and ~7x higher than few-shot learning.\nBreakdown By Difficulty Levels The chart below shows that:\nThe instruction-tuned model maintained 100% accuracy in low-difficulty questions The instruction-tuned model showed minimal drops in performance between medium and high-difficulty Few-shot learning shows a tremendous jump from 0% to 43.7% score compared to zero-shot learning. The few-shot learning score drops sharply from medium to high difficulty. Now that we’ve reviewed the results, we’ll examine the process of building the validation pipeline, the pain points, and what can be improved.\nExamples Where ChatGPT Needed Hints To Interpret Q16 - Prompt Engineering Required The question is tailored so ChatGPT can interpret it correctly.\nDidn’t work: how to get a list of leafs and spines along with serial numbers and models?\nWorked: how to get a list of device serial numbers and models, excluding the controllers?\nSince there are only three types of devices in an ACI fabric, it’s common for engineers to ask with the first approach, as it is more natural.\nImagine asking someone what they had for lunch and dinner, like this: “What did you have for meals, excluding breakfast?”\nThat is not natural to me.\nChatGPT stumbles because to answer the question below,\nhow to get a list of leafs and spines along with serial numbers and models?\nOne must use the or operator instead of and. In the below query, when using and, it implies that the role of a node must be both “leaf” and “spine,” which is impossible since they are mutually exclusive.\nmoquery -c fabricNode -x 'query-target-filter=and(eq(fabricNode.role,\"leaf\"),eq(fabricNode.role,\"spine\"))'\nIn this context, how humans understand the word “and” differs from API language. The easiest approach is to use the ne(not equal) operator to exclude the APIC controller as follows:\n'query-target-filter=ne(fabricNode.role,\"controller\")'\nQ28. Issues with interpretation I also had to modify the question itself\nDidn’t work - how to find a list of leafs pending for registration? Worked - how to find a list of devices pending for registration that are also leaf switches I am somewhat surprised that ChatGPT couldn’t understand the question. Without hints ChatGPT will answer as follows:\nmoquery -c dhcpClient -x 'query-target-filter=eq(dhcpClient.clientEvent,\"pending\")'\nCorrect answer:\nmoquery -c dhcpClient -x 'query-target-filter=and(eq(dhcpClient.clientEvent,\"pending\"),eq(dhcpClient.configNodeRole,\"leaf\"))'\nChatGPT did not understand the question and missed out on the fact that we were only interested in the leaf devices.\nQ15. Vague class description This one is more of a human error. Here is the question:\nHow to find the fabric TEP address pool?\ntepPool is an attributes of the class topSystem, and our goal is to find its value. Hence, we need to query for other fields of the same class. To get the value, one can query either Spine, Leaf, or Controller.\nAs shown below, I intended for ChatGPT to use the role attribute as a filter to find tepPool information from the same object.\n### topSystem: device state and configuration information class * `role`: role of the device, available options are: `controller`, `leaf`, `spine` * `tepPool`: fabric TEP address pool for the whole system, example: `10.0.0.0/16` Correct answer:\nmoquery -c topSystem -x 'query-target-filter=eq(topSystem.role,\\\"controller\\\")\nChatGPT will get it correct sometimes, but other times, it’ll give me something like this:\nmoquery -c topSystem -x 'query-target-filter=ne(topSystem.tepPool,\"\")'\nNote the empty values (\"\") in the filter implies that ChatGPT realizes that it’s an unknown value and we need to find it, but the ACI API doesn’t support empty string matching.\nThe vague part is in the description of the class itself.\nDidn’t work - topSystem: system information class Worked - topSystem: device state and configuration information class Human guidance is vital in guiding LLMs, similar to providing knowledge to another human.\nObservations The following observations are not inclusive; there are probably more than I can remember.\nThe Good Great potential and simplified user experience. There is much less code to write compared to using function calls. Instruction-tuning can cover a lot more use cases than function calls. Even engineers with no coding skills can help contribute with their expert knowledge. The Bad The model is susceptible to minor adjustments, even if you set the temperature to 0. Sometimes, changing a symbol or deleting a word can impact its performance\nThe model never tells if you made grammatical errors; you only see them in the results, which means extensive version controls (do you really want to version control every letter or symbol change?)\nSometimes, you need to use tailored prompts/question styles so the model can better understand it.\nThe tuned model requires more tokens (~4x compared to zero-shot) and will continue expanding to cover more use cases. A larger context is more expensive.\nUnlike programming languages that are “mostly” deterministic, LLMs aren’t. They have wild thoughts, memories, and knowledge, so they might want to be a bit creative, which is exactly what we DON’T NEED in networking !!\nImagine, during an SAT exam, a student crosses out one of the multiple answers and adds her own answer (creativity in exchange for a point? I don’t think so!)\nThe Ugly The model result is inconsistent.\nOccasionally, you’ll see the model answer the same question correctly 50% of the time or even 99% of the time. (Four questions were answered correctly 99/100 times.) This makes tuning extremely challenging. (RLHF can potentially help here; I provided no feedback to the model.)\nImagine never telling students which question they got correct on an exam and expecting them to achieve 100% by brute force, forcing them to retake exams; good luck with that!\nThe model still hallucinates as usual.\nThe model can be stuck with past memory.\nDuring training, if one type of data appears too frequently, the model will not easily forget that, no matter how “bad” that memory was. Scalability Considerations To efficiently scale this deployment, we may consider the following approaches:\nIncorporate RAG - However, this means another level of dependency on the retrieval process’s accuracy. Additionally, as LLMs context windows get larger and even infinite context windows, the use of RAG will diminish.\nMulti-agent - Each agent is responsible for one area of knowledge. (hardware query vs. routing table query).\nFine-tuning - Tune the weights with new training data so the model can answer questions without extra instructions. However, be aware of catastrophic forgetting.\nHybrid - Mix instruction tuning with the function-calling feature.\nInstruction Tuning Pros and Cons Pros Tuned using human natural language Expert knowledge of LLMs is optional as long as the pipeline is built. Easy to iterate, update, and expand as needed Cons Additional efforts are required to convert vendor documents if they aren’t well-written It is costly if the software backend isn’t well designed to scale Context window limit It’s difficult to debug because it’s all natural language based. Machines still don’t quite understand words the same way humans do. Additional Tests To Consider My testing pipeline only contains questions that should always yield a command as the answer. Additional testing cases to be considered:\nTest the model’s ability to respond with “insufficient information” when no specific class definition is given to reduce hallucinations Test the model’s ability to explain the result when requested by the user Test the model’s ability to quote the object definition where it is referenced Test the model’s ability to respond to the same question but asked in different ways Accuracy Improvements and Alternatives Compare against different models, such as Claude 3 Opus 3, LLaMA3, or Mistral, to see if a better model exists, or even vote among various models for the best results. Try a model built explicitly for instruction tuning, such as the FLAN-T5 model. Try using another model to help tune instructions iteratively and automatically based on testing results. *Expand testing datasets to include operational tasks and queries From This Point On, It's All About The Technical Details Tuned Instructions Explained in Details In this section, we’ll review some of the details and intricacy of the tuned instructions and their effects on the outcome, for better or worse.\nRole Definition You are a co-pilot to the network engineers. * Your responsibilities are to provide assistance to network engineer in constructing Cisco ACI queries and execute commands * Do not provide commands or information that was not provided to you in this instruction * Respond with only the command, do not add any descriptions * Only provide explanation if the user requested * You do not ever apologize and strictly generate networking commands based on the provided examples. * Do not provide any networking commands that can't be inferred from the instructions * Inform the user when you can't infer the networking command due to the lack of context of the conversation and state what is the missing in the context. * Do not use any classes not listed in this guide * Do not include \"`\" symbols in your response * Make sure to review the examples before building the final query * For each question, make sure to always identify the parent class and the children class first, if applicable. * If reverse lookup is needed, make sure to follow the \"Reverse Lookup Technique\" approach * The following are syntax to construct ACI queries, think step by step to build the query. * Before constructing a query, make sure to carefully review all details of a given class description The role definition helps in the following areas:\nProvides context to control what types of questions to answer. Help increase accuracy in more complex queries, such as using the classic “think step by step” technique. Control response format - LLMs, by default, are verbose and sometimes will respond with backticks as well as in a code block, which we do not want to include Syntax Format The general format of a Cisco ACI query command is structured as follows: `moquery -c ,, -x `...etc. * we only need to specify `-x` once, even for multiple options. * the format `,,` is called multi-class query. It will return all objects for the matching class name. * query-target-filter: filter based on query class, general format: `'()'`, where `filter` looks like this `.,\"value_to_filter\"` * example: `moquery -c -x 'query-target-filter=eq(.,\"value_to_filter\")'` * never use multiple `query-target-filter` option * available operators are: 1. `eq`: equal 2. `ne`: not equal 3. `gt`: greater than, only applies to numerical values 4. `wcard`: wild card or contains 5. `bw`: between 2 numerical values or time stamps 6. `ge`: greater than or equal to 7. `le`: less than or equal to 8. `lt`: less than, only applies to numerical values 9. `or`: or 10. `and`: and * rsp-subtree: Specifies child object level included in the response, valid values are: `no | children | full` * rsp-subtree-class: Respond only specified classes in the subtree. * rsp-subtree-filter: Respond only if the subtree classes matching conditions * rsp-subtree-include: Request additional objects in the subtree - `required`. If `rsp-subtree-class` option is used, we should always add the `required` option. - `no-scoped` Response includes only the requested subtree information. Useful for getting faults related to an object. * query-target: restricts the scope of the query. valid options are `self(default) | children | subtree` * order-by: Sort the response based on the property values, valid values are `asc (ascending) | desc(descending)` * page-size: return a limited number of results For consistency purposes, I provided only the API syntax to ChatGPT. (there is also a format using moquery -c -f , for example, moquery -c fvAEPg -f ‘fv.AEPg.pcTag==“xxxx”’.)\nNot all syntax formats are provided; these cover the most common usages\nReverse Lookup Technique ## Reverse Lookup Technique If user asks to get parent object based a child object, we need to perform reverse lookup. `moquery -c -x rsp-subtree-class= rsp-subtree-include=required rsp-subtree=children 'rsp-subtree-filter=eq(.,\"value_to_match\")'` Explanation: * `rsp-subtree-class` defines what the child class we want to target * `rsp-subtree-include=required` ensures that we return parent object only if the child object class exist ( this should always be used by default in most cases ) * `rsp-subtree=children` returns all the children objects * `rsp-subtree-filter` applies the filter, note that we use child_class here. This section is created to answer complex questions requiring a reverse lookup (i.e., given the child’s object, find the parent’s attributes).\nChatGPT cannot derive such understanding on its own if it is only provided a description of each option flag. Spelling out special instructions, if needed, is critical, highlighting the importance of human guidance.\nBoth zero-shot and few-shot models performed poorly in this area\nExample With Explanation Assuming that you are provided the following class information ``` ### fvTenant: Tenant class * `name`: name of the Tenant * CHILDREN CLASSES: - `fvAp`: Application Profile class - `name`: name of the application profile - CHILDREN CLASSES: - `fvAEPg`: EPG class - `name`: name of the EPG - `fvBD`: Bridge Domain class - `name`: name of the bridge domain - CHILDREN CLASSES: \u003c\u003c\u003c\u003c Nested children class - `fvSubnet`: Subnet class - `ip`: ip subnet, example \"10.0.0.1/24\" ``` * To get the Tenant named `example_tenant` with no additional children information: `moquery -c fvTenant -x 'query-target-filter=eq(fvTenant.name,\"example_tenant\")` * To get a list of AP in Tenant `example_tenant`: `moquery -c fvTenant -x 'query-target-filter=eq(fvTenant.name,\"example_tenant\") rsp-subtree-class=fvAp rsp-subtree=children` * To get a list of EPGs in Tenant `example_tenant`: `moquery -c fvTenant -x 'query-target-filter=eq(fvTenant.name,\"example_tenant\")' rsp-subtree-class=fvAEPg rsp-subtree=full rsp-subtree-include=required` * To get the EPG named `my_epg` in tenant `example_tenant`, we need to perform a reverse lookup with a filter: `moquery -c fvTenant -x rsp-subtree-class=fvAEPg rsp-subtree=full rsp-subtree-include=required 'query-target-filter=eq(fvAEPg.name,\"my_epg\")` * To find all BD and APs of Tenant `example_tenant`, use comma to separate multiple classes query: `moquery -c fvTenant -x rsp-subtree-class=fvAp,fvBD rsp-subtree=children 'query-target-filter=eq(fvTenant.name,\"example_tenant\")'` * To get all the faults related to Tenant `example_tenant`: `moquery -c fvTenant -x rsp-subtree-include=faults,no-scoped query-target=subtree` * To get a list of Tenants and associated EPGs, excluding any Tenant named `common`: `moquery -c fvTenant -x rsp-subtree=full 'query-target-filter=ne(fvTenant.name,\"common\") rsp-subtree-class=fvAEPg rsp-subtree-include=required'` **note** we use `rsp-subtree=full` if the children class is more than 2 layers down from the parent object The above helps “explain” to ChatGPT how to interpret the class object structure. The goal was to solve the problem of ChatGPT not being able to follow nested objects properly. However, this approach resulted in little improvements (ChatGPT was able to answer some of the advanced questions with nested objects correctly, but is still inconsistent)\nQ\u0026A Examples ## Q\u0026A Examples: Here are some moquery examples: * how to get a list of BDs in tenant common? `moquery -c fvBD -x 'query-target-filter=wcard(fvBD.dn,\"/tn-common/\")'` * how to get the BD with the exact name of either \"customer\" or \"cust\", regardless of which tenant they belong to? `moquery -c fvBD -x 'query-target-filter=or(eq(fvBD.name,\"customer\"),eq(fvBD.name,\"cust\"))'` * how to get all BDs with unicast routing disabled in Tenant common? `moquery -c fvBD -x 'query-target-filter=and(wcard(fvBD.dn,\"/tn-common/\"),eq(fvBD.unicastRoute,\"no\"))'` * how to get all BDs that has a subnet configured? `moquery -c fvBD -x rsp-subtree-class=fvSubnet rsp-subtree=children rsp-subtree-include=required` * how to get all BDs that has a subnet configured, and the subnet must also route leak? `moquery -c fvBD -x rsp-subtree-class=fvSubnet rsp-subtree=children rsp-subtree-include=required 'rsp-subtree-filter=eq(fvSubnet.scope,\"shared\")'` * how to get a list of static path bindings tagged with VLAN 1? `moquery -c fvRsPathAtt -x 'query-target-filter=and(eq(fvRsPathAtt.encap,\"vlan-1\"),eq(fvRsPathAtt.mode,\"regular\"))'` * how to get a list of static path bindings tagged with VLAN 10? `moquery -c fvRsPathAtt -x 'query-target-filter=and(eq(fvRsPathAtt.encap,\"vlan-10),eq(fvRsPathAtt.mode,\"regular\"))'` * how to get a list of path bindings tagged with VLAN 50? `moquery -c fvRsPathAtt -x 'query-target-filter=and(eq(fvRsPathAtt.encap,\"vlan-50),eq(fvRsPathAtt.mode,\"regular\"))'` * how to get a list of static path bindings in VLAN 5? `moquery -c fvRsPathAtt -x 'query-target-filter=eq(fvRsPathAtt.encap,\"vlan-5\")'` * how to get a list of static path bindings for leaf 101 and leaf 102, interface 1/24 assuming that this interface is not part of vPC or PC? `moquery -c fvRsPathAtt -x 'query-target-filter=wcard(fvRsPathAtt.dn,\"paths-101/pathep-\\[eth1/4\\]\")'` * how to get all the bridge domains, ordered by modification date, latest first, return only the top 1st result? `moquery -c fvBD -x page-size=1 page=0 order-by='fvBD.modTs|desc'` * how to get all configuration changes made to tenant \"demo\" between time 2023/12/21 5 AM and 202/12/30 9 PM? `moquery -c aaaModLR -x 'query-target-filter=and(bw(aaaModLR.created,\"2023-12-21T05:00\",\"2023-12-30T21:00\"),wcard(aaaModLR.affected,\"tn-demo/\"))'` * how to find configurations with specifically `deleted` action by user admin between 2024-02-08 and 2024-02-10? `moquery -c aaaModLR -x 'query-target-filter=and(eq(aaaModLR.ind,\"deletion\"),eq(aaaModLR.user,\"admin\"),bw(aaaModLR.created,\"2024-02-01\",\"2024-02-15\"))'` * how to find out how many Bridge Domain objects there are? `moquery -c fvBD -x rsp-subtree-include=count` * how to get a list of BDs associated with vrf \"demo_vrf\"? `moquery -c fvBD -x rsp-subtree-class=fvRsCtx rsp-subtree=children rsp-subtree-include=required 'rsp-subtree-filter=eq(fvRsCtx.tnFvCtxName,\"demo_vrf\")'` * how to find all the consumers and providers of contract \"application_contract\"? `moquery -c fvAEPg -x rsp-subtree=children rsp-subtree-class=fvRsProv,fvRsCons rsp-subtree-include=required 'rsp-subtree-filter=or(eq(fvRsProv.tnVzBrCPName,\"application_contract\"),eq(fvRsCons.tnVzBrCPName,\"application_contract\"))'` LLMs typically use the above example format for fine-tuning and few-shot learnings. ChatGPT had issues interpreting the meaning of tagged with and in for VLANs; hence, the same example was repeated. Providing examples like these is highly effective compared to zero-shot models; however, examples alone are insufficient to achieve higher accuracy. Individual Class Object Descriptions Below, I have listed only the high-level summary and the first class. The remaining class description structure repeats.\n## Frequently Used Classes and Attributes Layout * The following describes the attributes for each class. * Many classes have children classes as well. and each children class also has their own attributes. - Children classes can be directly queried, or it can be included when querying against a parent class using option `-x rsp-subtree=children` - For nested children class, use `-x rsp-subtree=full` * `dn` is a universal attribute available to all classes, it means distinguished name * Every class has an attribute of `dn`, but not all are included as they are pretty obvious. * values in `( )` defines available options if not specifically called out. ### fvBD: Bridge Domain Class **note**: there are default bridge domains already-exists and we typically want to exclude them from queries, their names are: `default`,`ave-ctrl`, and `inb` * `name`: name of a bridge domain * `dn` example: `uni/tn-demo/BD-demo_web_bd` * `mac`: MAC address of the bridge domain, default = 00:22:BD:F8:19:FF * `hostBasedRouting(yes/no)`: whether host based routing is enabled or not. * `unicastRoute(yes/no)`: The forwarding method based on predefined forwarding criteria (IP or MAC address), default = yes * `unkMacUcastAct(flood/proxy)`: The forwarding method for unknown layer 2 destinations, default = proxy * `limitIpLearnToSubnets(yes/no)`: limit ip learning to subnet only or not, default = no * `arpFlood(yes/no)`: whether arp flood is enabled or not, we should automatically exclude default BDs when user asks for this. * `descr`: description of the bridge domain * CHILDREN CLASSES: - `fvSubnet`: class for subnets under a bridge domain * `ip`: subnet * `scope(public/shared/private)`: `public` = advertised out, `shared` = route leaking, `private` = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: `public,shared`, `private,shared` - `fvRsBDToOut`: class related to Bridge Domain, for L3Out * `tnL3extOutName`: name of the L3Out associated with the bridge domain * `dn` example: uni/tn-demo/BD-demo_bd/rsBDToOut-demo_l3out - `fvRsCtx`: class related to Bridge Domain, for VRF * `tnFvCtxName`: name of the vrf associated with the bridge domain * `dn` example: uni/tn-demo/BD-demo_web_bd/rsctx A high-level summary briefly explains the structure of classes and the format that I use to suggest how to interpret them.\nThis line is another reminder to ChatGPT that for nested child class, use a different flag - For nested children class, use -x rsp-subtree=full\nThe header for the class name and a short description - ### fvBD: Bridge Domain Class. This information is critical for ChatGPT to know which class to use for a given query before diving into the attributes.\nThe **note section helps highlight important information. This worked very well with Claude, but it’s hit or miss with ChatGPT.\nI manually created each object description, aligning it with my understanding. I also referenced Cisco’s official document when needed.\nNot every attribute is listed for two reasons: to reduce hallucinations and control ChatGPT’s knowledge scope.\nObjects descriptions could use more improvements, such as this sub-class: `fvRsBDToOut`: class related to Bridge Domain, for L3Out. The reason that it’s described seemingly backward is because I noticed that ChatGPT will pick up L3out as a cue first if it’s described like this `fvRsBDToOut`: L3Out relationship class associated with Bridge Domain, which leads to ChatGPT thinking that this is for L3Out.\nAgain, the object relationship and nesting concept described here are challenges for ChatGPT to grasp. (It’s also possible that I haven’t found the perfect English words to describe it)\nThe values inside () are for ChatGPT to understand all available options; some are straightforward, and others aren’t. Therefore, an extra description of each option is required. For example:\nscope(public/shared/private): `public` = advertised out, `shared` = route leaking, `private` = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: `public,shared`, `private,shared` An engineer might ask something like, “What are the routes advertised out and leaked?” instead of “What are the public and shared routes?” Keep in mind that user prompts will influence ChatGPT, but from a UX/UI perspective, we should minimize such an effect.\nIndividual Question Analysis The following chart shows chatGPT’s weaknesses with the tuned instructions. We’ll take a deeper look at some of the questions that even the instruction-tuned model failed miserably and see if we can gain some insights to understand better how we might be able to address them.\nQ15 (Score 51%) - Bug in the pipeline (not 100% the model’s fault) Below is the partial ACI response from the Q15 command for both the correct answer and ChatGPT’s answer.\nQuestion: Q15. how to find the fabric TEP address pool 2024-04-21 21:51:37,075 - __main__ - INFO - correct answer cmd: moquery -c topSystem -x 'query-target-filter=eq(topSystem.role,\"controller\")' 2024-04-21 21:51:37,075 - __main__ - INFO - gpt answer cmd: moquery -c topSystem -x 'query-target-filter=wcard(topSystem.dn,\"/pod-\")' 2024-04-21 21:51:38,963 - __main__ - INFO - correct cmd output: { \"totalCount\": \"1\", \"imdata\": [ { \"topSystem\": { \"attributes\": { \"address\": \"10.0.0.1\", \"bootstrapState\": \"none\", \"childAction\": \"\", \"clusterTimeDiff\": \"-1\", \"configIssues\": \"\", \"controlPlaneMTU\": \"9000\", \"currentTime\": \"2024-04-21T21:51:30.922+00:00\", \u003c\u003c\u003c\u003c\u003c\u003c\u003c \u003c SNIP \u003e 2024-04-21 21:51:38,963 - __main__ - INFO - chatGPT cmd output: { \"totalCount\": \"1\", \"imdata\": [ { \"topSystem\": { \"attributes\": { \"address\": \"10.0.0.1\", \"bootstrapState\": \"none\", \"childAction\": \"\", \"clusterTimeDiff\": \"0\", \"configIssues\": \"\", \"controlPlaneMTU\": \"9000\", \"currentTime\": \"2024-04-21T21:51:31.879+00:00\", \u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c \u003c SNIP \u003e This question is sometimes marked incorrectly because there is a currentTime element that changes each time we make a query.\nSo, in this case, it was a bug in the validation pipeline; ChatGPT’s score probably should’ve been higher.\nPotential Solution: Skip comparing results/fields that will change per query. Evaluating answers based on a specific format is not a good approach. ChatGPT can sometimes surprise you with its response.\nBut wait, what about the other 49% of the times that it was correct? Since the time element changes each time, shouldn’t it be wrong 100% of the time?\nBecause we have a logic that checks for the commands first, and if it’s 100% matched, we do not need to compare the output, as shown below\nQuestion: Q15. how to find the fabric TEP address pool 2024-04-21 21:48:30,038 - __main__ - INFO - correct answer cmd: moquery -c topSystem -x 'query-target-filter=eq(topSystem.role,\"controller\")' 2024-04-21 21:48:30,038 - __main__ - INFO - gpt answer cmd: moquery -c topSystem -x 'query-target-filter=eq(topSystem.role,\"controller\")' 2024-04-21 21:48:30,038 - __main__ - INFO - command is 100% matched If ChatGPT had been more consistent, we wouldn’t have discussed Q15.\nQ18: Class/Attribute Confusion Question: Q18. how to get a list of subnets advertised out and also route leaked different filter used 2024-04-21 21:45:17,112 - __main__ - INFO - correct answer cmd: moquery -c fvSubnet -x 'query-target-filter=eq(fvSubnet.scope,\"public,shared\")' 2024-04-21 21:45:17,112 - __main__ - INFO - gpt answer cmd: moquery -c fvSubnet -x 'query-target-filter=wcard(fvSubnet.scope,\"public,shared\")' incorrect syntax 2024-04-21 21:38:53,470 - __main__ - INFO - correct answer cmd: moquery -c fvSubnet -x 'query-target-filter=eq(fvSubnet.scope,\"public,shared\")' 2024-04-21 21:38:53,470 - __main__ - INFO - gpt answer cmd: moquery -c fvSubnet -x 'query-target-filter=or(eq(fvSubnet.scope,\"export-rtctrl\"),eq(fvSubnet.scope,\"shared-rtctrl\"))' In the first response, ChatGPT’s used a wcard filter instead of eq, which is fine but not ideal. Frankly, in this specific case, eq and wcard made no difference.\nIn the second response, ChatGPT provided an invalid syntax.\nHere is the fvSubnet class:\n### fvBD: Bridge Domain Class * `name`: name of a bridge domain \u003cSNIP\u003e * CHILDREN CLASSES: - `fvSubnet`: class for subnets under a bridge domain * `ip`: subnet * `scope(public/shared/private)`: `public` = advertised out, `shared` = route leaking, `private` = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: `public,shared`, `private,shared` There are no export-rtctrl or shared-rtctrl attributes, so where did ChatGPT get them from?\nThey are from the L3Out class description, as shown below; l3extSubnet (child class of L3Out) contains attributes with the same name, ip, and scope, but ChatGPT should’ve followed the class name first. It is also possible that ChatGPT picked up the description of scope of the subnet prefix without awareness of the context.\nThis implies that ChatGPT doesn’t always understand the class/attribute hierarchy. We’ll see more of these later.\n### l3extOut: layer3 out (L3out) class * `name`: name of the L3Out profile * CHILDREN CLASSES: - `l3extInstP`: L3out EPG - `dn` example: `uni/tn-demo/out-demo_l3out/instP-demo_l3out_epg` - `prefGrMemb(include/exclude)`: Preferred group member - CHILDREN CLASSES: - `l3extSubnet`: This class is for L3Out EPG prefixes - `ip`: prefix IP address. e.g. `0.0.0.0/0` - `scope`: scope of the subnet prefix, available options are `export-rtctrl`, `import-security`, `shared-rtctrl`, `shared-security`, can be combined. `import-security` is the default. - `aggregate`: whether aggregate options are used, available options are `export-rtctrl` and `shared-rtctrl`, can be combined. Potential Solution: Emphasize the importance of the class, attribute, and children’s class hierarchy in syntax description. Provide more distinctive descriptions when attribute names overlap across different classes.\nQ21 - Prompt Issue and Concept Confusion Q: How to get a list of BDs excluding the default ones?\nBelow are examples of ChatGPT’s answer in 2 different instances, which unveils two potential issues.\nQuestion: Q21. how to get a list of BDs excluding the default ones 2024-04-21 21:51:40,927 - __main__ - INFO - correct answer cmd: moquery -c fvBD -x 'query-target-filter=and(ne(fvBD.name,\"inb\"),ne(fvBD.name,\"ave-ctrl\"),ne(fvBD.name,\"default\"))' 2024-04-21 21:51:40,928 - __main__ - INFO - gpt answer cmd: moquery -c fvBD -x 'query-target-filter=ne(fvBD.name,\"default\") ne(fvBD.name,\"ave-ctrl\") ne(fvBD.name,\"inb\")' 2024-04-21 21:48:31,942 - __main__ - INFO - Question: Q21. how to get a list of BDs excluding the default ones 2024-04-21 21:48:31,942 - __main__ - INFO - correct answer cmd: moquery -c fvBD -x 'query-target-filter=and(ne(fvBD.name,\"inb\"),ne(fvBD.name,\"ave-ctrl\"),ne(fvBD.name,\"default\"))' 2024-04-21 21:48:31,942 - __main__ - INFO - gpt answer cmd: moquery -c fvBD -x 'query-target-filter=ne(fvBD.name,\"default\")' Issue #1 - Prompt not specific enough or lack of comprehension\nThe answer in the first example has invalid syntax. However, when I reviewed the answer to a similar question, ChatGPT scored higher! As shown below:\nQ25: how to get a list of BDs with ARP flooding disabled, excluding default BDs\nThis answer required an additional filter and queried against the same class - fvBD. The overall score for this question is 87%\n2024-04-21 21:42:07,231 - __main__ - INFO - Question: Q25. how to get a list of BDs with ARP flooding disabled, excluding default BDs 2024-04-21 21:42:07,231 - __main__ - INFO - correct answer cmd: moquery -c fvBD -x 'query-target-filter=and(eq(fvBD.arpFlood,\"no\"),ne(fvBD.name,\"inb\"),ne(fvBD.name,\"ave-ctrl\"),ne(fvBD.name,\"default\"))' 2024-04-21 21:42:07,231 - __main__ - INFO - gpt answer cmd: moquery -c fvBD -x 'query-target-filter=and(ne(fvBD.name,\"default\"),ne(fvBD.name,\"ave-ctrl\"),ne(fvBD.name,\"inb\"),eq(fvBD.arpFlood,\"no\"))' Issue #2 - ChatGPT is confused with the term “default” in some contexts.\n“setting named default” is different from “default settings.” The former refers to a specific setting that uses the name “default,” and the latter could refer to multiple settings that were never changed.\nAs shown below\nThis is correct:\nmoquery -c fvBD -x 'query-target-filter=and(ne(fvBD.name,\"inb\"),ne(fvBD.name,\"ave-ctrl\"),ne(fvBD.name,\"default\"))'\nThis is incorrect\nmoquery -c fvBD -x 'query-target-filter=ne(fvBD.name,\"default\")'\nPotential Solution: Rephrase the question and differentiate these two concepts with more diversified examples.\nAdditionally, with some step-by-step prompts, ChatGPT knows how to answer this question. It’s frustrating that it didn’t answer correctly on the first try, resulting in a bad user experience.\nSide note: I tried the same in Claude Opus3, and it got the answer correctly on the first try! Maybe I’ll write a blog on Claude next to compare performance.\nQ35 - Hallucination This question is a bit tricky because the EPG object path is tn-Tenant/ap-ANP/epg-EPG , and AP information was not given, so we need to perform a wcard match on the Tenant name and EPG name at the same time.\nAs shown below, ChatGPT essentially made up the AP name when the AP information was not given.\nQ35. how to get a list of path bindings in EPG epg_vlan0005 in tenant demo correct answer cmd: moquery -c fvRsPathAtt -x 'query-target-filter=and(wcard(fvRsPathAtt.dn,\"epg-epg_vlan0005/\"),wcard(fvRsPathAtt.dn,\"tn-demo/\"))' gpt answer cmd: moquery -c fvRsPathAtt -x 'query-target-filter=wcard(fvRsPathAtt.dn,\"/tn-demo/ap-demo_anp/epg-epg_vlan0005/\")' Potential Solution: Try adding more specific examples to illustrate the use of concatenating wildcard-based matches.\nQ31 \u0026 Q32 - Preposition Words A particularly interesting issue I encountered was that ChatGPT couldn’t grasp the difference between “tagged with VLAN 5” vs. “in VLAN 5”.\nNetwork engineers know that the former refers to VLAN tagging, and the latter is more generic regardless of the port configuration mode. This is the same in ACI.\nThough both Q31 and Q32 had perfect scores, it was largely due to my extra effort to ensure that ChatGPT could distinguish between them. This is still a potential issue that will require more tuning.\nAs shown below, I have used several examples of the same question to emphasize the difference.\nQ39 - Unable to Comprehend Hierarchical Nested Object Definitions Given the following object descriptions and questions:\nPay attention to where the action(permit/deny) is applied for a filter.\n### vzBrCP: Contract class * `name`: name of the contract * CHILDREN CLASSES: - `vzSubj`: Contract subject class - `name`: name of the subject - CHILDREN CLASSES: - `vzRsSubjFiltAtt`: class related to the subject, for filters - `tnVzFilterName`: name of the filter - `action(permit/deny)`: action of the filter. ### vzFilter: Filter class * `name`: name of the filter * CHILDREN CLASSES: - `vzEntry`: Filter entry class. Multiple filter entries can be associated with a filter - `name`: name of the filter entry - `dFromPort`: starting port number - `dToPort`: end port number - `protocol(tcp/udp/icmp)`: protocol for the filter entry. Question: how to get a list of filters with permit actions?\ncorrect answer cmd: moquery -c vzRsSubjFiltAtt -x 'query-target-filter=eq(vzRsSubjFiltAtt.action,\"permit\")' gpt answer cmd: moquery -c vzFilter -x 'query-target-filter=wcard(vzFilter.dn,\"/subj-[permit]/\")' This is one of the trickier questions.\nfilter(vzFilter) object is where you define what the filter contains filter entries(vzEntry) object is where you define the specific protocols. Multiple entries can be part of the same filter subject filter(vzSubjFFiltAtt) is where you apply the action permit/deny; hence, this is the class we want to query for. Potential Solutions: One of the things that I can try is to be more precise in the vzRsSubjFiltAtt description, and I can directly tell ChatGPT to use this class for retrieving actions. However, this is not a single instance.\nQ43 - Unable to Comprehend Well When Synonymous Words Used For Different Reasons\nGiven the following object descriptions and question:\n### aaaModLR: audit log class * `user`: name of the user who performed the action * `ind`: used to indicate the state of an object. valid values are `creation`, `modification` or `deletion` * `created`: a property indicate when the specific audit log was created. this does not imply whether a configuration is `created`, `modified` or `deleted` **note** to get dates of audit log, use `created`. To get configurations made, use `ind` Question: how to find the total number of configuration changes created between 2024–03–20 and 2024–03–25?\ncorrect answer cmd: moquery -c aaaModLR -x 'query-target-filter=and(eq(aaaModLR.ind,\"creation\"),bw(aaaModLR.created,\"2024-03-20T00:00\",\"2024-03-25T23:59\"))' rsp-subtree-include=count gpt answer cmd: moquery -c aaaModLR -x 'query-target-filter=bw(aaaModLR.created,\"2024-03-20T00:00\",\"2024-03-25T23:59\") rsp-subtree-include=count'` Here is an example output\n# aaa.ModLR id : 4294967791 affected : uni/backupst/snapshots-[uni/fabric/configexp-DailyAutoBackup]/snapshot-run-2024-03-25T17-00-15 cause : transition changeSet : name:run-2024-03-25T17-00-15, retire:no, userdom:all childAction : clientTag : code : E4208927 created : 2024-03-25T17:00:18.868+00:00 descr : Snapshot run-2024-03-25T17-00-15 created dn : subj-[uni/backupst/snapshots-[uni/fabric/configexp-DailyAutoBackup]/snapshot-run-2024-03-25T17-00-15]/mod-4294967791 ind : creation modTs : never rn : mod-4294967791 sessionId : severity : info status : trig : config txId : 221489 user : admin The line: ind : creation implies the actual action taken. In this case, the user created a new object. Other potential values are modified and deleted. The line: created : 2024–03–25T17:00:18.868+00:00 implies when the creation happened. This is somewhat confusing to the model. It couldn’t understand the difference between created and creation, and ChatGPT ended up ignoring that field altogether in the example provided above. I also intentionally added a “note” to help ChatGPT better understand the difference but without luck. Again, Anthropic’s Claude Opus 3 wins-I am pretty impressed. Below is the answer on the first try. This also validates that my instruction is OK.\nTo find the total number of configuration changes created between 2024–03–20 and 2024–03–25, use the following query:\nmoquery -c aaaModLR -x ‘query-target-filter=and(eq(aaaModLR.ind,“creation”),bw(aaaModLR.created,“2024–03–20”,“2024–03–25”))’ rsp-subtree-include=count\nThe Future Of Domain-Specific LLMs Generative AI with transformers is a fast-paced, evolving technology that showed no signs of slowing down. One of the most promising aspects is that it lowers the bar for non-programmers to automate tasks.\nMany domain experts are not exactly expert programmers. However, the need to automate tasks is increasing as data center technologies become more complex and intertwined.\nI view LLM as another programming abstraction layer, similar to Python, as an abstraction layer to C/C++ for specific libraries.\nFor simple or even mildly complex tasks, LLMs are the perfect tools to empower data center engineers and architects to be more efficient, for example:\nDuring troubleshooting, engineers can describe a problem at a high level for LLM, executing commands across different devices to collect information. This cannot be easily automated using Ansible or Python because every situation is unique. However, Ansible/Python can become a tool for LLM to retrieve relative information. (We’ll demonstrate this in a future blog)\nWhen performing configuration tasks, LLM can assist in configuration recommendations. This is extremely powerful, for example:\nswitch trunk allowed v vs. switch trunk allowed v add makes a huge difference.\nNow, LLM has advanced to the point where we can describe intentions at the human level instead of code. The trade-off is that we lose some control of the outcome.\nIf you were to hire an assistant to help you in your daily networking tasks, what would you trust/not trust that assistant with?\nConclusions Instruction tuning is one of my favorite approaches to enhance LLMs’ ability for domain-specific tasks because it is human-friendly and more approachable for non-programmers.\nHowever, the downside is hallucinations, less control, and constant tweaking of the instruction language, which can be frustrating.\nOn the other hand, function calling is the opposite, where the software engineer controls 90% of the outcome but requires more engineering efforts, and not all use cases are covered.\nI will explore multi-agent and multi-modality in future blogs for a more robust user experience; stay tuned!\nI hope you enjoyed this article; please reach out to me on LinkedIn if you have any questions or want to discuss this further !!\nLastly, some data didn’t get their spotlight, but they also provided good insights.\nExtra Data For Fun Total Tokens and Cost (estimate) Zero-shot: using gpt-4–1106-preview, this run costs $0.03 with 3465 tokens for 9.53% accuracy.\nFew-shot: using gpt-4–1106-preview, this run costs $0.05 with 4834 tokens for 39.72% accuracy.\nInstruction-tuned: using gpt-4–1106-preview, this run costs $0.13 with 12666 tokens for 77.52% accuracy.\nThe above clearly shows a trade-off between cost and accuracy.\nInvalid Syntax Stats For Tuned Instruction Below is a chart showing the number of invalid syntax for each question. This is a good measure of hallucinations. Technically speaking, if ChatGPT understood the syntax instructions, there would be fewer hallucinations. Imagine ChatGPT making up English phrases that never existed.\nIn my experience, we rarely see syntax errors when coding or grammatical errors when conversing, implying that the model has seen enough data to avoid making such simple mistakes.\nAs shown below, without tuning, zero-shot and few-shot learnings are far from getting even the syntax correct.\n",
+  "wordCount" : "7337",
+  "inLanguage": "en",
+  "datePublished": "2023-12-10T20:16:15-04:00",
+  "dateModified": "2023-12-10T20:16:15-04:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blogs on AI and Networking",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://zhangineer.net/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://zhangineer.net/" accesskey="h" title="Blogs on AI and Networking (Alt + H)">Blogs on AI and Networking</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://zhangineer.net/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://zhangineer.net/aboutme/" title="about me">
+                    <span>about me</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://youtu.be/-4h7-WVhrMc?si=B4gZunEYwVa_e1UK" title="Project Demo">
+                    <span>Project Demo</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://zhangineer.net/">Home</a>&nbsp;»&nbsp;<a href="http://zhangineer.net/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Networking and LLM — Supercharge LLM With Domain Expert Knowledge
+    </h1>
+    <div class="post-meta"><span title='2023-12-10 20:16:15 -0400 -0400'>December 10, 2023</span>
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p><strong>System Instructions are more potent than you might realize</strong></p>
+</blockquote>
+<p>I have seen many posts from Network Engineers and Architects dismissing LLM’s ability to perform domain-specific tasks. While it is true that a generic LLM software like ChatGPT does not possess the same level of domain knowledge, it has a high potential to outperform humans if given proper guidance and some teaching.</p>
+<p>In this post, I will cut through the noise and examine how to “teach” chatGP to answer domain-specific questions like an expert.</p>
+<blockquote>
+<p>Note that this article uses Cisco ACI as an example. The code used in this article can be found here — <a href="https://github.com/zhangineer/networking_llm_instruction">https://github.com/zhangineer/networking_llm_instruction</a></p>
+</blockquote>
+<hr>
+<p>This article will guide you through the following key points:</p>
+<ol>
+<li>
+<p>ChatGPT’s ability to answer domain-specific questions skyrocketed when provided with quality data in small quantities.</p>
+</li>
+<li>
+<p>Human expert knowledge in domain-specific areas is not just necessary but integral. This article will demonstrate its significance and how it can be leveraged to enhance LLM&rsquo;s performance.</p>
+</li>
+<li>
+<p>Making a helpful model requires something other than expert programming or AI/ML knowledge. The instruction-tuned approach demonstrates great potential in improving LLM’s ability to become an invaluable assistant in domain-specific technology.</p>
+</li>
+</ol>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>Instruction-tuning greatly enhanced ChatGPT’s domain knowledge. On average, instruction-tuned ChatGPT scored 77.52%, which is <strong>8x higher</strong> than zero-shot learning (9.53%) and <strong>~2x higher</strong> than few-shot learning (39.72%).</p>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>As usual, here is a high-level summary for the busy folks:</p>
+<ul>
+<li>
+<p>This research experiment explored instruction-based tuning to enhance ChatGPT’s ability to answer domain-specific questions, specifically Cisco ACI query commands.</p>
+</li>
+<li>
+<p>The goal was to test ChatGPT’s ability to provide accurate ACI CLI commands after being tuned with detailed instructions.</p>
+</li>
+<li>
+<p>The Q&amp;A tests contain 72 questions with three levels of difficulty.
+Q1–Q10 are low, Q11 — Q52 are medium, and Q53 — Q72 are high.</p>
+</li>
+<li>
+<p>The instructions provided are similar to how we would teach a junior engineer.</p>
+</li>
+<li>
+<p>Each test was run 100 times for all 72 questions.</p>
+</li>
+<li>
+<p>If we only account for questions answered correctly 100% of the time, the instruction-tuned model scored 56.16%, which is ~7x higher than zero-shot learning (8.22%) and few-shot learning (8.22%).</p>
+</li>
+<li>
+<p>Here is the comparison chart<br>
+<img loading="lazy" src="overall_total_score_results.jpg" alt="overall_total_score_results"  />
+</p>
+</li>
+<li>
+<p>Few-shot learning results dropped sharply for questions answered correctly 100% of the time.</p>
+</li>
+<li>
+<p>I also noticed the latest Claude Opus 3 model outperforms ChatGPT4 at following instructions. However, more research and investigation are needed.</p>
+</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned<a hidden class="anchor" aria-hidden="true" href="#lessons-learned">#</a></h2>
+<ul>
+<li>
+<p>Build a validation pipeline as early as possible before diving into data gathering and refining.</p>
+</li>
+<li>
+<p>Consistency is paramount. The model can answer the same question differently, but the result should always remain the same. Even getting the answer incorrectly every time, with the same answer, is better than getting the answer correctly 80% of the time.</p>
+</li>
+<li>
+<p>Use syntax highlighting if describing a syntax. It will draw attention to the model.</p>
+</li>
+<li>
+<p>Collect the error rate on every question and visualize distribution and frequency.</p>
+</li>
+<li>
+<p>Keep instructions simple. It is tempting to add as many detailed instructions as possible, but if there are overlapping languages and contexts, you risk confusing the LLM.</p>
+</li>
+<li>
+<p>Add logic to validate both the input data and the outcome of the CLI commands. Make sure to account for dynamic output, such as timestamps.</p>
+</li>
+<li>
+<p>Avoid unnatural and tailored question prompts. These prompts may be suitable for benchmarking, but they will fail in the real world. The hardest part is accounting for different human expression styles.</p>
+</li>
+</ul>
+<p><strong>Now, let’s dive into the details.</strong></p>
+<hr>
+<h2 id="problem-statement">Problem Statement<a hidden class="anchor" aria-hidden="true" href="#problem-statement">#</a></h2>
+<p>During my years building ACI data centers for customers, the most common question I received was, &ldquo;<em>How do I get XYZ information from ACI?</em>&rdquo;</p>
+<p>This is because ACI SDN differs from traditional networking, requiring an understanding of its API to retrieve information efficiently.</p>
+<p>Example: <em>How do I get a list of IP addresses and MAC?</em></p>
+<ul>
+<li>Traditional Networking: <code>show ip arp</code> on core router</li>
+<li>In ACI: <code>moquery -c fvIp</code> from one of the APICs.</li>
+</ul>
+<p><strong>Note</strong>: In ACI there are also <code>show</code> commands available through the CLI. However, it can only retrieve the most commonly used objects. In this article, we’ll cover only the API query command - <code>moquery</code></p>
+<blockquote>
+<p><em>‘moquery’ is an ACI-style CLI command that performs API calls against the APIC Managed Object (mo) database. It is a combination of a Database query and an API call. Results are returned as a Class/Object relationship, similar to Python objects.</em></p>
+</blockquote>
+<p><strong>My goal is to provide users with a domain-knowledge-tuned LLM that can accurately construct API commands.</strong></p>
+<p>In this article, I performed some research and experiments to see how close we can get by tuning ChatGPT with only instructions.</p>
+<hr>
+<h2 id="basic-terminologies">Basic Terminologies<a hidden class="anchor" aria-hidden="true" href="#basic-terminologies">#</a></h2>
+<ul>
+<li>
+<p>instruction — In ChatGPT, instructions guide how ChatGPT should respond to prompts.</p>
+</li>
+<li>
+<p>zero-shot learning — The model has never seen the data during training and could still infer.</p>
+</li>
+<li>
+<p>few-shot learning — Some examples are provided to the model and usually improve the model performance compared to zero-shot learning.</p>
+</li>
+<li>
+<p>instruction-tuned (or tuned for short) — means that the model was provided detailed instructions to respond to various prompts.</p>
+</li>
+</ul>
+<h2 id="methodology-and-requirements">Methodology and Requirements<a hidden class="anchor" aria-hidden="true" href="#methodology-and-requirements">#</a></h2>
+<ul>
+<li>Build QA datasets with domain knowledge.</li>
+<li>Build instructions to answer the questions from the QA dataset.</li>
+<li>Ensure data diversity to represent different real-world situations.</li>
+<li>Data must be of high quality with no errors.</li>
+<li>Implement a rigorous validation process to ensure no mistakes in score calculation.</li>
+<li>Compare the results among zero-shot learning, few-shot learning, and instruction-tuned models across various scenarios.</li>
+<li>Model used: <code>gpt-4–1106-preview</code></li>
+</ul>
+<h2 id="qa-questions-and-tuned-instructions">QA Questions and Tuned Instructions<a hidden class="anchor" aria-hidden="true" href="#qa-questions-and-tuned-instructions">#</a></h2>
+<h3 id="qa-test-questions---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaindatasetqa_datajson">QA Test Questions  - <a href="https://github.com/zhangineer/networking_llm_instruction/blob/main/dataset/qa_data.json">Link</a><a hidden class="anchor" aria-hidden="true" href="#qa-test-questions---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaindatasetqa_datajson">#</a></h3>
+<p>These are carefully crafted questions to test the model&rsquo;s response accuracy.</p>
+<ul>
+<li>The QA test questions are split into easy, medium, and hard difficulties based on my personal experience.</li>
+<li>There are a total of 72 questions. Q1 - Q10 (10) are easy, Q11 - Q52 (42) are medium level, and Q53 - Q72 (20) are hard.</li>
+<li>All questions are configuration-related since I only have a digital simulation of the Cisco APIC.</li>
+</ul>
+<h3 id="tuned-instruction---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaininstructionstunedmd">Tuned Instruction  - <a href="https://github.com/zhangineer/networking_llm_instruction/blob/main/instructions/tuned.md">Link</a><a hidden class="anchor" aria-hidden="true" href="#tuned-instruction---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaininstructionstunedmd">#</a></h3>
+<p>The instructions were 100% written by a human (me; last I checked, I was still human). It has four main components: basic guidelines, syntax explanations, examples, and class descriptions.</p>
+<p>The system instruction is provided to ChatGPT as the first prompt for each conversation context. (as long as the context stays the same, we do not need to provide system instruction over and over)</p>
+<p><strong>Basic guidelines</strong> - To instruct chatGPT on the answer format, style, limit the scope…etc. For example, <br>
+<code>Only provide an explanation if the user requests</code> <br>
+or <br>
+<code>Do not use any classes not listed in this guide</code></p>
+<p><strong>API syntax explanation</strong> - Explains how the API query syntax works. For example, we start by explaining the high-level syntax:</p>
+<p><img loading="lazy" src="snapshot_of_syntax_explanation.png" alt="snapshot_of_syntax_explanation"  />
+</p>
+<p><strong>Individual Class Descriptions</strong> - Each class and associated attributes provide certain information. ChatGPT must understand them and choose the correct class to answer related questions. For example, below is the description for the Bridge Domain class. (For non-ACI users/programmers, this is essentially a Python class with attributes)</p>
+<p><img loading="lazy" src="bridge_domain_class_description.png" alt="bridge_domain_class_description"  />
+</p>
+<p>I also referenced the Cisco DevNet API class descriptions: <a href="https://developer.cisco.com/site/apic-mim-ref-api/">https://developer.cisco.com/site/apic-mim-ref-api/</a>.</p>
+<p>Unfortunately, we can&rsquo;t pass on the entire API reference because it&rsquo;s not well-written for LLM.</p>
+<p><strong>Few-shot Examples</strong> - Provide ChatGPT with direct examples. These are extremely valuable and efficient but can hit diminishing returns quickly.</p>
+<p>For example, the few-shot examples are provided in a Q&amp;A format as shown below:<br>
+<img loading="lazy" src="few_shot_examples.png" alt="few_shot_examples"  />
+</p>
+<h2 id="additional-instructions">Additional Instructions<a hidden class="anchor" aria-hidden="true" href="#additional-instructions">#</a></h2>
+<p>You can also find a zero-shot and a few-shot version of the System Instructions. They are used to compare the difference between tuned and non-tuned instructions. In the end, the results show that:</p>
+<blockquote>
+<pre><code>          Tuned instruction &gt; Few-Shot &gt;&gt; Zero-Shot
+</code></pre>
+</blockquote>
+<h2 id="evaluation-process">Evaluation Process<a hidden class="anchor" aria-hidden="true" href="#evaluation-process">#</a></h2>
+<p>To properly evaluate the answers, we perform the following:</p>
+<ul>
+<li>Compare ChatGPT&rsquo;s response to the correct answer.</li>
+<li>Send ChatGPT&rsquo;s response to the APIC simulator and evaluate.</li>
+</ul>
+<p>I&rsquo;ve configured the simulator to ensure a meaningful response is always returned for each question.</p>
+<p>The flow goes as follows:</p>
+<ol>
+<li>We pass (system instructions + all 72 questions) to ChatGPT.</li>
+<li>We ask ChatGPT to provide all answers back in a single response (cost-saving)</li>
+<li>We send each ChatGPT&rsquo;s CLI answer to the APIC simulator and collect the response.</li>
+<li>We also send the correct CLI answer to the APIC simulator and collect the response.</li>
+<li>We compare the responses and score each of ChatGPT&rsquo;s answers.
+<ul>
+<li>1 point for a correct answer</li>
+<li>0 points for an incorrect answer, but the syntax is OK</li>
+<li>-1 point for syntax error (This does not affect the total score)</li>
+</ul>
+</li>
+<li>Repeat the above process 100 times.</li>
+</ol>
+<p>Below is a diagram illustration of the process</p>
+<p><img loading="lazy" src="evaluation_process.png" alt="evaluation_process"  />
+</p>
+<h2 id="the-results">The Results<a hidden class="anchor" aria-hidden="true" href="#the-results">#</a></h2>
+<p>The chart below shows that:</p>
+<p>On average (blue bar), the instruction-tuned model scored 77.52%, which is ~8x higher than zero-shot learning (9.53%) and ~2x higher than few-shot learning (39.72%).</p>
+<p>If we only account for questions answered correctly 100% of the time (red bar), the instruction-tuned model scored 56.16%, which is ~7x higher than zero-shot learning and ~7x higher than few-shot learning.</p>
+<p><img loading="lazy" src="overall_total_score_results.jpg" alt="overall_total_score_results"  />
+</p>
+<h3 id="breakdown-by-difficulty-levels">Breakdown By Difficulty Levels<a hidden class="anchor" aria-hidden="true" href="#breakdown-by-difficulty-levels">#</a></h3>
+<p>The chart below shows that:</p>
+<ul>
+<li>The instruction-tuned model maintained 100% accuracy in low-difficulty questions</li>
+<li>The instruction-tuned model showed minimal drops in performance between medium and high-difficulty</li>
+<li>Few-shot learning shows a tremendous jump from 0% to 43.7% score compared to zero-shot learning.</li>
+<li>The few-shot learning score drops sharply from medium to high difficulty.</li>
+</ul>
+<p><img loading="lazy" src="score_breakdown_by_difficulty.png" alt="score_breakdown_by_difficulty"  />
+</p>
+<p>Now that we&rsquo;ve reviewed the results, we&rsquo;ll examine the process of building the validation pipeline, the pain points, and what can be improved.</p>
+<h2 id="examples-where-chatgpt-needed-hints-to-interpret">Examples Where ChatGPT Needed Hints To Interpret<a hidden class="anchor" aria-hidden="true" href="#examples-where-chatgpt-needed-hints-to-interpret">#</a></h2>
+<h3 id="q16-prompt-engineering-required">Q16 - Prompt Engineering Required<a hidden class="anchor" aria-hidden="true" href="#q16-prompt-engineering-required">#</a></h3>
+<p>The question is tailored so ChatGPT can interpret it correctly.</p>
+<ul>
+<li>
+<p><strong>Didn&rsquo;t work</strong>: <em>how to get a list of leafs and spines along with serial numbers and models?</em></p>
+</li>
+<li>
+<p><strong>Worked</strong>: <em>how to get a list of device serial numbers and models, excluding the controllers?</em></p>
+</li>
+</ul>
+<p>Since there are only three types of devices in an ACI fabric, it&rsquo;s common for engineers to ask with the first approach, as it is more natural.</p>
+<p>Imagine asking someone what they had for lunch and dinner, like this: &ldquo;What did you have for meals, excluding breakfast?&rdquo;</p>
+<p>That is not natural to me.</p>
+<p>ChatGPT stumbles because to answer the question below,</p>
+<blockquote>
+<p><em>how to get a list of leafs and spines along with serial numbers and models?</em></p>
+</blockquote>
+<p>One must use the <code>or</code> operator instead of <code>and</code>. In the below query, when using <code>and</code>, it implies that the role of a node must be both &ldquo;leaf&rdquo; and &ldquo;spine,&rdquo; which is impossible since they are mutually exclusive.</p>
+<p><code>moquery -c fabricNode -x 'query-target-filter=and(eq(fabricNode.role,&quot;leaf&quot;),eq(fabricNode.role,&quot;spine&quot;))'</code></p>
+<p>In this context, how humans understand the word &ldquo;and&rdquo; differs from API language. The easiest approach is to use the ne(not equal) operator to exclude the APIC controller as follows:</p>
+<p><code>'query-target-filter=ne(fabricNode.role,&quot;controller&quot;)'</code></p>
+<h3 id="q28-issues-with-interpretation">Q28. Issues with interpretation<a hidden class="anchor" aria-hidden="true" href="#q28-issues-with-interpretation">#</a></h3>
+<p>I also had to modify the question itself</p>
+<ul>
+<li><strong>Didn&rsquo;t work</strong> - <em>how to find a list of leafs pending for registration?</em></li>
+<li><strong>Worked</strong> - <em>how to find a list of devices pending for registration that are also leaf switches</em></li>
+</ul>
+<p>I am somewhat surprised that ChatGPT couldn&rsquo;t understand the question. Without hints ChatGPT will answer as follows:</p>
+<p><code>moquery -c dhcpClient -x 'query-target-filter=eq(dhcpClient.clientEvent,&quot;pending&quot;)'</code></p>
+<p><strong>Correct answer:</strong></p>
+<p><code>moquery -c dhcpClient -x 'query-target-filter=and(eq(dhcpClient.clientEvent,&quot;pending&quot;),eq(dhcpClient.configNodeRole,&quot;leaf&quot;))'</code></p>
+<p>ChatGPT did not understand the question and missed out on the fact that we were only interested in the leaf devices.</p>
+<h3 id="q15-vague-class-description">Q15. Vague class description<a hidden class="anchor" aria-hidden="true" href="#q15-vague-class-description">#</a></h3>
+<p>This one is more of a human error. Here is the question:</p>
+<blockquote>
+<p><em>How to find the fabric TEP address pool?</em></p>
+</blockquote>
+<p><code>tepPool</code> is an attributes of the class <code>topSystem</code>, and our goal is to find its value. Hence, we need to query for other fields of the same class. To get the value, one can query either Spine, Leaf, or Controller.</p>
+<p>As shown below, I intended for ChatGPT to use the <code>role</code> attribute as a filter to find <code>tepPool</code> information from the same object.</p>
+<pre tabindex="0"><code>### topSystem: device state and configuration information class
+* `role`: role of the device, available options are: `controller`, `leaf`, `spine`
+* `tepPool`: fabric TEP address pool for the whole system, example: `10.0.0.0/16`
+</code></pre><p>Correct answer:</p>
+<p><code>moquery -c topSystem -x 'query-target-filter=eq(topSystem.role,\&quot;controller\&quot;)</code></p>
+<p>ChatGPT will get it correct sometimes, but other times, it&rsquo;ll give me something like this:</p>
+<p><code>moquery -c topSystem -x 'query-target-filter=ne(topSystem.tepPool,&quot;&quot;)'</code></p>
+<p>Note the empty values <code>(&quot;&quot;)</code> in the filter implies that ChatGPT realizes that it&rsquo;s an unknown value and we need to find it, but the ACI API doesn&rsquo;t support empty string matching.</p>
+<p>The vague part is in the description of the class itself.</p>
+<ul>
+<li><strong>Didn&rsquo;t work</strong> - topSystem: system information class</li>
+<li><strong>Worked</strong> - topSystem: device state and configuration information class</li>
+</ul>
+<p>Human guidance is vital in guiding LLMs, similar to providing knowledge to another human.</p>
+<hr>
+<h2 id="observations">Observations<a hidden class="anchor" aria-hidden="true" href="#observations">#</a></h2>
+<p>The following observations are not inclusive; there are probably more than I can remember.</p>
+<h3 id="the-good">The Good<a hidden class="anchor" aria-hidden="true" href="#the-good">#</a></h3>
+<ul>
+<li>Great potential and simplified user experience.</li>
+<li>There is much less code to write compared to using function calls.</li>
+<li>Instruction-tuning can cover a lot more use cases than function calls.</li>
+<li>Even engineers with no coding skills can help contribute with their expert knowledge.</li>
+</ul>
+<h3 id="the-bad">The Bad<a hidden class="anchor" aria-hidden="true" href="#the-bad">#</a></h3>
+<ul>
+<li>
+<p>The model is susceptible to minor adjustments, even if you set the temperature to 0. Sometimes, changing a symbol or deleting a word can impact its performance</p>
+</li>
+<li>
+<p>The model never tells if you made grammatical errors; you only see them in the results, which means extensive version controls (do you really want to version control every letter or symbol change?)</p>
+</li>
+<li>
+<p>Sometimes, you need to use tailored prompts/question styles so the model can better understand it.</p>
+</li>
+<li>
+<p>The tuned model requires more tokens (~4x compared to zero-shot) and will continue expanding to cover more use cases. A larger context is more expensive.</p>
+</li>
+<li>
+<p>Unlike programming languages that are &ldquo;mostly&rdquo; deterministic, LLMs aren&rsquo;t. They have wild thoughts, memories, and knowledge, so they might want to be a bit creative, which is exactly what we DON&rsquo;T NEED in networking !!</p>
+<p>Imagine, during an SAT exam, a student crosses out one of the multiple answers and adds her own answer (creativity in exchange for a point? I don&rsquo;t think so!)</p>
+</li>
+</ul>
+<h3 id="the-ugly">The Ugly<a hidden class="anchor" aria-hidden="true" href="#the-ugly">#</a></h3>
+<p><strong>The model result is inconsistent.</strong></p>
+<ul>
+<li>
+<p>Occasionally, you&rsquo;ll see the model answer the same question correctly 50% of the time or even 99% of the time. (Four questions were answered correctly 99/100 times.) This makes tuning extremely challenging. (RLHF can potentially help here; I provided no feedback to the model.)</p>
+<p>Imagine never telling students which question they got correct on an exam and expecting them to achieve 100% by brute force, forcing them to retake exams; good luck with that!</p>
+</li>
+<li>
+<p>The model still hallucinates as usual.</p>
+</li>
+</ul>
+<p><strong>The model can be stuck with past memory.</strong></p>
+<ul>
+<li>During training, if one type of data appears too frequently, the model will not easily forget that, no matter how &ldquo;bad&rdquo; that memory was.</li>
+</ul>
+<h2 id="scalability-considerations">Scalability Considerations<a hidden class="anchor" aria-hidden="true" href="#scalability-considerations">#</a></h2>
+<p>To efficiently scale this deployment, we may consider the following approaches:</p>
+<ul>
+<li>
+<p>Incorporate RAG - However, this means another level of dependency on the retrieval process&rsquo;s accuracy. Additionally, as LLMs context windows get larger and even infinite context windows, the use of RAG will diminish.</p>
+</li>
+<li>
+<p>Multi-agent - Each agent is responsible for one area of knowledge. (hardware query vs. routing table query).</p>
+</li>
+<li>
+<p>Fine-tuning - Tune the weights with new training data so the model can answer questions without extra instructions. However, be aware of catastrophic forgetting.</p>
+</li>
+<li>
+<p>Hybrid - Mix instruction tuning with the function-calling feature.</p>
+</li>
+</ul>
+<h2 id="instruction-tuning-pros-andcons">Instruction Tuning Pros and Cons<a hidden class="anchor" aria-hidden="true" href="#instruction-tuning-pros-andcons">#</a></h2>
+<h3 id="pros">Pros<a hidden class="anchor" aria-hidden="true" href="#pros">#</a></h3>
+<ul>
+<li>Tuned using human natural language</li>
+<li>Expert knowledge of LLMs is optional as long as the pipeline is built.</li>
+<li>Easy to iterate, update, and expand as needed</li>
+</ul>
+<h3 id="cons">Cons<a hidden class="anchor" aria-hidden="true" href="#cons">#</a></h3>
+<ul>
+<li>Additional efforts are required to convert vendor documents if they aren&rsquo;t well-written</li>
+<li>It is costly if the software backend isn&rsquo;t well designed to scale</li>
+<li>Context window limit</li>
+<li>It&rsquo;s difficult to debug because it&rsquo;s all natural language based. Machines still don&rsquo;t quite understand words the same way humans do.</li>
+</ul>
+<h2 id="additional-tests-toconsider">Additional Tests To Consider<a hidden class="anchor" aria-hidden="true" href="#additional-tests-toconsider">#</a></h2>
+<p>My testing pipeline only contains questions that should always yield a command as the answer. Additional testing cases to be considered:</p>
+<ul>
+<li>Test the model&rsquo;s ability to respond with &ldquo;insufficient information&rdquo; when no specific class definition is given to reduce hallucinations</li>
+<li>Test the model&rsquo;s ability to explain the result when requested by the user</li>
+<li>Test the model&rsquo;s ability to quote the object definition where it is referenced</li>
+<li>Test the model&rsquo;s ability to respond to the same question but asked in different ways</li>
+</ul>
+<h2 id="accuracy-improvements-and-alternatives">Accuracy Improvements and Alternatives<a hidden class="anchor" aria-hidden="true" href="#accuracy-improvements-and-alternatives">#</a></h2>
+<ul>
+<li>Compare against different models, such as Claude 3 Opus 3, LLaMA3, or Mistral, to see if a better model exists, or even vote among various models for the best results.</li>
+<li>Try a model built explicitly for instruction tuning, such as the FLAN-T5 model.</li>
+<li>Try using another model to help tune instructions iteratively and automatically based on testing results.
+*Expand testing datasets to include operational tasks and queries</li>
+</ul>
+<blockquote>
+<pre><code>      From This Point On, It's All About The Technical Details
+</code></pre>
+</blockquote>
+<h2 id="tuned-instructions-explained-in-details">Tuned Instructions Explained in Details<a hidden class="anchor" aria-hidden="true" href="#tuned-instructions-explained-in-details">#</a></h2>
+<p>In this section, we&rsquo;ll review some of the details and intricacy of the <a href="https://github.com/zhangineer/networking_llm_instruction/blob/main/instructions/tuned.md">tuned instructions</a> and their effects on the outcome, for better or worse.</p>
+<h3 id="role-definition">Role Definition<a hidden class="anchor" aria-hidden="true" href="#role-definition">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span>You are a co-pilot to the network engineers. 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Your responsibilities are to provide assistance to network engineer in constructing Cisco ACI queries and execute commands
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Do not provide commands or information that was not provided to you in this instruction
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Respond with only the command, do not add any descriptions
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Only provide explanation if the user requested
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> You do not ever apologize and strictly generate networking commands based on the provided examples.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Do not provide any networking commands that can&#39;t be inferred from the instructions
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Inform the user when you can&#39;t infer the networking command due to the lack of context of the conversation and state what is the missing in the context.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Do not use any classes not listed in this guide
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Do not include &#34;`&#34; symbols in your response
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Make sure to review the examples before building the final query
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> For each question, make sure to always identify the parent class and the children class first, if applicable.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> If reverse lookup is needed, make sure to follow the &#34;Reverse Lookup Technique&#34; approach
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> The following are syntax to construct ACI queries, think step by step to build the query. 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Before constructing a query, make sure to carefully review all details of a given class description
+</span></span></code></pre></div><p>The role definition helps in the following areas:</p>
+<ul>
+<li>Provides context to control what types of questions to answer.</li>
+<li>Help increase accuracy in more complex queries, such as using the classic &ldquo;think step by step&rdquo; technique.</li>
+<li>Control response format - LLMs, by default, are verbose and sometimes will respond with backticks as well as in a code block, which we do not want to include</li>
+</ul>
+<h3 id="syntax-format">Syntax Format<a hidden class="anchor" aria-hidden="true" href="#syntax-format">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span>The general format of a Cisco ACI query command is structured as follows:
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c &lt;class1&gt;,&lt;class2&gt;,&lt;class2&gt; -x &lt;option1&gt; &lt;option2&gt; &lt;option3&gt;`</span>...etc.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> we only need to specify <span style="color:#e6db74">`-x`</span> once, even for multiple options. 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> the format <span style="color:#e6db74">`&lt;class1&gt;,&lt;class2&gt;,&lt;class3&gt;`</span> is called multi-class query. It will return all objects for the matching class name.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> query-target-filter: filter based on query class, general format: <span style="color:#e6db74">`&#39;&lt;operator&gt;(&lt;filter&gt;)&#39;`</span>, where <span style="color:#e6db74">`filter`</span> looks like this <span style="color:#e6db74">`&lt;class&gt;.&lt;attribute&gt;,&#34;value_to_filter&#34;`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">*</span> example: <span style="color:#e6db74">`moquery -c &lt;class&gt; -x &#39;query-target-filter=eq(&lt;class&gt;.&lt;attribute&gt;,&#34;value_to_filter&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">*</span> never use multiple <span style="color:#e6db74">`query-target-filter`</span> option
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> available operators are:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">1.</span> <span style="color:#e6db74">`eq`</span>: equal
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">2.</span> <span style="color:#e6db74">`ne`</span>: not equal
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">3.</span> <span style="color:#e6db74">`gt`</span>: greater than, only applies to numerical values
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">4.</span> <span style="color:#e6db74">`wcard`</span>: wild card or contains
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">5.</span> <span style="color:#e6db74">`bw`</span>: between 2 numerical values or time stamps
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">6.</span> <span style="color:#e6db74">`ge`</span>: greater than or equal to
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">7.</span> <span style="color:#e6db74">`le`</span>: less than or equal to
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">8.</span> <span style="color:#e6db74">`lt`</span>: less than, only applies to numerical values
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">9.</span> <span style="color:#e6db74">`or`</span>: or
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">10.</span> <span style="color:#e6db74">`and`</span>: and
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> rsp-subtree: Specifies child object level included in the response, valid values are: <span style="color:#e6db74">`no | children | full`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> rsp-subtree-class: Respond only specified classes in the subtree.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> rsp-subtree-filter: Respond only if the subtree classes matching conditions
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> rsp-subtree-include: Request additional objects in the subtree
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`required`</span>. If <span style="color:#e6db74">`rsp-subtree-class`</span> option is used, we should always add the <span style="color:#e6db74">`required`</span> option.
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`no-scoped`</span> Response includes only the requested subtree information. Useful for getting faults related to an object.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> query-target:  restricts the scope of the query. valid options are <span style="color:#e6db74">`self(default) | children | subtree`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> order-by: Sort the response based on the property values, valid values are <span style="color:#e6db74">`asc (ascending) | desc(descending)`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> page-size: return a limited number of results
+</span></span></code></pre></div><ul>
+<li>
+<p>For consistency purposes, I provided only the API syntax to ChatGPT. (there is also a format using moquery -c <!-- raw HTML omitted --> -f <!-- raw HTML omitted -->, for example, moquery -c fvAEPg -f &lsquo;fv.AEPg.pcTag==&ldquo;xxxx&rdquo;&rsquo;.)</p>
+</li>
+<li>
+<p>Not all syntax formats are provided; these cover the most common usages</p>
+</li>
+</ul>
+<h3 id="reverse-lookup-technique">Reverse Lookup Technique<a hidden class="anchor" aria-hidden="true" href="#reverse-lookup-technique">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">## Reverse Lookup Technique
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>If user asks to get parent object based a child object, we need to perform reverse lookup.
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c &lt;parent_class&gt; -x rsp-subtree-class=&lt;child_class&gt; rsp-subtree-include=required rsp-subtree=children &#39;rsp-subtree-filter=eq(&lt;child_class&gt;.&lt;attribute&gt;,&#34;value_to_match&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span>Explanation:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`rsp-subtree-class`</span> defines what the child class we want to target
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`rsp-subtree-include=required`</span> ensures that we return parent object only if the child object class exist ( this should always be used by default in most cases )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`rsp-subtree=children`</span> returns all the children objects
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`rsp-subtree-filter`</span> applies the filter, note that we use child_class here.
+</span></span></code></pre></div><ul>
+<li>
+<p>This section is created to answer complex questions requiring a reverse lookup (i.e., given the child&rsquo;s object, find the parent&rsquo;s attributes).</p>
+</li>
+<li>
+<p>ChatGPT cannot derive such understanding on its own if it is only provided a description of each option flag. Spelling out special instructions, if needed, is critical, highlighting the importance of human guidance.</p>
+</li>
+<li>
+<p>Both zero-shot and few-shot models performed poorly in this area</p>
+</li>
+</ul>
+<h3 id="example-with-explanation">Example With Explanation<a hidden class="anchor" aria-hidden="true" href="#example-with-explanation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span>Assuming that you are provided the following class information
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">```
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>### fvTenant: Tenant class
+</span></span><span style="display:flex;"><span>* `name`: name of the Tenant
+</span></span><span style="display:flex;"><span>* CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  - `fvAp`: Application Profile class
+</span></span><span style="display:flex;"><span>    - `name`: name of the application profile
+</span></span><span style="display:flex;"><span>    - CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>      - `fvAEPg`: EPG class
+</span></span><span style="display:flex;"><span>        - `name`: name of the EPG
+</span></span><span style="display:flex;"><span>  - `fvBD`: Bridge Domain class
+</span></span><span style="display:flex;"><span>    - `name`: name of the bridge domain
+</span></span><span style="display:flex;"><span>    - CHILDREN CLASSES:      &lt;&lt;&lt;&lt; Nested children class
+</span></span><span style="display:flex;"><span>      - `fvSubnet`: Subnet class
+</span></span><span style="display:flex;"><span>        - `ip`: ip subnet, example &#34;10.0.0.1/24&#34;
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">```</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get the Tenant named <span style="color:#e6db74">`example_tenant`</span> with no additional children information: <span style="color:#e6db74">`moquery -c fvTenant -x &#39;query-target-filter=eq(fvTenant.name,&#34;example_tenant&#34;)`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get a list of AP in Tenant <span style="color:#e6db74">`example_tenant`</span>: <span style="color:#e6db74">`moquery -c fvTenant -x &#39;query-target-filter=eq(fvTenant.name,&#34;example_tenant&#34;) rsp-subtree-class=fvAp rsp-subtree=children`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get a list of EPGs in Tenant <span style="color:#e6db74">`example_tenant`</span>: <span style="color:#e6db74">`moquery -c fvTenant -x &#39;query-target-filter=eq(fvTenant.name,&#34;example_tenant&#34;)&#39; rsp-subtree-class=fvAEPg rsp-subtree=full rsp-subtree-include=required`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get the EPG named <span style="color:#e6db74">`my_epg`</span> in tenant <span style="color:#e6db74">`example_tenant`</span>, we need to perform a reverse lookup with a filter: <span style="color:#e6db74">`moquery -c fvTenant -x rsp-subtree-class=fvAEPg rsp-subtree=full rsp-subtree-include=required &#39;query-target-filter=eq(fvAEPg.name,&#34;my_epg&#34;)`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To find all BD and APs of Tenant <span style="color:#e6db74">`example_tenant`</span>, use comma to separate multiple classes query: <span style="color:#e6db74">`moquery -c fvTenant -x rsp-subtree-class=fvAp,fvBD rsp-subtree=children &#39;query-target-filter=eq(fvTenant.name,&#34;example_tenant&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get all the faults related to Tenant <span style="color:#e6db74">`example_tenant`</span>: <span style="color:#e6db74">`moquery -c fvTenant -x rsp-subtree-include=faults,no-scoped query-target=subtree`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> To get a list of Tenants and associated EPGs, excluding any Tenant named <span style="color:#e6db74">`common`</span>: <span style="color:#e6db74">`moquery -c fvTenant -x rsp-subtree=full &#39;query-target-filter=ne(fvTenant.name,&#34;common&#34;) rsp-subtree-class=fvAEPg rsp-subtree-include=required&#39;`</span>
+</span></span><span style="display:flex;"><span>**note** we use <span style="color:#e6db74">`rsp-subtree=full`</span> if the children class is more than 2 layers down from the parent object
+</span></span></code></pre></div><p>The above helps &ldquo;explain&rdquo; to ChatGPT how to interpret the class object structure. The goal was to solve the problem of ChatGPT not being able to follow nested objects properly. However, this approach resulted in little improvements (ChatGPT was able to answer some of the advanced questions with nested objects correctly, but is still inconsistent)</p>
+<h3 id="qa-examples">Q&amp;A Examples<a hidden class="anchor" aria-hidden="true" href="#qa-examples">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">## Q&amp;A Examples:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Here are some moquery examples:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of BDs in tenant common?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x &#39;query-target-filter=wcard(fvBD.dn,&#34;/tn-common/&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get the BD with the exact name of either &#34;customer&#34; or &#34;cust&#34;, regardless of which tenant they belong to?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x &#39;query-target-filter=or(eq(fvBD.name,&#34;customer&#34;),eq(fvBD.name,&#34;cust&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get all BDs with unicast routing disabled in Tenant common?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x &#39;query-target-filter=and(wcard(fvBD.dn,&#34;/tn-common/&#34;),eq(fvBD.unicastRoute,&#34;no&#34;))&#39;`</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get all BDs that has a subnet configured?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x rsp-subtree-class=fvSubnet rsp-subtree=children rsp-subtree-include=required`</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get all BDs that has a subnet configured, and the subnet must also route leak?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x rsp-subtree-class=fvSubnet rsp-subtree=children rsp-subtree-include=required &#39;rsp-subtree-filter=eq(fvSubnet.scope,&#34;shared&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of static path bindings tagged with VLAN 1?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvRsPathAtt -x &#39;query-target-filter=and(eq(fvRsPathAtt.encap,&#34;vlan-1&#34;),eq(fvRsPathAtt.mode,&#34;regular&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of static path bindings tagged with VLAN 10?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvRsPathAtt -x &#39;query-target-filter=and(eq(fvRsPathAtt.encap,&#34;vlan-10),eq(fvRsPathAtt.mode,&#34;regular&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of path bindings tagged with VLAN 50?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvRsPathAtt -x &#39;query-target-filter=and(eq(fvRsPathAtt.encap,&#34;vlan-50),eq(fvRsPathAtt.mode,&#34;regular&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of static path bindings in VLAN 5?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvRsPathAtt -x &#39;query-target-filter=eq(fvRsPathAtt.encap,&#34;vlan-5&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of static path bindings for leaf 101 and leaf 102, interface 1/24 assuming that this interface is not part of vPC or PC?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvRsPathAtt -x &#39;query-target-filter=wcard(fvRsPathAtt.dn,&#34;paths-101/pathep-\[eth1/4\]&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get all the bridge domains, ordered by modification date, latest first, return only the top 1st result?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x page-size=1 page=0 order-by=&#39;fvBD.modTs|desc&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get all configuration changes made to tenant &#34;demo&#34; between time 2023/12/21 5 AM and 202/12/30 9 PM?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c aaaModLR -x &#39;query-target-filter=and(bw(aaaModLR.created,&#34;2023-12-21T05:00&#34;,&#34;2023-12-30T21:00&#34;),wcard(aaaModLR.affected,&#34;tn-demo/&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to find configurations with specifically <span style="color:#e6db74">`deleted`</span> action by user admin between 2024-02-08 and 2024-02-10?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c aaaModLR -x &#39;query-target-filter=and(eq(aaaModLR.ind,&#34;deletion&#34;),eq(aaaModLR.user,&#34;admin&#34;),bw(aaaModLR.created,&#34;2024-02-01&#34;,&#34;2024-02-15&#34;))&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to find out how many Bridge Domain objects there are?
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x rsp-subtree-include=count`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to get a list of BDs associated with vrf &#34;demo_vrf&#34;?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvBD -x rsp-subtree-class=fvRsCtx rsp-subtree=children rsp-subtree-include=required &#39;rsp-subtree-filter=eq(fvRsCtx.tnFvCtxName,&#34;demo_vrf&#34;)&#39;`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> how to find all the consumers and providers of contract &#34;application_contract&#34;?  
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`moquery -c fvAEPg -x rsp-subtree=children rsp-subtree-class=fvRsProv,fvRsCons rsp-subtree-include=required &#39;rsp-subtree-filter=or(eq(fvRsProv.tnVzBrCPName,&#34;application_contract&#34;),eq(fvRsCons.tnVzBrCPName,&#34;application_contract&#34;))&#39;`</span>
+</span></span></code></pre></div><ul>
+<li>LLMs typically use the above example format for fine-tuning and few-shot learnings.</li>
+<li>ChatGPT had issues interpreting the meaning of tagged with and in for VLANs; hence, the same example was repeated.</li>
+<li>Providing examples like these is highly effective compared to zero-shot models; however, examples alone are insufficient to achieve higher accuracy.</li>
+</ul>
+<h3 id="individual-class-object-descriptions">Individual Class Object Descriptions<a hidden class="anchor" aria-hidden="true" href="#individual-class-object-descriptions">#</a></h3>
+<p>Below, I have listed only the high-level summary and the first class. The remaining class description structure repeats.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">## Frequently Used Classes and Attributes Layout
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> The following describes the attributes for each class.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Many classes have children classes as well. and each children class also has their own attributes.
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> Children classes can be directly queried, or it can be included when querying against a parent class using option <span style="color:#e6db74">`-x rsp-subtree=children`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> For nested children class, use <span style="color:#e6db74">`-x rsp-subtree=full`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`dn`</span> is a universal attribute available to all classes, it means distinguished name
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Every class has an attribute of <span style="color:#e6db74">`dn`</span>, but not all are included as they are pretty obvious.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> values in <span style="color:#e6db74">`( )`</span> defines available options if not specifically called out.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### fvBD: Bridge Domain Class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>**note**: there are default bridge domains already-exists and we typically want to exclude them from queries, their names are: <span style="color:#e6db74">`default`</span>,`ave-ctrl`, and <span style="color:#e6db74">`inb`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`name`</span>: name of a bridge domain
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`dn`</span> example: <span style="color:#e6db74">`uni/tn-demo/BD-demo_web_bd`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`mac`</span>: MAC address of the bridge domain, default = 00:22:BD:F8:19:FF
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`hostBasedRouting(yes/no)`</span>: whether host based routing is enabled or not. 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`unicastRoute(yes/no)`</span>: The forwarding method based on predefined forwarding criteria (IP or MAC address), default = yes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`unkMacUcastAct(flood/proxy)`</span>: The forwarding method for unknown layer 2 destinations, default = proxy
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`limitIpLearnToSubnets(yes/no)`</span>: limit ip learning to subnet only or not, default = no
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`arpFlood(yes/no)`</span>: whether arp flood is enabled or not, we should automatically exclude default BDs when user asks for this.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`descr`</span>: description of the bridge domain
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`fvSubnet`</span>: class for subnets under a bridge domain
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`ip`</span>: subnet
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`scope(public/shared/private)`</span>: <span style="color:#e6db74">`public`</span> = advertised out, <span style="color:#e6db74">`shared`</span> = route leaking, <span style="color:#e6db74">`private`</span> = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: <span style="color:#e6db74">`public,shared`</span>, <span style="color:#e6db74">`private,shared`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`fvRsBDToOut`</span>: class related to Bridge Domain, for L3Out
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`tnL3extOutName`</span>: name of the L3Out associated with the bridge domain
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`dn`</span> example: uni/tn-demo/BD-demo_bd/rsBDToOut-demo_l3out
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`fvRsCtx`</span>: class related to Bridge Domain, for VRF
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`tnFvCtxName`</span>: name of the vrf associated with the bridge domain
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`dn`</span> example: uni/tn-demo/BD-demo_web_bd/rsctx
+</span></span></code></pre></div><ul>
+<li>
+<p>A high-level summary briefly explains the structure of classes and the format that I use to suggest how to interpret them.</p>
+</li>
+<li>
+<p>This line is another reminder to ChatGPT that for nested child class, use a different flag - For nested children class, use <code>-x rsp-subtree=full</code></p>
+</li>
+<li>
+<p>The header for the class name and a short description - ### fvBD: Bridge Domain Class. This information is critical for ChatGPT to know which class to use for a given query before diving into the attributes.</p>
+</li>
+<li>
+<p>The **note section helps highlight important information. This worked very well with Claude, but it&rsquo;s hit or miss with ChatGPT.</p>
+</li>
+<li>
+<p>I manually created each object description, aligning it with my understanding. I also referenced Cisco&rsquo;s official document when needed.</p>
+</li>
+<li>
+<p>Not every attribute is listed for two reasons: to reduce hallucinations and control ChatGPT&rsquo;s knowledge scope.</p>
+</li>
+<li>
+<p>Objects descriptions could use more improvements, such as this sub-class: <code> `fvRsBDToOut`: class related to Bridge Domain, for L3Out.</code> The reason that it&rsquo;s described seemingly backward is because I noticed that ChatGPT will pick up <code>L3out</code> as a cue first if it&rsquo;s described like this <code>`fvRsBDToOut`: L3Out relationship class associated with Bridge Domain</code>, which leads to ChatGPT thinking that this is for L3Out.</p>
+<p>Again, the object relationship and nesting concept described here are challenges for ChatGPT to grasp. (It&rsquo;s also possible that I haven&rsquo;t found the perfect English words to describe it)</p>
+</li>
+<li>
+<p>The values inside <code>()</code> are for ChatGPT to understand all available options; some are straightforward, and others aren&rsquo;t. Therefore, an extra description of each option is required. For example:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>scope(public/shared/private): `public` = advertised out, `shared` = route leaking, `private` = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: `public,shared`, `private,shared`
+</code></pre><p>An engineer might ask something like, &ldquo;What are the routes advertised out and leaked?&rdquo; instead of &ldquo;What are the public and shared routes?&rdquo; Keep in mind that user prompts will influence ChatGPT, but from a UX/UI perspective, we should minimize such an effect.</p>
+<h2 id="individual-questionanalysis">Individual Question Analysis<a hidden class="anchor" aria-hidden="true" href="#individual-questionanalysis">#</a></h2>
+<p>The following chart shows chatGPT&rsquo;s weaknesses with the tuned instructions. We&rsquo;ll take a deeper look at some of the questions that even the instruction-tuned model failed miserably and see if we can gain some insights to understand better how we might be able to address them.</p>
+<p><img loading="lazy" src="individual_question_score_with_tuned_instructions.png" alt="individual_question_score_with_tuned_instructions"  />
+</p>
+<h3 id="q15-score-51-bug-in-the-pipeline-not-100-the-modelsfault">Q15 (Score 51%) - Bug in the pipeline (not 100% the model&rsquo;s fault)<a hidden class="anchor" aria-hidden="true" href="#q15-score-51-bug-in-the-pipeline-not-100-the-modelsfault">#</a></h3>
+<p>Below is the partial ACI response from the Q15 command for both the correct answer and ChatGPT&rsquo;s answer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>Question: Q15. how to find the fabric TEP address pool
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">37</span>,<span style="color:#ae81ff">075</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c topSystem <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(topSystem.role,&#34;controller&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">37</span>,<span style="color:#ae81ff">075</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c topSystem <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=wcard(topSystem.dn,&#34;/pod-&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">38</span>,<span style="color:#ae81ff">963</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct cmd output: {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;totalCount&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;imdata&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;topSystem&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attributes&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;address&#34;</span>: <span style="color:#e6db74">&#34;10.0.0.1&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;bootstrapState&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;childAction&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;clusterTimeDiff&#34;</span>: <span style="color:#e6db74">&#34;-1&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;configIssues&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;controlPlaneMTU&#34;</span>: <span style="color:#e6db74">&#34;9000&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;currentTime&#34;</span>: <span style="color:#e6db74">&#34;2024-04-21T21:51:30.922+00:00&#34;</span>, <span style="color:#f92672">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span> SNIP <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">38</span>,<span style="color:#ae81ff">963</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> chatGPT cmd output: {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;totalCount&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;imdata&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;topSystem&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attributes&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;address&#34;</span>: <span style="color:#e6db74">&#34;10.0.0.1&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;bootstrapState&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;childAction&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;clusterTimeDiff&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;configIssues&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;controlPlaneMTU&#34;</span>: <span style="color:#e6db74">&#34;9000&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;currentTime&#34;</span>: <span style="color:#e6db74">&#34;2024-04-21T21:51:31.879+00:00&#34;</span>, <span style="color:#f92672">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span> SNIP <span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>This question is <strong>sometimes</strong> marked incorrectly because there is a currentTime element that changes each time we make a query.</p>
+<p>So, in this case, it was a bug in the validation pipeline; ChatGPT&rsquo;s score probably should&rsquo;ve been higher.</p>
+<p><strong>Potential Solution</strong>: Skip comparing results/fields that will change per query. Evaluating answers based on a specific format is not a good approach. ChatGPT can sometimes surprise you with its response.</p>
+<p>But wait, what about the other 49% of the times that it was correct? Since the time element changes each time, shouldn&rsquo;t it be wrong 100% of the time?</p>
+<p>Because we have a logic that checks for the commands first, and if it&rsquo;s 100% matched, we do not need to compare the output, as shown below</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>Question: Q15. how to find the fabric TEP address pool
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">038</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c topSystem <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(topSystem.role,&#34;controller&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">038</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c topSystem <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(topSystem.role,&#34;controller&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">038</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> command is <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span> matched
+</span></span></code></pre></div><p>If ChatGPT had been more consistent, we wouldn&rsquo;t have discussed Q15.</p>
+<h3 id="q18-classattribute-confusion">Q18: Class/Attribute Confusion<a hidden class="anchor" aria-hidden="true" href="#q18-classattribute-confusion">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>Question: Q18. how to get a list of subnets advertised out <span style="color:#f92672">and</span> also route leaked
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>different filter used
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">45</span>:<span style="color:#ae81ff">17</span>,<span style="color:#ae81ff">112</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c fvSubnet <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(fvSubnet.scope,&#34;public,shared&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">45</span>:<span style="color:#ae81ff">17</span>,<span style="color:#ae81ff">112</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvSubnet <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=wcard(fvSubnet.scope,&#34;public,shared&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>incorrect syntax
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">38</span>:<span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">470</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c fvSubnet <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(fvSubnet.scope,&#34;public,shared&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">38</span>:<span style="color:#ae81ff">53</span>,<span style="color:#ae81ff">470</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvSubnet <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=or(eq(fvSubnet.scope,&#34;export-rtctrl&#34;),eq(fvSubnet.scope,&#34;shared-rtctrl&#34;))&#39;</span>
+</span></span></code></pre></div><p>In the first response, ChatGPT&rsquo;s used a wcard filter instead of eq, which is fine but not ideal. Frankly, in this specific case, eq and wcard made no difference.</p>
+<p>In the second response, ChatGPT provided an invalid syntax.</p>
+<p>Here is the <code>fvSubnet</code> class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">### fvBD: Bridge Domain Class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`name`</span>: name of a bridge domain
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">SNIP</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`fvSubnet`</span>: class for subnets under a bridge domain
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`ip`</span>: subnet
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">*</span> <span style="color:#e6db74">`scope(public/shared/private)`</span>: <span style="color:#e6db74">`public`</span> = advertised out, <span style="color:#e6db74">`shared`</span> = route leaking, <span style="color:#e6db74">`private`</span> = not advertised out. In addition to individual options, you can also join them with comma, available combinations are: <span style="color:#e6db74">`public,shared`</span>, <span style="color:#e6db74">`private,shared`</span>
+</span></span></code></pre></div><p>There are no <code>export-rtctrl</code> or <code>shared-rtctrl</code> attributes, so where did ChatGPT get them from?</p>
+<p>They are from the L3Out class description, as shown below; <code>l3extSubnet</code> (child class of <code>L3Out</code>) contains attributes with the same name, <code>ip</code>, and <code>scope</code>, but ChatGPT should&rsquo;ve followed the class name first. It is also possible that ChatGPT picked up the description of <code>scope of the subnet prefix</code> without awareness of the context.</p>
+<blockquote>
+<p><em><strong>This implies that ChatGPT doesn&rsquo;t always understand the class/attribute hierarchy. We&rsquo;ll see more of these later.</strong></em></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">### l3extOut: layer3 out (L3out) class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`name`</span>: name of the L3Out profile
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`l3extInstP`</span>: L3out EPG
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`dn`</span> example: <span style="color:#e6db74">`uni/tn-demo/out-demo_l3out/instP-demo_l3out_epg`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`prefGrMemb(include/exclude)`</span>: Preferred group member
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`l3extSubnet`</span>: This class is for L3Out EPG prefixes
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`ip`</span>: prefix IP address. e.g. <span style="color:#e6db74">`0.0.0.0/0`</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`scope`</span>: scope of the subnet prefix, available options are <span style="color:#e6db74">`export-rtctrl`</span>, <span style="color:#e6db74">`import-security`</span>, <span style="color:#e6db74">`shared-rtctrl`</span>, <span style="color:#e6db74">`shared-security`</span>, can be combined. <span style="color:#e6db74">`import-security`</span> is the default.
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`aggregate`</span>: whether aggregate options are used, available options are <span style="color:#e6db74">`export-rtctrl`</span> and <span style="color:#e6db74">`shared-rtctrl`</span>, can be combined.
+</span></span></code></pre></div><p><strong>Potential Solution</strong>: Emphasize the importance of the class, attribute, and children&rsquo;s class hierarchy in syntax description. Provide more distinctive descriptions when attribute names overlap across different classes.</p>
+<h3 id="q21-prompt-issue-and-concept-confusion">Q21 - Prompt Issue and Concept Confusion<a hidden class="anchor" aria-hidden="true" href="#q21-prompt-issue-and-concept-confusion">#</a></h3>
+<p><strong>Q: How to get a list of BDs excluding the default ones?</strong></p>
+<p>Below are examples of ChatGPT&rsquo;s answer in 2 different instances, which unveils two potential issues.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>Question: Q21. how to get a list of BDs excluding the default ones
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">927</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(ne(fvBD.name,&#34;inb&#34;),ne(fvBD.name,&#34;ave-ctrl&#34;),ne(fvBD.name,&#34;default&#34;))&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">928</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=ne(fvBD.name,&#34;default&#34;) ne(fvBD.name,&#34;ave-ctrl&#34;) ne(fvBD.name,&#34;inb&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">942</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> Question: Q21. how to get a list of BDs excluding the default ones
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">942</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(ne(fvBD.name,&#34;inb&#34;),ne(fvBD.name,&#34;ave-ctrl&#34;),ne(fvBD.name,&#34;default&#34;))&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">48</span>:<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">942</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=ne(fvBD.name,&#34;default&#34;)&#39;</span>
+</span></span></code></pre></div><p><strong>Issue #1 - Prompt not specific enough or lack of comprehension</strong></p>
+<p>The answer in the first example has invalid syntax. However, when I reviewed the answer to a similar question, ChatGPT scored higher! As shown below:</p>
+<p><code>Q25: how to get a list of BDs with ARP flooding disabled, excluding default BDs</code></p>
+<p>This answer required an additional filter and queried against the same class - fvBD. The overall score for this question is 87%</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">42</span>:<span style="color:#ae81ff">07</span>,<span style="color:#ae81ff">231</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> Question: Q25. how to get a list of BDs with ARP flooding disabled, excluding default BDs
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">42</span>:<span style="color:#ae81ff">07</span>,<span style="color:#ae81ff">231</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> correct answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(eq(fvBD.arpFlood,&#34;no&#34;),ne(fvBD.name,&#34;inb&#34;),ne(fvBD.name,&#34;ave-ctrl&#34;),ne(fvBD.name,&#34;default&#34;))&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2024</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">21</span> <span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">42</span>:<span style="color:#ae81ff">07</span>,<span style="color:#ae81ff">231</span> <span style="color:#f92672">-</span> __main__ <span style="color:#f92672">-</span> INFO <span style="color:#f92672">-</span> gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvBD <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(ne(fvBD.name,&#34;default&#34;),ne(fvBD.name,&#34;ave-ctrl&#34;),ne(fvBD.name,&#34;inb&#34;),eq(fvBD.arpFlood,&#34;no&#34;))&#39;</span>
+</span></span></code></pre></div><p><strong>Issue #2 - ChatGPT is confused with the term &ldquo;default&rdquo; in some contexts.</strong></p>
+<p>&ldquo;setting named <strong>default</strong>&rdquo; is different from &ldquo;<strong>default</strong> settings.&rdquo; The former refers to a specific setting that uses the name &ldquo;default,&rdquo; and the latter could refer to multiple settings that were never changed.</p>
+<p>As shown below</p>
+<p>This is correct:</p>
+<p><code>moquery -c fvBD -x 'query-target-filter=and(ne(fvBD.name,&quot;inb&quot;),ne(fvBD.name,&quot;ave-ctrl&quot;),ne(fvBD.name,&quot;default&quot;))'</code></p>
+<p>This is incorrect</p>
+<p><code>moquery -c fvBD -x 'query-target-filter=ne(fvBD.name,&quot;default&quot;)'</code></p>
+<p><strong>Potential Solution</strong>: Rephrase the question and differentiate these two concepts with more diversified examples.</p>
+<p>Additionally, with some step-by-step prompts, ChatGPT knows how to answer this question. It&rsquo;s frustrating that it didn&rsquo;t answer correctly on the first try, resulting in a bad user experience.</p>
+<p><img loading="lazy" src="../../../images/supercharge_llm_with_domain_expert_knowledge/llm_reasoning_step_by_step.png" alt="llm_reasoning_step_by_step"  />
+</p>
+<blockquote>
+<p><em>Side note: I tried the same in Claude Opus3, and it got the answer correctly on the first try! Maybe I&rsquo;ll write a blog on Claude next to compare performance.</em></p>
+</blockquote>
+<h3 id="q35-hallucination">Q35 - Hallucination<a hidden class="anchor" aria-hidden="true" href="#q35-hallucination">#</a></h3>
+<p>This question is a bit tricky because the EPG object path is <code>tn-Tenant/ap-ANP/epg-EPG</code> , and AP information was not given, so we need to perform a <code>wcard</code> match on the Tenant name and EPG name at the same time.</p>
+<p>As shown below, ChatGPT essentially made up the AP name when the AP information was not given.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>Q35. how to get a list of path bindings <span style="color:#66d9ef">in</span> EPG epg_vlan0005 <span style="color:#66d9ef">in</span> tenant demo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>correct answer cmd: moquery <span style="color:#f92672">-</span>c fvRsPathAtt <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(wcard(fvRsPathAtt.dn,&#34;epg-epg_vlan0005/&#34;),wcard(fvRsPathAtt.dn,&#34;tn-demo/&#34;))&#39;</span>
+</span></span><span style="display:flex;"><span>gpt answer cmd: moquery <span style="color:#f92672">-</span>c fvRsPathAtt <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=wcard(fvRsPathAtt.dn,&#34;/tn-demo/ap-demo_anp/epg-epg_vlan0005/&#34;)&#39;</span>
+</span></span></code></pre></div><p><strong>Potential Solution</strong>: Try adding more specific examples to illustrate the use of concatenating wildcard-based matches.</p>
+<h3 id="q31--q32-preposition-words">Q31 &amp; Q32 - Preposition Words<a hidden class="anchor" aria-hidden="true" href="#q31--q32-preposition-words">#</a></h3>
+<p>A particularly interesting issue I encountered was that ChatGPT couldn&rsquo;t grasp the difference between &ldquo;<strong>tagged with</strong> VLAN 5&rdquo; vs. &ldquo;<strong>in</strong> VLAN 5&rdquo;.</p>
+<p>Network engineers know that the former refers to VLAN tagging, and the latter is more generic regardless of the port configuration mode. This is the same in ACI.</p>
+<p>Though both Q31 and Q32 had perfect scores, it was largely due to my extra effort to ensure that ChatGPT could distinguish between them. This is still a potential issue that will require more tuning.</p>
+<p>As shown below, I have used several examples of the same question to emphasize the difference.</p>
+<p><img loading="lazy" src="tagged_vlan_vs_in_vlan_examples.png" alt="tagged_vlan_vs_in_vlan_examples"  />
+</p>
+<h3 id="q39-unable-to-comprehend-hierarchical-nested-object-definitions">Q39 - Unable to Comprehend Hierarchical Nested Object Definitions<a hidden class="anchor" aria-hidden="true" href="#q39-unable-to-comprehend-hierarchical-nested-object-definitions">#</a></h3>
+<p>Given the following object descriptions and questions:</p>
+<p>Pay attention to where the<code> action(permit/deny)</code> is applied for a filter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">### vzBrCP: Contract class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`name`</span>: name of the contract
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`vzSubj`</span>: Contract subject class
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`name`</span>: name of the subject
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`vzRsSubjFiltAtt`</span>: class related to the subject, for filters
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`tnVzFilterName`</span>: name of the filter
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`action(permit/deny)`</span>: action of the filter.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### vzFilter: Filter class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`name`</span>: name of the filter
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> CHILDREN CLASSES:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`vzEntry`</span>: Filter entry class. Multiple filter entries can be associated with a filter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`name`</span>: name of the filter entry
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`dFromPort`</span>: starting port number
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`dToPort`</span>: end port number
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`protocol(tcp/udp/icmp)`</span>: protocol for the filter entry.
+</span></span></code></pre></div><p><strong>Question</strong>: <em>how to get a list of filters with permit actions?</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>correct answer cmd: moquery <span style="color:#f92672">-</span>c vzRsSubjFiltAtt <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=eq(vzRsSubjFiltAtt.action,&#34;permit&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span>gpt answer cmd: moquery <span style="color:#f92672">-</span>c vzFilter <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=wcard(vzFilter.dn,&#34;/subj-[permit]/&#34;)&#39;</span>
+</span></span></code></pre></div><p>This is one of the trickier questions.</p>
+<ul>
+<li><code>filter(vzFilter)</code> object is where you define what the filter contains</li>
+<li><code>filter entries(vzEntry)</code> object is where you define the specific protocols. Multiple entries can be part of the same filter</li>
+<li><code>subject filter(vzSubjFFiltAtt)</code> is where you apply the action permit/deny; hence, this is the class we want to query for.</li>
+</ul>
+<p><strong>Potential Solutions</strong>: One of the things that I can try is to be more precise in the <code>vzRsSubjFiltAtt</code> description, and I can directly tell ChatGPT to use this class for retrieving actions. However, this is not a single instance.</p>
+<p><strong>Q43 - Unable to Comprehend Well When Synonymous Words Used For Different Reasons</strong></p>
+<p>Given the following object descriptions and question:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Markdown" data-lang="Markdown"><span style="display:flex;"><span><span style="color:#75715e">### aaaModLR: audit log class
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`user`</span>: name of the user who performed the action
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`ind`</span>: used to indicate the state of an object. valid values are <span style="color:#e6db74">`creation`</span>, <span style="color:#e6db74">`modification`</span> or <span style="color:#e6db74">`deletion`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> <span style="color:#e6db74">`created`</span>: a property indicate when the specific audit log was created. this does not imply whether a configuration is <span style="color:#e6db74">`created`</span>, <span style="color:#e6db74">`modified`</span> or <span style="color:#e6db74">`deleted`</span>
+</span></span><span style="display:flex;"><span>**note** to get dates of audit log, use <span style="color:#e6db74">`created`</span>. To get configurations made, use <span style="color:#e6db74">`ind`</span>
+</span></span></code></pre></div><p><strong>Question</strong>: <em>how to find the total number of configuration changes created between 2024–03–20 and 2024–03–25?</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Lua" data-lang="Lua"><span style="display:flex;"><span>correct answer cmd: moquery <span style="color:#f92672">-</span>c aaaModLR <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=and(eq(aaaModLR.ind,&#34;creation&#34;),bw(aaaModLR.created,&#34;2024-03-20T00:00&#34;,&#34;2024-03-25T23:59&#34;))&#39;</span> rsp<span style="color:#f92672">-</span>subtree<span style="color:#f92672">-</span>include<span style="color:#f92672">=</span>count
+</span></span><span style="display:flex;"><span>gpt answer cmd: moquery <span style="color:#f92672">-</span>c aaaModLR <span style="color:#f92672">-</span>x <span style="color:#e6db74">&#39;query-target-filter=bw(aaaModLR.created,&#34;2024-03-20T00:00&#34;,&#34;2024-03-25T23:59&#34;) rsp-subtree-include=count&#39;</span><span style="color:#960050;background-color:#1e0010">`</span>
+</span></span></code></pre></div><p>Here is an example output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Yaml" data-lang="Yaml"><span style="display:flex;"><span><span style="color:#75715e"># aaa.ModLR</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">id           </span>: <span style="color:#ae81ff">4294967791</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">affected     </span>: <span style="color:#ae81ff">uni/backupst/snapshots-[uni/fabric/configexp-DailyAutoBackup]/snapshot-run-2024-03-25T17-00-15</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cause        </span>: <span style="color:#ae81ff">transition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">changeSet    </span>: <span style="color:#ae81ff">name:run-2024-03-25T17-00-15, retire:no, userdom:all</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">childAction  </span>:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">clientTag    </span>:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">code         </span>: <span style="color:#ae81ff">E4208927</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">created      </span>: <span style="color:#e6db74">2024-03-25T17:00:18.868</span><span style="color:#ae81ff">+00</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">descr        </span>: <span style="color:#ae81ff">Snapshot run-2024-03-25T17-00-15 created</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dn           </span>: <span style="color:#ae81ff">subj-[uni/backupst/snapshots-[uni/fabric/configexp-DailyAutoBackup]/snapshot-run-2024-03-25T17-00-15]/mod-4294967791</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ind          </span>: <span style="color:#ae81ff">creation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">modTs        </span>: <span style="color:#ae81ff">never</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rn           </span>: <span style="color:#ae81ff">mod-4294967791</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">sessionId    </span>:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">severity     </span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status       </span>:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">trig         </span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">txId         </span>: <span style="color:#ae81ff">221489</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">user         </span>: <span style="color:#ae81ff">admin</span>
+</span></span></code></pre></div><ul>
+<li>The line: <code>ind : creation</code> implies the actual action taken. In this case, the user created a new object. Other potential values are <code>modified</code> and <code>deleted</code>.</li>
+<li>The line: <code>created : 2024–03–25T17:00:18.868+00:00</code> implies when the <code>creation</code> happened.</li>
+<li>This is somewhat confusing to the model. It couldn&rsquo;t understand the difference between <code>created</code> and <code>creation</code>, and ChatGPT ended up ignoring that field altogether in the example provided above.</li>
+<li>I also intentionally added a &ldquo;note&rdquo; to help ChatGPT better understand the difference but without luck.</li>
+</ul>
+<blockquote>
+<p><em>Again, Anthropic&rsquo;s Claude Opus 3 wins-I am pretty impressed. Below is the answer on the first try. This also validates that my instruction is OK.</em></p>
+<p>To find the total number of configuration changes created between 2024–03–20 and 2024–03–25, use the following query:</p>
+<p>moquery -c aaaModLR -x &lsquo;query-target-filter=and(eq(aaaModLR.ind,&ldquo;creation&rdquo;),bw(aaaModLR.created,&ldquo;2024–03–20&rdquo;,&ldquo;2024–03–25&rdquo;))&rsquo; rsp-subtree-include=count</p>
+</blockquote>
+<h2 id="the-future-of-domain-specific-llms">The Future Of Domain-Specific LLMs<a hidden class="anchor" aria-hidden="true" href="#the-future-of-domain-specific-llms">#</a></h2>
+<p>Generative AI with transformers is a fast-paced, evolving technology that showed no signs of slowing down. One of the most promising aspects is that it lowers the bar for non-programmers to automate tasks.</p>
+<p>Many domain experts are not exactly expert programmers. However, the need to automate tasks is increasing as data center technologies become more complex and intertwined.</p>
+<p>I view LLM as another programming abstraction layer, similar to Python, as an abstraction layer to C/C++ for specific libraries.</p>
+<p>For simple or even mildly complex tasks, LLMs are the perfect tools to empower data center engineers and architects to be more efficient, for example:</p>
+<ul>
+<li>
+<p>During troubleshooting, engineers can describe a problem at a high level for LLM, executing commands across different devices to collect information. This cannot be easily automated using Ansible or Python because every situation is unique. However, Ansible/Python can become a tool for LLM to retrieve relative information. (We&rsquo;ll demonstrate this in a future blog)</p>
+</li>
+<li>
+<p>When performing configuration tasks, LLM can assist in configuration recommendations. This is extremely powerful, for example:<br>
+<code>switch trunk allowed v &lt;vlan&gt;</code><br>
+vs. <br>
+<code>switch trunk allowed v add &lt;vlan&gt;</code><br>
+<strong>makes a huge difference.</strong></p>
+</li>
+</ul>
+<p>Now, LLM has advanced to the point where we can describe intentions at the human level instead of code. The trade-off is that we lose some control of the outcome.</p>
+<blockquote>
+<p><em>If you were to hire an assistant to help you in your daily networking tasks, what would you trust/not trust that assistant with?</em></p>
+</blockquote>
+<h2 id="conclusions">Conclusions<a hidden class="anchor" aria-hidden="true" href="#conclusions">#</a></h2>
+<p>Instruction tuning is one of my favorite approaches to enhance LLMs&rsquo; ability for domain-specific tasks because it is human-friendly and more approachable for non-programmers.</p>
+<p>However, the downside is hallucinations, less control, and constant tweaking of the instruction language, which can be frustrating.</p>
+<p>On the other hand, function calling is the opposite, where the software engineer controls 90% of the outcome but requires more engineering efforts, and not all use cases are covered.</p>
+<p>I will explore multi-agent and multi-modality in future blogs for a more robust user experience; stay tuned!</p>
+<blockquote>
+<p>I hope you enjoyed this article; please reach out to me on <a href="https://www.linkedin.com/in/zhangineer/">LinkedIn</a> if you have any questions or want to discuss this further !!</p>
+</blockquote>
+<p>Lastly, some data didn&rsquo;t get their spotlight, but they also provided good insights.</p>
+<h2 id="extra-data-forfun">Extra Data For Fun<a hidden class="anchor" aria-hidden="true" href="#extra-data-forfun">#</a></h2>
+<h3 id="total-tokens-and-cost-estimate">Total Tokens and Cost (estimate)<a hidden class="anchor" aria-hidden="true" href="#total-tokens-and-cost-estimate">#</a></h3>
+<ul>
+<li>
+<p>Zero-shot: using gpt-4–1106-preview, this run costs $0.03 with 3465 tokens for 9.53% accuracy.</p>
+</li>
+<li>
+<p>Few-shot: using gpt-4–1106-preview, this run costs $0.05 with 4834 tokens for 39.72% accuracy.</p>
+</li>
+<li>
+<p>Instruction-tuned: using gpt-4–1106-preview, this run costs $0.13 with 12666 tokens for 77.52% accuracy.</p>
+</li>
+</ul>
+<p>The above clearly shows a trade-off between cost and accuracy.</p>
+<h3 id="invalid-syntax-stats-for-tuned-instruction">Invalid Syntax Stats For Tuned Instruction<a hidden class="anchor" aria-hidden="true" href="#invalid-syntax-stats-for-tuned-instruction">#</a></h3>
+<p>Below is a chart showing the number of invalid syntax for each question. This is a good measure of hallucinations. Technically speaking, if ChatGPT understood the syntax instructions, there would be fewer hallucinations. Imagine ChatGPT making up English phrases that never existed.</p>
+<p>In my experience, we rarely see syntax errors when coding or grammatical errors when conversing, implying that the model has seen enough data to avoid making such simple mistakes.</p>
+<p><img loading="lazy" src="invalid_syntax_stats_for_tuned_instructions.png" alt="invalid_syntax_stats_for_tuned_instructions"  />
+</p>
+<p>As shown below, without tuning, zero-shot and few-shot learnings are far from getting even the syntax correct.</p>
+<p><img loading="lazy" src="invalid_syntax_for_each_difficulty.png" alt="Invalid Syntax Stats for Each Difficulty"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on x"
+            href="https://x.com/intent/tweet/?text=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f&amp;title=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge&amp;summary=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge&amp;source=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f&title=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on whatsapp"
+            href="https://api.whatsapp.com/send?text=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge%20-%20http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on telegram"
+            href="https://telegram.me/share/url?text=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge&amp;url=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Networking and LLM — Supercharge LLM With Domain Expert Knowledge on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Networking%20and%20LLM%20%e2%80%94%20Supercharge%20LLM%20With%20Domain%20Expert%20Knowledge&u=http%3a%2f%2fzhangineer.net%2fposts%2f2024-05-05-supercharge-llm-with-domain-expert-knowledge%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://zhangineer.net/">Blogs on AI and Networking</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on Welcome to my blog</title>
-    <link>http://zhangineer.github.io/categories/</link>
-    <description>Recent content in Categories on Welcome to my blog</description>
+    <title>Categories on Blogs on AI and Networking</title>
+    <link>http://zhangineer.net/categories/</link>
+    <description>Recent content in Categories on Blogs on AI and Networking</description>
     <generator>Hugo -- 0.128.2</generator>
     <language>en-us</language>
-    <atom:link href="http://zhangineer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://zhangineer.net/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

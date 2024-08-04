@@ -2,32 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://zhangineer.github.io/posts/2023-12-10-networking-and-llm-pt4/</loc>
+    <loc>http://zhangineer.net/</loc>
     <lastmod>2023-12-10T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/posts/</loc>
+    <loc>http://zhangineer.net/posts/2024-05-05-supercharge-llm-with-domain-expert-knowledge/</loc>
     <lastmod>2023-12-10T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/</loc>
+    <loc>http://zhangineer.net/posts/2023-12-10-networking-and-llm-pt4/</loc>
     <lastmod>2023-12-10T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/posts/2023-11-22-networking-and-llm-pt3/</loc>
+    <loc>http://zhangineer.net/posts/</loc>
+    <lastmod>2023-12-10T20:16:15-04:00</lastmod>
+  </url><url>
+    <loc>http://zhangineer.net/posts/2023-11-22-networking-and-llm-pt3/</loc>
     <lastmod>2023-11-22T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/posts/2023-10-29-networking-and-llm-pt2/</loc>
+    <loc>http://zhangineer.net/posts/2023-10-29-networking-and-llm-pt2/</loc>
     <lastmod>2023-10-29T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/posts/2023-10-07-networking-and-llm-pt1/</loc>
+    <loc>http://zhangineer.net/posts/2023-10-07-networking-and-llm-pt1/</loc>
     <lastmod>2023-10-05T20:16:15-04:00</lastmod>
   </url><url>
-    <loc>http://zhangineer.github.io/aboutme/</loc>
+    <loc>http://zhangineer.net/aboutme/</loc>
   </url><url>
-    <loc>http://zhangineer.github.io/archives/</loc>
+    <loc>http://zhangineer.net/archives/</loc>
   </url><url>
-    <loc>http://zhangineer.github.io/categories/</loc>
+    <loc>http://zhangineer.net/categories/</loc>
   </url><url>
-    <loc>http://zhangineer.github.io/search/</loc>
+    <loc>http://zhangineer.net/search/</loc>
   </url><url>
-    <loc>http://zhangineer.github.io/tags/</loc>
+    <loc>http://zhangineer.net/tags/</loc>
   </url>
 </urlset>
