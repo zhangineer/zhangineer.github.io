@@ -206,7 +206,128 @@ In this post, I will cut through the noise and examine how to “teach” chatGP
     <div class="post-meta"><span title='2024-05-05 20:16:15 -0400 EDT'>May 5, 2024</span>&nbsp;·&nbsp;Peter Zhang
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#summary" aria-label="Summary">Summary</a></li>
+                <li>
+                    <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+                <li>
+                    <a href="#lessons-learned" aria-label="Lessons Learned">Lessons Learned</a></li>
+                <li>
+                    <a href="#problem-statement" aria-label="Problem Statement">Problem Statement</a></li>
+                <li>
+                    <a href="#basic-terminologies" aria-label="Basic Terminologies">Basic Terminologies</a></li>
+                <li>
+                    <a href="#methodology-and-requirements" aria-label="Methodology and Requirements">Methodology and Requirements</a></li>
+                <li>
+                    <a href="#qa-questions-and-tuned-instructions" aria-label="QA Questions and Tuned Instructions">QA Questions and Tuned Instructions</a><ul>
+                        
+                <li>
+                    <a href="#qa-test-questions---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaindatasetqa_datajson" aria-label="QA Test Questions - Link">QA Test Questions - Link</a></li>
+                <li>
+                    <a href="#tuned-instruction---linkhttpsgithubcomzhangineernetworking_llm_instructionblobmaininstructionstunedmd" aria-label="Tuned Instruction - Link">Tuned Instruction - Link</a></li></ul>
+                </li>
+                <li>
+                    <a href="#additional-instructions" aria-label="Additional Instructions">Additional Instructions</a></li>
+                <li>
+                    <a href="#evaluation-process" aria-label="Evaluation Process">Evaluation Process</a></li>
+                <li>
+                    <a href="#the-results" aria-label="The Results">The Results</a><ul>
+                        
+                <li>
+                    <a href="#breakdown-by-difficulty-levels" aria-label="Breakdown By Difficulty Levels">Breakdown By Difficulty Levels</a></li></ul>
+                </li>
+                <li>
+                    <a href="#examples-where-chatgpt-needed-hints-to-interpret" aria-label="Examples Where ChatGPT Needed Hints To Interpret">Examples Where ChatGPT Needed Hints To Interpret</a><ul>
+                        
+                <li>
+                    <a href="#q16-prompt-engineering-required" aria-label="Q16 - Prompt Engineering Required">Q16 - Prompt Engineering Required</a></li>
+                <li>
+                    <a href="#q28-issues-with-interpretation" aria-label="Q28. Issues with interpretation">Q28. Issues with interpretation</a></li>
+                <li>
+                    <a href="#q15-vague-class-description" aria-label="Q15. Vague class description">Q15. Vague class description</a></li></ul>
+                </li>
+                <li>
+                    <a href="#observations" aria-label="Observations">Observations</a><ul>
+                        
+                <li>
+                    <a href="#the-good" aria-label="The Good">The Good</a></li>
+                <li>
+                    <a href="#the-bad" aria-label="The Bad">The Bad</a></li>
+                <li>
+                    <a href="#the-ugly" aria-label="The Ugly">The Ugly</a></li></ul>
+                </li>
+                <li>
+                    <a href="#scalability-considerations" aria-label="Scalability Considerations">Scalability Considerations</a></li>
+                <li>
+                    <a href="#instruction-tuning-pros-andcons" aria-label="Instruction Tuning Pros and Cons">Instruction Tuning Pros and Cons</a><ul>
+                        
+                <li>
+                    <a href="#pros" aria-label="Pros">Pros</a></li>
+                <li>
+                    <a href="#cons" aria-label="Cons">Cons</a></li></ul>
+                </li>
+                <li>
+                    <a href="#additional-tests-toconsider" aria-label="Additional Tests To Consider">Additional Tests To Consider</a></li>
+                <li>
+                    <a href="#accuracy-improvements-and-alternatives" aria-label="Accuracy Improvements and Alternatives">Accuracy Improvements and Alternatives</a></li>
+                <li>
+                    <a href="#tuned-instructions-explained-in-details" aria-label="Tuned Instructions Explained in Details">Tuned Instructions Explained in Details</a><ul>
+                        
+                <li>
+                    <a href="#role-definition" aria-label="Role Definition">Role Definition</a></li>
+                <li>
+                    <a href="#syntax-format" aria-label="Syntax Format">Syntax Format</a></li>
+                <li>
+                    <a href="#reverse-lookup-technique" aria-label="Reverse Lookup Technique">Reverse Lookup Technique</a></li>
+                <li>
+                    <a href="#example-with-explanation" aria-label="Example With Explanation">Example With Explanation</a></li>
+                <li>
+                    <a href="#qa-examples" aria-label="Q&amp;A Examples">Q&amp;A Examples</a></li>
+                <li>
+                    <a href="#individual-class-object-descriptions" aria-label="Individual Class Object Descriptions">Individual Class Object Descriptions</a></li></ul>
+                </li>
+                <li>
+                    <a href="#individual-questionanalysis" aria-label="Individual Question Analysis">Individual Question Analysis</a><ul>
+                        
+                <li>
+                    <a href="#q15-score-51-bug-in-the-pipeline-not-100-the-modelsfault" aria-label="Q15 (Score 51%) - Bug in the pipeline (not 100% the model&rsquo;s fault)">Q15 (Score 51%) - Bug in the pipeline (not 100% the model&rsquo;s fault)</a></li>
+                <li>
+                    <a href="#q18-classattribute-confusion" aria-label="Q18: Class/Attribute Confusion">Q18: Class/Attribute Confusion</a></li>
+                <li>
+                    <a href="#q21-prompt-issue-and-concept-confusion" aria-label="Q21 - Prompt Issue and Concept Confusion">Q21 - Prompt Issue and Concept Confusion</a></li>
+                <li>
+                    <a href="#q35-hallucination" aria-label="Q35 - Hallucination">Q35 - Hallucination</a></li>
+                <li>
+                    <a href="#q31--q32-preposition-words" aria-label="Q31 &amp; Q32 - Preposition Words">Q31 &amp; Q32 - Preposition Words</a></li>
+                <li>
+                    <a href="#q39-unable-to-comprehend-hierarchical-nested-object-definitions" aria-label="Q39 - Unable to Comprehend Hierarchical Nested Object Definitions">Q39 - Unable to Comprehend Hierarchical Nested Object Definitions</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-future-of-domain-specific-llms" aria-label="The Future Of Domain-Specific LLMs">The Future Of Domain-Specific LLMs</a></li>
+                <li>
+                    <a href="#conclusions" aria-label="Conclusions">Conclusions</a></li>
+                <li>
+                    <a href="#extra-data-forfun" aria-label="Extra Data For Fun">Extra Data For Fun</a><ul>
+                        
+                <li>
+                    <a href="#total-tokens-and-cost-estimate" aria-label="Total Tokens and Cost (estimate)">Total Tokens and Cost (estimate)</a></li>
+                <li>
+                    <a href="#invalid-syntax-stats-for-tuned-instruction" aria-label="Invalid Syntax Stats For Tuned Instruction">Invalid Syntax Stats For Tuned Instruction</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><blockquote>
 <p><strong>System Instructions are more potent than you might realize</strong></p>
 </blockquote>
@@ -1024,6 +1145,14 @@ vs. <br>
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
+<nav class="paginav">
+  <a class="next" href="http://zhangineer.net/posts/2023-12-10-networking-and-llm-pt4/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Networking and LLM in the Age of AI — Pt. IV: Knowledge Retrieval using RAG</span>
+  </a>
+</nav>
+
 
 <ul class="share-buttons">
     <li>
