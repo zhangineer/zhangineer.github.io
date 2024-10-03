@@ -4,7 +4,7 @@
     <title>Posts on My Journey to AI and Networking</title>
     <link>http://zhangineer.net/posts/</link>
     <description>Recent content in Posts on My Journey to AI and Networking</description>
-    <generator>Hugo -- 0.128.2</generator>
+    <generator>Hugo -- 0.132.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 May 2024 20:16:15 -0400</lastBuildDate>
     <atom:link href="http://zhangineer.net/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -58,6 +58,13 @@ Instructions Instructions play a crucial role in shaping an LLM into a valuable 
 The rise of chatGPT and large language models (LLM) has opened up the possibility of transforming various domains. However, networking remains largely unexplored.
 In this series, we&amp;rsquo;ll explore the potential of LLMs to empower Networking Operations. No AI/ML knowledge is required.
 For the Busy People - TL;DR For the Series LLM demonstrated significant promise in assisting with IT and networking configuration management and troubleshooting tasks.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://zhangineer.net/posts/2024-10-02-test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://zhangineer.net/posts/2024-10-02-test/</guid>
+      <description>This is a test post </description>
     </item>
   </channel>
 </rss>
