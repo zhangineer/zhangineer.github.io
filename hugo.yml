@@ -1,0 +1,49 @@
+baseURL: 'https://zhangineer.net/'
+languageCode: 'en-us'
+title: 'My Journey to AI and Networking'
+theme: 'PaperMod'
+enableRobotsTXT: true
+
+params:
+  author: Peter Zhang
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowShareButtons: true
+  showtoc: true
+  ShowPostNavLinks: true
+  homeInfoParams:
+    Title: 👋 Hey there, welcome to my blog !
+    Content: I'm a network engineer at heart, but I've got this huge crush on AI and LLMs. When I'm not building networks, I'm diving deep into the world of AI, trying to figure out how we can use these LLM tools to make life easier for us network folks. I've been tinkering with this cool project lately - check out this quick video to see what I've been up to - [YouTube demo video](https://youtu.be/WfKfwiGQts8) !
+  comments: true
+  socialIcons: # optional
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/zhangineer"
+    - name: "github"
+      url: "https://github.com/zhangineer"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+menu:
+  main:
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 10
+    - identifier: about_me
+      name: About Me
+      url: /aboutme/
+      weight: 20
+    - identifier: llm_networking_project
+      name: Project Demo
+      url: https://youtu.be/WfKfwiGQts8
+      weight: 20
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # allow raw HTML in posts (e.g. colored or highlighted text)
+      hardWraps: true # the CMS rich-text editor saves line breaks as single newlines

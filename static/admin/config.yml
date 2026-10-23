@@ -1,0 +1,87 @@
+# Sveltia CMS config — served at https://zhangineer.net/admin/
+# Docs: https://sveltiacms.app/en/docs
+backend:
+  name: github
+  repo: zhangineer/zhangineer.github.io
+  branch: main
+
+site_url: https://zhangineer.net
+media_folder: static/images
+public_folder: /images
+
+output:
+  omit_empty_optional_fields: true
+
+slug:
+  lowercase: false  # keep title casing in folder names, like existing posts
+  timezone: local  # folder date prefix uses your local date, not UTC
+
+collections:
+  - name: posts
+    label: Posts
+    folder: content/posts
+    path: '{{year}}-{{month}}-{{day}}-{{slug}}/index'
+    media_folder: ''  # images live next to the post (page bundle)
+    public_folder: ''
+    format: toml-frontmatter
+    create: true
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime, input_timezone: America/New_York, default: '{{now}}' }
+      - { name: draft, label: Draft, widget: boolean, default: true }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: aboutme
+        label: About Me
+        file: content/aboutme.md
+        format: toml-frontmatter
+        fields:
+          - { name: title, label: Title }
+          - { name: draft, label: Draft, widget: boolean, default: false }
+          - { name: body, label: Body, widget: markdown }
+
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site & Theme Settings
+        file: hugo.yml
+        format: yaml
+        # Keys not listed here (baseURL, menu, outputs, markup...) are kept as-is,
+        # but saving from the CMS drops comments in hugo.yml and reorders keys.
+        fields:
+          - { name: title, label: Site Title }
+          - name: params
+            label: PaperMod Options
+            widget: object
+            fields:
+              - { name: author, label: Author }
+              - name: defaultTheme
+                label: Default Color Theme
+                widget: select
+                options: [auto, light, dark]
+                required: false
+              - { name: ShowReadingTime, label: Show Reading Time, widget: boolean, required: false }
+              - { name: ShowBreadCrumbs, label: Show Breadcrumbs, widget: boolean }
+              - { name: ShowCodeCopyButtons, label: Show Code Copy Buttons, widget: boolean }
+              - { name: ShowShareButtons, label: Show Share Buttons, widget: boolean }
+              - { name: showtoc, label: Show Table of Contents, widget: boolean }
+              - { name: ShowPostNavLinks, label: Show Prev/Next Post Links, widget: boolean }
+              - { name: comments, label: Comments, widget: boolean }
+              - name: homeInfoParams
+                label: Home Page Intro
+                widget: object
+                fields:
+                  - { name: Title, label: Heading }
+                  - { name: Content, label: Text, widget: markdown }
+              - name: socialIcons
+                label: Social Icons
+                widget: list
+                fields:
+                  - { name: name, label: "Icon name (e.g. github, linkedin, x)" }
+                  - { name: url, label: URL }
