@@ -7,7 +7,7 @@ tags = [ "Opinion" ]
 
 Hey Jensen, 
 
-Well, when I am writing this, I realized that you'll probably never seen it, but i figured after everything that has happened, I should at least write this down just in case I see day that you return to NVIDIA. 
+Well, when I am writing this, I realized that you'll probably never seen it, but i figured after everything that has happened today, I should at least write this down just in case I see day that you return to NVIDIA. 
 
 My name is Peter, and I have been employed with NVIDIA for almost 1 year (12/15/2025 joined). Today is an extremely upsetting day, and I write with mixed emotions. 
 
